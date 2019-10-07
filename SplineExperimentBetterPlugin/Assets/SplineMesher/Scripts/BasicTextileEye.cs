@@ -18,6 +18,7 @@ namespace SplineMesher
         public Slider angleChanger;
         public Slider widthChanger;
         public Slider detailChanger;
+        public Text lineWidth;
         public List<Vector3> knotList;
         public List<Vector3> vectorList;
 
@@ -71,6 +72,7 @@ namespace SplineMesher
 
             detailChanger.value = 24;
             widthChanger.value = 0.2f;
+            lineWidth.text = "0.20 cm";
 
             lineMgrComp.ManualUpdate();
 
@@ -132,6 +134,7 @@ namespace SplineMesher
             if (spMeshComp.tubeRadius != widthChanger.value)
             {
                 spMeshComp.tubeRadius = widthChanger.value;
+                lineWidth.text = widthChanger.value.ToString("N2") + " cm";
                 lineMgrComp.ManualUpdate();
             }
 
