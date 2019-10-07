@@ -65,6 +65,8 @@ namespace SplineMesher
             spMeshComp.sides = 24;
 
             lineMgrComp.ManualUpdate();
+
+            OnEdit();
         }
 
         void Awake()
@@ -88,8 +90,26 @@ namespace SplineMesher
 
         public void OnEdit()
         {
-            vectorList[3] = new Vector3(vectorList[3].x, vectorList[3].y - changer.value, vectorList[3].z);
-            vectorList[4] = new Vector3(vectorList[3].x, vectorList[3].y + changer.value, vectorList[3].z);
+            float sliderMax = 2.5f;
+
+            //up node
+            vectorList[3] = new Vector3(2.5f - (float)(changer.value / sliderMax * 0.9), vectorList[3].y, (float) (changer.value / sliderMax * 1.25));
+            vectorList[4] = new Vector3(0.5f + (float)(changer.value / sliderMax * 1.1), vectorList[4].y, 0 - (float) (changer.value / sliderMax * 1.25));
+
+            //right side node
+            knotList[1] = new Vector3(2.8f - (float)(changer.value / sliderMax * 1.2), knotList[1].y, (float)(changer.value / sliderMax * 1.2));
+
+            vectorList[0] = new Vector3(1f + (float)(changer.value / sliderMax * 0.5), vectorList[0].y, vectorList[0].z);
+            vectorList[1] = new Vector3(2.8f - (float)(changer.value / sliderMax * 1.21), vectorList[1].y, (float)(changer.value / sliderMax * 1.21));
+            vectorList[2] = new Vector3(2.8f - (float)(changer.value / sliderMax * 1.19), 3.711469f - (float)(changer.value / sliderMax * 0.421469), (float)(changer.value / sliderMax * 1.21));
+
+            //left side node
+            knotList[3] = new Vector3(0.4f + (float)(changer.value / sliderMax * 1.2), knotList[3].y, 0 - (float)(changer.value / sliderMax * 1.2));
+
+            vectorList[5] = new Vector3(0.4f + (float)(changer.value / sliderMax * 1.19), 3.711469f - (float)(changer.value / sliderMax * 0.421469), 0 - (float)(changer.value / sliderMax * 1.21));
+            vectorList[6] = new Vector3(0.4f + (float)(changer.value / sliderMax * 1.21), vectorList[6].y, 0 - (float)(changer.value / sliderMax * 1.21));
+            vectorList[7] = new Vector3(2f - (float)(changer.value / sliderMax * 0.5), vectorList[7].y, vectorList[7].z);
+
             lineMgrComp.ManualUpdate();
         }
     }
