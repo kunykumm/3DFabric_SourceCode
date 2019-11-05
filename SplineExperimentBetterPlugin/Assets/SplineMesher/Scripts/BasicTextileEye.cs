@@ -10,7 +10,7 @@ namespace SplineMesher
     {
         private LineManager lineMgrComp;
         private SplineMesher spMeshComp;
-        private GameObject basicEye;
+        public GameObject basicEye;
         private float prevAngle;
 
         public bool bezierCurve;
@@ -28,8 +28,8 @@ namespace SplineMesher
         {
             prevAngle = 0f;
 
-            basicEye = new GameObject();
-            basicEye.name = "basic eye";
+            //basicEye = new GameObject();
+            //basicEye.name = "basic eye";
 
             lineMgrComp = basicEye.AddComponent<LineManager>();
             spMeshComp = basicEye.AddComponent<SplineMesher>();
