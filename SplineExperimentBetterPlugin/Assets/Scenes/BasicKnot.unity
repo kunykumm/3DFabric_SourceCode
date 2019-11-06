@@ -129,8 +129,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 56141756}
+  - component: {fileID: 56141757}
   m_Layer: 0
-  m_Name: BasicKnotGenerated
+  m_Name: EditedKnot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,6 +151,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &56141757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56141755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a7fb1b89cf81854cbfd613cfbe709d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &203252886
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,8 +1004,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 3.0092666e-36, y: 3.9443045e-31, z: 2.3509887e-38,
-    w: 2.87e-42}
+  m_BoundingSphereOverride: {x: 3.0092666e-36, y: 1.5046328e-36, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2755,7 +2767,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1741925142}
-  - component: {fileID: 1741925141}
   - component: {fileID: 1741925143}
   m_Layer: 0
   m_Name: GotoGenerateMesh
@@ -2764,18 +2775,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1741925141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741925140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c89f3398a32280c43997d8695fafb95f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1741925142
 Transform:
   m_ObjectHideFlags: 0
@@ -2803,8 +2802,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseMesh: {fileID: 56141755}
-  camera: {fileID: 1879821805}
-  light: {fileID: 705507993}
 --- !u!1 &1754611330
 GameObject:
   m_ObjectHideFlags: 0
@@ -3563,6 +3560,11 @@ PrefabInstance:
       propertyPath: bezierCurve
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3127607911338306168, guid: 6d24ce7ae600c3d4ba14158de8954f24,
+        type: 3}
+      propertyPath: matForMesh
+      value: 
+      objectReference: {fileID: 2100000, guid: dee68cc9e69ff2b4fab58b1e073df871, type: 2}
     - target: {fileID: 3127607911338306175, guid: 6d24ce7ae600c3d4ba14158de8954f24,
         type: 3}
       propertyPath: m_LocalPosition.x

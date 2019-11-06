@@ -12,9 +12,9 @@ namespace SplineMesher
         private SplineMesher spMeshComp;
         public GameObject basicEye;
         private float prevAngle;
+        public Material matForMesh;
 
         public bool bezierCurve;
-        public Material matForMesh;
         public Slider angleChanger;
         public Slider widthChanger;
         public Slider detailChanger;
@@ -22,14 +22,9 @@ namespace SplineMesher
         public List<Vector3> knotList;
         public List<Vector3> vectorList;
 
-        // Camera coordinates> 1.7850, 2.160001, -8.849875
-
         private void GameObjectInit()
         {
             prevAngle = 0f;
-
-            //basicEye = new GameObject();
-            //basicEye.name = "basic eye";
 
             lineMgrComp = basicEye.AddComponent<LineManager>();
             spMeshComp = basicEye.AddComponent<SplineMesher>();
@@ -83,19 +78,6 @@ namespace SplineMesher
         {
             GameObjectInit();
             BasicEyeInit();
-        }
-
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         private void ChangeAngle()

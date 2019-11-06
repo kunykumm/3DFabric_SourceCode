@@ -8,7 +8,6 @@ public class GotoGeneration : MonoBehaviour
 
     public void GotoGenerateMeshScene()
     {
-        DontDestroyOnLoad(baseMesh);
         SceneManager.LoadScene("GenerateMesh");
     }
 
