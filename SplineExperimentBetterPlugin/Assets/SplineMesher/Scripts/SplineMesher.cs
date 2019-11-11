@@ -263,6 +263,7 @@ namespace SplineMesher {
                 for (int i = 0; i < knotList.Count - 1; i++) {
                     dirVec = (knotList[i + 1] - knotList[i]).normalized;
                     for (int ti = i + 2; ti < knotList.Count && dirVec.magnitude == 0; ti++) dirVec = (knotList[ti] - knotList[i]).normalized;
+                    //Debug.Log(knotList.Count + " " + i + " " + (i + 1));
                     iPoint = MathUtils.RayPlaneIntersect(startPoint, dirVec, tangentList[i + 1], knotList[i + 1] + normalList[i + 1]);
                     startPoint = iPoint;
                     // corner correction

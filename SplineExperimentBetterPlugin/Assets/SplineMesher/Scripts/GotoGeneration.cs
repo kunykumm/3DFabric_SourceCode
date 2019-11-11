@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GotoGeneration : MonoBehaviour
 {
-    public GameObject baseMesh;
+    //public GameObject baseMesh;
 
     public void GotoGenerateMeshScene()
     {

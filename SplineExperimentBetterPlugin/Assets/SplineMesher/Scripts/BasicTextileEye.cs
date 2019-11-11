@@ -10,17 +10,22 @@ namespace SplineMesher
     {
         private LineManager lineMgrComp;
         private SplineMesher spMeshComp;
-        public GameObject basicEye;
         private float prevAngle;
-        public Material matForMesh;
 
-        public bool bezierCurve;
+        public GameObject basicEye;
+        public Material matForMesh;
         public Slider angleChanger;
         public Slider widthChanger;
         public Slider detailChanger;
         public Text lineWidth;
         public List<Vector3> knotList;
         public List<Vector3> vectorList;
+
+        public void Awake()
+        {
+            GameObjectInit();
+            BasicEyeInit();
+        }
 
         private void GameObjectInit()
         {
@@ -38,6 +43,17 @@ namespace SplineMesher
             }
             lineMgrComp.ManualUpdate();
 
+            AddVertices();
+            AddVectors();
+            AddOtherParameters();
+
+            lineMgrComp.ManualUpdate();
+
+            ChangeAngle();
+        }
+
+        private void AddVertices()
+        {
             knotList = lineMgrComp.GetLineKnots();
 
             knotList[0] = new Vector3(0, 0, 0);
@@ -45,8 +61,12 @@ namespace SplineMesher
             knotList[2] = new Vector3(1.6f, 4.5f, 0);
             knotList[3] = new Vector3(0.4f, 3, 0);
             knotList[4] = new Vector3(3.2f, 0, 0);
+        }
 
+        private void AddVectors()
+        {
             vectorList = lineMgrComp.GetControllerList();
+
             vectorList.Clear();
             vectorList.Add(new Vector3(1, 0, 0));
             vectorList.Add(new Vector3(2.8f, 2.288531f, 0));
@@ -56,7 +76,10 @@ namespace SplineMesher
             vectorList.Add(new Vector3(0.4f, 3.711469f, 0));
             vectorList.Add(new Vector3(0.4f, 2.288531f, 0));
             vectorList.Add(new Vector3(2, 0, 0));
+        }
 
+        private void AddOtherParameters()
+        {
             lineMgrComp.bezierCurve = true;
 
             spMeshComp.mat = matForMesh;
@@ -68,16 +91,6 @@ namespace SplineMesher
             detailChanger.value = 24;
             widthChanger.value = 0.2f;
             lineWidth.text = "0.20 cm";
-
-            lineMgrComp.ManualUpdate();
-
-            ChangeAngle();
-        }
-
-        void Awake()
-        {
-            GameObjectInit();
-            BasicEyeInit();
         }
 
         private void ChangeAngle()
