@@ -7,7 +7,7 @@ namespace SplineMesher
 {
     public class GenerateMesh : MonoBehaviour
     {
-        private bool bezierCurve;
+        //private bool bezierCurve;
         private Material matForMesh;
         private List<Vector3> knotList;
         private List<Vector3> vectorList;
@@ -21,12 +21,14 @@ namespace SplineMesher
         private LineManager lineMgrComp;
         private SplineMesher spMeshComp;
 
-        public GameObject meshNet;
-        private LineManager meshLineMgr;
-        private SplineMesher meshSpMesh;
+        //public GameObject meshNet;
+        //private LineManager meshLineMgr;
+        //private SplineMesher meshSpMesh;
 
         public Slider columns;
+        private int prevColValue;
         public Slider rows;
+        private int prevRowValue;
 
         public void Awake()
         {
@@ -47,9 +49,12 @@ namespace SplineMesher
 
             columns.value = 10;
             rows.value = 5;
+            prevColValue = 10;
+            prevRowValue = 5;
 
             GetDimensions();
             InitialiseColumns();
+            InitialiseRows();
         }
 
         private void GetDimensions()
@@ -74,10 +79,18 @@ namespace SplineMesher
         // Start is called before the first frame update
         public void Start()
         {
-            //InitialiseColumns();
+
         }
 
         private void InitialiseColumns()
+        {
+            for (int i = 1; i < columns.value; ++i)
+            {
+                AddNewElement();
+            }
+        }
+
+        private void AddNewElement()
         {
             lineMgrComp.bezierCurve = false;
             AddKnot();
@@ -123,35 +136,64 @@ namespace SplineMesher
                 var vector = new Vector3(vectorList[index].x + baseWidth, vectorList[index].y, vectorList[index].z);
                 vectorList.Add(vector);
             }
+            prevVectorNum = vectorList.Count;
         }
 
-        private void InitialiseValuesInLists(float sliderVal, List<Vector3> baseList, int baseNum, float width, float height, bool isKnot)
+        private void InitialiseRows()
         {
-            List<Vector3> newValues = new List<Vector3>();
-            
-            for (int i = 0; i < (int)sliderVal; ++i)
+            for (int i = 0; i < rows.value; ++i)
             {
-                int indexNum = baseList.Count;
-                newValues.Clear();
-
-                for (int j = baseNum; j > 0; --j)
-                {
-                    newValues.Add(new Vector3(baseList[indexNum - j].x + width, baseList[indexNum - j].y + height, baseList[indexNum - j].z));
-                }
-
-                for (int k = 0; k < baseNum; ++k)
-                {
-                    baseList.Add(newValues[k]);
-                    if (isKnot) lineMgrComp.knotNum++;
-                }
-                Debug.Log(baseList.Count);
+                Instantiate(baseElement, new Vector3(0, i * baseHeight, 0), Quaternion.identity);
             }
         }
 
         // Update is called once per frame
         public void Update()
         {
+            Debug.Log("on edit detected");
+            if (columns.value != prevColValue)
+            {
+                Debug.Log("value changed");
+                ChangeColumns();
+                prevColValue = (int)columns.value;
+            }
+            if (rows.value != prevRowValue)
+            {
 
+            }
+        }
+
+        public void OnEdit()
+        {
+            Debug.Log("on edit detected");
+            if (columns.value != prevColValue)
+            {
+                Debug.Log("value changed");
+                ChangeColumns();
+                prevColValue = (int)columns.value;
+            }
+            if (rows.value != prevRowValue)
+            {
+
+            }
+        }
+
+        private void ChangeColumns()
+        {
+            int diff = (int)columns.value - prevColValue;
+            Debug.Log(columns.value);
+
+            if (diff > 0)
+            {
+                for (int i = 0; i < diff; ++i)
+                {
+                    AddNewElement();
+                }
+                return;
+            }
+            diff = prevColValue - (int)columns.value;
+            lineMgrComp.knotNum -= diff * baseKnotNum;
+            lineMgrComp.ManualUpdate();
         }
     }
 }
