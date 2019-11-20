@@ -7,7 +7,6 @@ namespace SplineMesher
 {
     public class GenerateMesh : MonoBehaviour
     {
-        //private bool bezierCurve;
         private Material matForMesh;
         private List<Vector3> knotList;
         private List<Vector3> vectorList;
@@ -20,10 +19,6 @@ namespace SplineMesher
         private int prevVectorNum;
         private LineManager lineMgrComp;
         private SplineMesher spMeshComp;
-
-        //public GameObject meshNet;
-        //private LineManager meshLineMgr;
-        //private SplineMesher meshSpMesh;
 
         public Slider columns;
         private int prevColValue;
@@ -53,8 +48,8 @@ namespace SplineMesher
             prevRowValue = 5;
 
             GetDimensions();
-            InitialiseColumns();
-            InitialiseRows();
+            //InitialiseColumns();
+            //InitialiseRows();
         }
 
         private void GetDimensions()
@@ -124,9 +119,7 @@ namespace SplineMesher
         {
             vectorList = lineMgrComp.GetControllerList();
             List<Vector3> oldVectors = new List<Vector3>(vectorList);
-            Debug.Log("Old Vectors: " + oldVectors.Count);
             vectorList.Clear();
-            Debug.Log("Prev size: " + prevVectorNum);
 
             for (int i = 0; i < prevVectorNum; ++i)
             {
@@ -143,32 +136,29 @@ namespace SplineMesher
 
         private void InitialiseRows()
         {
-            for (int i = 0; i < rows.value; ++i)
-            {
-                Instantiate(baseElement, new Vector3(0, i * baseHeight, 0), Quaternion.identity);
+            for (int i = 1; i < rows.value; ++i) { 
+                Debug.Log(i);
+                GameObject newie = Instantiate(baseElement, new Vector3(0, i * baseHeight, 0), Quaternion.identity);
+                Debug.Log(newie);
             }
         }
 
         // Update is called once per frame
         public void Update()
         {
+
         }
 
         public void OnEdit()
         {
-            if (!Input.GetMouseButtonDown(0))
+            if (columns.value != prevColValue)
             {
-                //Debug.Log("on edit detected");
-                if (columns.value != prevColValue)
-                {
-                    //Debug.Log("value changed");
-                    ChangeColumns();
-                    prevColValue = (int)columns.value;
-                }
-                if (rows.value != prevRowValue)
-                {
+                ChangeColumns();
+                prevColValue = (int)columns.value;
+            }
+            if (rows.value != prevRowValue)
+            {
 
-                }
             }
         }
 
@@ -182,7 +172,7 @@ namespace SplineMesher
                 {
                     AddNewElement();
                 }
-                return;
+
             } else
             {
                 diff = prevColValue - (int)columns.value;
