@@ -417,7 +417,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1124254212}
         m_MethodName: OnEdit
         m_Mode: 1
         m_Arguments:
@@ -1440,8 +1440,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e5dc199a653644e9279a2ec0069a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matForMesh: {fileID: 2100000, guid: dee68cc9e69ff2b4fab58b1e073df871, type: 2}
-  meshNet: {fileID: 1476261234}
   columns: {fileID: 74193924}
   rows: {fileID: 1763306900}
 --- !u!4 &1124254213
@@ -2475,7 +2473,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1124254212}
         m_MethodName: OnEdit
         m_Mode: 1
         m_Arguments:

@@ -124,7 +124,9 @@ namespace SplineMesher
         {
             vectorList = lineMgrComp.GetControllerList();
             List<Vector3> oldVectors = new List<Vector3>(vectorList);
+            Debug.Log("Old Vectors: " + oldVectors.Count);
             vectorList.Clear();
+            Debug.Log("Prev size: " + prevVectorNum);
 
             for (int i = 0; i < prevVectorNum; ++i)
             {
@@ -150,38 +152,29 @@ namespace SplineMesher
         // Update is called once per frame
         public void Update()
         {
-            Debug.Log("on edit detected");
-            if (columns.value != prevColValue)
-            {
-                Debug.Log("value changed");
-                ChangeColumns();
-                prevColValue = (int)columns.value;
-            }
-            if (rows.value != prevRowValue)
-            {
-
-            }
         }
 
         public void OnEdit()
         {
-            Debug.Log("on edit detected");
-            if (columns.value != prevColValue)
+            if (!Input.GetMouseButtonDown(0))
             {
-                Debug.Log("value changed");
-                ChangeColumns();
-                prevColValue = (int)columns.value;
-            }
-            if (rows.value != prevRowValue)
-            {
+                //Debug.Log("on edit detected");
+                if (columns.value != prevColValue)
+                {
+                    //Debug.Log("value changed");
+                    ChangeColumns();
+                    prevColValue = (int)columns.value;
+                }
+                if (rows.value != prevRowValue)
+                {
 
+                }
             }
         }
 
         private void ChangeColumns()
         {
             int diff = (int)columns.value - prevColValue;
-            Debug.Log(columns.value);
 
             if (diff > 0)
             {
@@ -190,10 +183,17 @@ namespace SplineMesher
                     AddNewElement();
                 }
                 return;
+            } else
+            {
+                diff = prevColValue - (int)columns.value;
+                lineMgrComp.knotNum -= diff * (baseKnotNum - 1);
+                lineMgrComp.ManualUpdate();
+
+                lineMgrComp.bezierCurve = false;
+                prevVectorNum = lineMgrComp.GetControllerList().Count;
+                lineMgrComp.bezierCurve = true;
+                lineMgrComp.ManualUpdate();
             }
-            diff = prevColValue - (int)columns.value;
-            lineMgrComp.knotNum -= diff * baseKnotNum;
-            lineMgrComp.ManualUpdate();
         }
     }
 }
