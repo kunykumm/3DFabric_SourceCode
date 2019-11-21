@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace SplineMesher
 {
-    public class GenerateMesh : MonoBehaviour
+    public class GenerateMeshOld : MonoBehaviour
     {
         private Material matForMesh;
         private List<Vector3> knotList;
@@ -24,18 +24,6 @@ namespace SplineMesher
         private int prevColValue;
         public Slider rows;
         private int prevRowValue;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
 
         public void Awake()
         {
@@ -60,7 +48,7 @@ namespace SplineMesher
             prevRowValue = 5;
 
             GetDimensions();
-            InitialiseColumns();
+            //InitialiseColumns();
             //InitialiseRows();
         }
 
@@ -83,23 +71,17 @@ namespace SplineMesher
             baseHeight = max - min;
         }
 
+        // Start is called before the first frame update
+        public void Start()
+        {
+
+        }
+
         private void InitialiseColumns()
         {
-            spMeshComp.enabled = false;
             for (int i = 1; i < columns.value; ++i)
             {
                 AddNewElement();
-            }
-            spMeshComp.enabled = true;
-        }
-
-        private void InitialiseRows()
-        {
-            for (int i = 1; i < rows.value; ++i)
-            {
-                Debug.Log(i);
-                GameObject newie = Instantiate(baseElement, new Vector3(0, i * baseHeight, 0), Quaternion.identity);
-                Debug.Log(newie);
             }
         }
 
@@ -132,7 +114,7 @@ namespace SplineMesher
                 lineMgrComp.ManualUpdate();
             }
         }
-
+        
         private void AddVector()
         {
             vectorList = lineMgrComp.GetControllerList();
@@ -143,7 +125,7 @@ namespace SplineMesher
             {
                 vectorList.Add(oldVectors[i]);
             }
-            for (int j = 0; j < baseVectorNum; ++j)
+            for(int j = 0; j < baseVectorNum; ++j)
             {
                 int index = vectorList.Count - baseVectorNum;
                 var vector = new Vector3(vectorList[index].x + baseWidth, vectorList[index].y, vectorList[index].z);
@@ -152,24 +134,34 @@ namespace SplineMesher
             prevVectorNum = vectorList.Count;
         }
 
+        private void InitialiseRows()
+        {
+            for (int i = 1; i < rows.value; ++i) { 
+                Debug.Log(i);
+                GameObject newie = Instantiate(baseElement, new Vector3(0, i * baseHeight, 0), Quaternion.identity);
+                Debug.Log(newie);
+            }
+        }
+
+        // Update is called once per frame
+        public void Update()
+        {
+
+        }
+
         public void OnEdit()
         {
             if (columns.value != prevColValue)
             {
-                {
-                    spMeshComp.enabled = false;
-                    ChangeColumns();
-                    prevColValue = (int)columns.value;
-                    spMeshComp.enabled = true;
-                }
-                if (rows.value != prevRowValue)
-                {
+                ChangeColumns();
+                prevColValue = (int)columns.value;
+            }
+            if (rows.value != prevRowValue)
+            {
 
-                }
             }
         }
 
-            
         private void ChangeColumns()
         {
             int diff = (int)columns.value - prevColValue;
@@ -181,8 +173,7 @@ namespace SplineMesher
                     AddNewElement();
                 }
 
-            }
-            else
+            } else
             {
                 diff = prevColValue - (int)columns.value;
                 lineMgrComp.knotNum -= diff * (baseKnotNum - 1);

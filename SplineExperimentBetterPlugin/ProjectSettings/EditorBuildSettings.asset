@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BasicKnot.unity
     guid: a3065f5b028e6824aa5b7f1b316bfceb
+  - enabled: 0
+    path: Assets/Scenes/GenerateMeshFirstVersion.unity
+    guid: 4a0ac2b58f0273f45979570c3b1d9e09
   - enabled: 1
     path: Assets/Scenes/GenerateMesh.unity
-    guid: 4a0ac2b58f0273f45979570c3b1d9e09
+    guid: 944e9000c780ece4a819d2f6630f9d16
   m_configObjects: {}

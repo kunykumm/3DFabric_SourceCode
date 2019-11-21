@@ -87,6 +87,7 @@ namespace SplineMesher
             spMeshComp.isRectangle = false;
             spMeshComp.tubeRadius = 0.2f;
             spMeshComp.sides = 24;
+            spMeshComp.cornerCorrection = true;
 
             detailChanger.value = 24;
             widthChanger.value = 0.2f;
