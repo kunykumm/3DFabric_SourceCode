@@ -27,8 +27,8 @@ namespace SplinePower
             prevAngle = (int)angleSlider.value;
             prevWidth = widthSlider.value;
             prevDetail = detailSlider.value;
-            yRatio = (1.25 - 0.7) / angleSlider.maxValue;    // (max final position - min start position) / slider size
-            zRatio = 1.75 / angleSlider.maxValue;
+            yRatio = (1.22 - 0.7) / angleSlider.maxValue;    // (max final position - min start position) / slider size     1.25
+            zRatio = (1.75 - (2.1 - 1.75)) / angleSlider.maxValue;
         }
 
         // Start is called before the first frame update
@@ -51,15 +51,14 @@ namespace SplinePower
         private void ChangeAngle()
         {
             int difference = (int)angleSlider.value - prevAngle;
-            //splineFormer.Nodes[1].Position + new Vector3(0, difference * (float)yRatio, difference * (float)zRatio);
-            Debug.Log(splineFormer.Nodes[1].LocalPosition);
-            Debug.Log(splineFormer.Nodes[1].LocalPosition + new Vector3(0, difference * (float)yRatio, difference * (float)zRatio));
-            splineFormer.Nodes[1].RecalculateLocalPosition(splineFormer.Nodes[1].LocalPosition + new Vector3(0, difference * (float)yRatio, difference * (float)zRatio));
-            //splineFormer.Nodes[1].RecalculateLocalPosition();
-            //splineFormer.RecalculateValues();
-            //splineFormer.InvalidateMesh();
-            splineFormer.RebuildAllGroups();
 
+            splineFormer.Nodes[1].RecalculateLocalPosition(splineFormer.Nodes[1].LocalPosition + new Vector3(0, -difference * (float)yRatio, -difference * (float)zRatio));
+            splineFormer.Nodes[3].RecalculateLocalPosition(splineFormer.Nodes[3].LocalPosition + new Vector3(0, difference * (float)yRatio, difference * (float)zRatio));
+
+            splineFormer.Nodes[1].RefreshNode();
+            splineFormer.Nodes[3].RefreshNode();
+
+            splineFormer.RebuildAllGroups();
 
             prevAngle = (int)angleSlider.value;
         }

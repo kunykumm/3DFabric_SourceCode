@@ -118,7 +118,8 @@ public class SplineNode : MonoBehaviour
 
     public void RecalculateLocalPosition(Vector3 newPosition)
     {
-        _localPosition = SplineFormer.transform.InverseTransformPoint(newPosition);
+        transform.position = newPosition;
+        RecalculateLocalPosition();
     }
 
     /// <summary>

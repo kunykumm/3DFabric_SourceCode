@@ -1591,8 +1591,8 @@ MonoBehaviour:
   SplineFormer: {fileID: 1410911362}
   AdditionalLoftAngle: 0
   TangentGuidesMode: 0
-  LeftPCoefficient: 1
-  RightPCoefficient: 1
+  LeftPCoefficient: 0.4
+  RightPCoefficient: 0.4
 --- !u!4 &808376088
 Transform:
   m_ObjectHideFlags: 0
@@ -1600,7 +1600,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808376086}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.7, y: 0, z: 1.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
