@@ -39,6 +39,7 @@ namespace Dreamteck.Splines
             prevWidth = width.value;
             prevDetail = detail.value;
             CalculateBaseValues();
+            ChangeWidth();
         }
 
         // Update is called once per frame
@@ -57,20 +58,31 @@ namespace Dreamteck.Splines
 
         public void OnEdit()
         {
-            if (prevAngle != angle.value)
-            {
-                prevAngle = angle.value;
-                splineComputer.SetPointPosition(1, new Vector3(firstPointStart.x - prevAngle * xDiff, firstPointStart.y, firstPointStart.z - prevAngle * zDiff));
-                splineComputer.SetPointPosition(3, new Vector3(secondPointStart.x + prevAngle * xDiff, secondPointStart.y, secondPointStart.z + prevAngle * zDiff));
-            }
-            if (prevWidth != width.value)
-            {
+            if (prevAngle != angle.value) ChangeAngle();
+            if (prevWidth != width.value) ChangeWidth();
+            if (prevDetail != detail.value) ChangeDetail();
+        }
 
-            }
-            if (prevDetail != detail.value)
-            {
+        private void ChangeAngle()
+        {
+            prevAngle = angle.value;
+            splineComputer.SetPointPosition(1, new Vector3(firstPointStart.x - prevAngle * xDiff, firstPointStart.y, firstPointStart.z - prevAngle * zDiff));
+            splineComputer.SetPointPosition(3, new Vector3(secondPointStart.x + prevAngle * xDiff, secondPointStart.y, secondPointStart.z + prevAngle * zDiff));
+        }
 
+        private void ChangeWidth()
+        {
+            prevWidth = width.value;
+            for (int i = 0; i < 5; ++i)
+            {
+                splineComputer.SetPointSize(i, prevWidth);
             }
+        }
+
+        private void ChangeDetail()
+        {
+            prevDetail = detail.value;
+            tubeGenerator.sides = (int)prevDetail;
         }
     }
 }
