@@ -29,6 +29,8 @@ namespace Dreamteck.Splines
             basePointCount = basePoints.Length;
             currentPointCount = basePointCount;
             FindMaxsMins();
+            Debug.Log(width);
+            Debug.Log(height);
 
             prevColumns = 0;
             prevRows = 0;
@@ -46,6 +48,8 @@ namespace Dreamteck.Splines
                 if (basePoints[i].position.x > maxx) maxx = basePoints[i].position.x;
                 if (basePoints[i].position.y > height) height = basePoints[i].position.y;
             }
+            Debug.Log(maxx);
+            Debug.Log(minx);
             width = maxx - minx;
         }
 
@@ -69,12 +73,14 @@ namespace Dreamteck.Splines
                 int newPoints = diff * (basePointCount - 1);
                 for (int i = 0; i < newPoints; ++i)
                 {
-                    //splineComputer.AppendPoints(1);
                     var twinPoint = splineComputer.GetPoint(currentPointCount - basePointCount + 1);
+                    var newVector = new Vector3(twinPoint.position.x + width, twinPoint.position.y, twinPoint.position.z);
+                    Debug.Log(newVector.x + " " + newVector.y + " " + newVector.z);
                     splineComputer.SetPointPosition(currentPointCount, new Vector3(twinPoint.position.x + width, twinPoint.position.y, twinPoint.position.z));
                     currentPointCount++;
                 }
             }
+            prevColumns = (int)columns.value;
         }
 
         private void ChangeRows()

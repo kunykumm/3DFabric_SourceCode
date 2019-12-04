@@ -26,10 +26,10 @@ namespace Dreamteck.Splines
 
         /**
          * ANGLES
-         * Start position:   3.5  3.0  0.8
-         *                  -0.5  3.0 -0.8
-         * End position:     1.5  3.0  1.8
-         *                   1.5  3.0 -1.8
+         * Start position:   3.0  3.0  0.8
+         *                   0.0  3.0 -0.8
+         * End position:     1.5  3.0  1.6
+         *                   1.5  3.0 -1.6
          */
 
         // Start is called before the first frame update
@@ -50,10 +50,10 @@ namespace Dreamteck.Splines
 
         private void CalculateBaseValues()
         {
-            firstPointStart = new Vector3(3.5f, 3.0f, 0.8f);
-            secondPointStart = new Vector3(-0.5f, 3.0f, -0.8f);
+            firstPointStart = new Vector3(2.7f, 3.0f, 0.8f);
+            secondPointStart = new Vector3(0.3f, 3.0f, -0.8f);
             xDiff = (firstPointStart.x - 1.5f) / angle.maxValue;
-            zDiff = (firstPointStart.z - 1.8f) / angle.maxValue;
+            zDiff = (firstPointStart.z - 1.6f) / angle.maxValue;
         }
 
         public void OnEdit()
