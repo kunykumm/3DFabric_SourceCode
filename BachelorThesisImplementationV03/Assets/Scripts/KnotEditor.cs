@@ -15,6 +15,10 @@ namespace Dreamteck.Splines
         public Slider width;
         public Slider detail;
 
+        public Text lineWidth;
+        public Text realWidth;
+        public Text realHeight;
+
         private float prevAngle;
         private float prevWidth;
         private float prevDetail;
@@ -30,6 +34,8 @@ namespace Dreamteck.Splines
          *                   0.0  3.0 -0.8
          * End position:     1.5  3.0  1.6
          *                   1.5  3.0 -1.6
+         *                   
+         * ALL NORMALS: At average center - best result when angle changes
          */
 
         // Start is called before the first frame update
@@ -38,6 +44,10 @@ namespace Dreamteck.Splines
             prevAngle = angle.value;
             prevWidth = width.value;
             prevDetail = detail.value;
+
+            lineWidth.text = prevWidth.ToString("0.00");
+            realWidth.text = "0,00";
+            realHeight.text = "0,00";
             CalculateBaseValues();
             ChangeWidth();
         }
@@ -50,8 +60,8 @@ namespace Dreamteck.Splines
 
         private void CalculateBaseValues()
         {
-            firstPointStart = new Vector3(2.7f, 3.0f, 0.8f);
-            secondPointStart = new Vector3(0.3f, 3.0f, -0.8f);
+            firstPointStart = new Vector3(2.6f, 3.0f, 0.8f);
+            secondPointStart = new Vector3(0.4f, 3.0f, -0.8f);
             xDiff = (firstPointStart.x - 1.5f) / angle.maxValue;
             zDiff = (firstPointStart.z - 1.6f) / angle.maxValue;
         }
@@ -77,6 +87,7 @@ namespace Dreamteck.Splines
             {
                 splineComputer.SetPointSize(i, prevWidth);
             }
+            lineWidth.text = prevWidth.ToString("0.00");
         }
 
         private void ChangeDetail()

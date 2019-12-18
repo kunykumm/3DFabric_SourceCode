@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +15,7 @@ namespace Dreamteck.Splines
         private SplinePoint[] basePoints;
         private float width;
         private float height;
+        private float point_size;
         private int currentPointCount;
 
         private int prevColumns;
@@ -28,9 +28,10 @@ namespace Dreamteck.Splines
             basePoints = splineComputer.GetPoints();
             basePointCount = basePoints.Length;
             currentPointCount = basePointCount;
+            point_size = splineComputer.GetPointSize(0);
             FindMaxsMins();
-            Debug.Log(width);
-            Debug.Log(height);
+            //Debug.Log(width);
+            //Debug.Log(height);
 
             prevColumns = 0;
             prevRows = 0;
@@ -48,8 +49,8 @@ namespace Dreamteck.Splines
                 if (basePoints[i].position.x > maxx) maxx = basePoints[i].position.x;
                 if (basePoints[i].position.y > height) height = basePoints[i].position.y;
             }
-            Debug.Log(maxx);
-            Debug.Log(minx);
+            //Debug.Log(maxx);
+            //Debug.Log(minx);
             width = maxx - minx;
         }
 
@@ -70,17 +71,41 @@ namespace Dreamteck.Splines
             int diff = (int)columns.value - prevColumns;
             if (diff > 0)
             {
-                int newPoints = diff * (basePointCount - 1);
-                for (int i = 0; i < newPoints; ++i)
-                {
-                    var twinPoint = splineComputer.GetPoint(currentPointCount - basePointCount + 1);
-                    var newVector = new Vector3(twinPoint.position.x + width, twinPoint.position.y, twinPoint.position.z);
-                    Debug.Log(newVector.x + " " + newVector.y + " " + newVector.z);
-                    splineComputer.SetPointPosition(currentPointCount, new Vector3(twinPoint.position.x + width, twinPoint.position.y, twinPoint.position.z));
-                    currentPointCount++;
-                }
+                AddColumns(diff);
+
+            } else
+            {
+                DeleteColumns(diff);
             }
             prevColumns = (int)columns.value;
+        }
+
+        private void AddColumns(int diff)
+        {
+            int newPoints = (diff - 1) * (basePointCount - 1);
+            for (int i = 0; i < newPoints; ++i)
+            {
+                int index = currentPointCount - basePointCount + 1;
+                var twinPoint = splineComputer.GetPoint(index);
+                var newVector = new Vector3(twinPoint.position.x + width, twinPoint.position.y, twinPoint.position.z);
+                splineComputer.SetPointPosition(currentPointCount, new Vector3(twinPoint.position.x + width, twinPoint.position.y, twinPoint.position.z));
+                splineComputer.SetPointSize(currentPointCount, point_size);
+                splineComputer.SetPointColor(currentPointCount, Color.white);
+                splineComputer.SetPointNormal(currentPointCount, splineComputer.GetPointNormal(index));
+                currentPointCount++;
+            }
+        }
+
+        private void DeleteColumns(int diff)
+        {
+            int new_count = currentPointCount + diff * (basePointCount - 1);
+            Debug.Log(new_count);
+            if (new_count < basePoints.Length) return;
+            SplinePoint[] short_segment = new SplinePoint[new_count];
+            SplinePoint[] old_points = splineComputer.GetPoints();
+            Array.Copy(old_points, 0, short_segment, 0, new_count);
+            splineComputer.SetPoints(short_segment);
+            currentPointCount = new_count;
         }
 
         private void ChangeRows()
