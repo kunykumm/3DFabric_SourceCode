@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Dreamteck.Splines
 {
@@ -30,11 +32,9 @@ namespace Dreamteck.Splines
             currentPointCount = basePointCount;
             point_size = splineComputer.GetPointSize(0);
             FindMaxsMins();
-            //Debug.Log(width);
-            //Debug.Log(height);
 
-            prevColumns = 0;
-            prevRows = 0;
+            prevColumns = 1;
+            prevRows = 1;
             ChangeColumns();
         }
 
@@ -49,21 +49,17 @@ namespace Dreamteck.Splines
                 if (basePoints[i].position.x > maxx) maxx = basePoints[i].position.x;
                 if (basePoints[i].position.y > height) height = basePoints[i].position.y;
             }
-            //Debug.Log(maxx);
-            //Debug.Log(minx);
             width = maxx - minx;
         }
 
         // Update is called once per frame
         void Update()
         {
-
-        }
-
-        public void OnEdit()
-        {
-            if (prevColumns != (int)columns.value) ChangeColumns();
-            if (prevRows != (int)rows.value) ChangeRows();
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (prevColumns != (int)columns.value) ChangeColumns();
+                if (prevRows != (int)rows.value) ChangeRows();
+            }
         }
 
         private void ChangeColumns()
@@ -82,12 +78,11 @@ namespace Dreamteck.Splines
 
         private void AddColumns(int diff)
         {
-            int newPoints = (diff - 1) * (basePointCount - 1);
+            int newPoints = diff * (basePointCount - 1);
             for (int i = 0; i < newPoints; ++i)
             {
                 int index = currentPointCount - basePointCount + 1;
                 var twinPoint = splineComputer.GetPoint(index);
-                var newVector = new Vector3(twinPoint.position.x + width, twinPoint.position.y, twinPoint.position.z);
                 splineComputer.SetPointPosition(currentPointCount, new Vector3(twinPoint.position.x + width, twinPoint.position.y, twinPoint.position.z));
                 splineComputer.SetPointSize(currentPointCount, point_size);
                 splineComputer.SetPointColor(currentPointCount, Color.white);
