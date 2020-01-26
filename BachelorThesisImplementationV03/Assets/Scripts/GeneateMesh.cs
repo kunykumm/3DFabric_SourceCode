@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 namespace Dreamteck.Splines
 {
@@ -10,8 +9,11 @@ namespace Dreamteck.Splines
     {
         public Slider columns;
         public Slider rows;
+        public GameObject runtimeRows;
 
         private SplineComputer splineComputer;
+        private GameObject knotPrefab;
+        private GameObject knotClone;
 
         private int basePointCount;
         private SplinePoint[] basePoints;
@@ -26,7 +28,12 @@ namespace Dreamteck.Splines
         // Start is called before the first frame update
         void Start()
         {
-            splineComputer = GameObject.Find("Knot").GetComponent<SplineComputer>();
+            knotPrefab = (GameObject)Resources.Load("KnotForNet");
+            Instantiate(knotPrefab);
+            knotClone = GameObject.Find("KnotForNet(Clone)");
+            splineComputer = knotClone.GetComponent<SplineComputer>();
+            runtimeRows.transform.position = knotClone.transform.position;
+
             basePoints = splineComputer.GetPoints();
             basePointCount = basePoints.Length;
             currentPointCount = basePointCount;
@@ -36,6 +43,7 @@ namespace Dreamteck.Splines
             prevColumns = 1;
             prevRows = 1;
             ChangeColumns();
+            ChangeRows();
         }
 
         private void FindMaxsMins()
@@ -57,7 +65,13 @@ namespace Dreamteck.Splines
         {
             if (Input.GetMouseButtonUp(0))
             {
-                if (prevColumns != (int)columns.value) ChangeColumns();
+                if (prevColumns != (int)columns.value)
+                {
+                    ChangeColumns();
+                    DeleteRows(prevRows - 1);
+                    prevRows = 1;
+                    AddRows((int)rows.value - 1);
+                }
                 if (prevRows != (int)rows.value) ChangeRows();
             }
         }
@@ -74,6 +88,7 @@ namespace Dreamteck.Splines
                 DeleteColumns(diff);
             }
             prevColumns = (int)columns.value;
+            PrefabUtility.SaveAsPrefabAsset(knotClone, "Assets/Resources/KnotForNet.prefab");
         }
 
         private void AddColumns(int diff)
@@ -106,7 +121,40 @@ namespace Dreamteck.Splines
         private void ChangeRows()
         {
             int diff = (int)rows.value - prevRows;
+            if (diff > 0)
+            {
+                AddRows(diff);
+            }
+            else
+            {
+                DeleteRows(-diff);
+            }
+            prevRows = (int)rows.value;
+        }
 
+        private void AddRows(int diff)
+        {
+            float curHeight = -(height - 0.9f);
+
+            knotPrefab.GetComponent<SplineComputer>().space = SplineComputer.Space.Local;
+            for (int i = 0; i < diff; ++i)
+            {
+                GameObject newKnot = Instantiate(knotPrefab, knotPrefab.transform.position, Quaternion.identity);
+                newKnot.transform.parent = runtimeRows.transform;
+                newKnot.transform.position += transform.up * (i + prevRows) * curHeight;
+                if ((i + prevRows) % 2 == 1) newKnot.transform.position += transform.right * (width / 2);
+                newKnot.GetComponent<SplineComputer>().RebuildImmediate();
+            }
+            knotPrefab.GetComponent<SplineComputer>().space = SplineComputer.Space.World;
+        }
+
+        private void DeleteRows(int diff)
+        {
+            int firstChildDying = prevRows - diff - 1;
+            for (int i = 0; i < diff; ++i)
+            {
+                Destroy(runtimeRows.transform.GetChild(firstChildDying + i).gameObject);
+            }
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -50,12 +48,6 @@ namespace Dreamteck.Splines
             realHeight.text = "0,00";
             CalculateBaseValues();
             ChangeWidth();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         private void CalculateBaseValues()
