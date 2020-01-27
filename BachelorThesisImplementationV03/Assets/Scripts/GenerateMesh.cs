@@ -31,6 +31,7 @@ namespace Dreamteck.Splines
             knotPrefab = (GameObject)Resources.Load("KnotForNet");
             Instantiate(knotPrefab);
             knotClone = GameObject.Find("KnotForNet(Clone)");
+            knotClone.tag = "knotrow";
             splineComputer = knotClone.GetComponent<SplineComputer>();
             knotClone.transform.position = new Vector3(0, 0, 0);
 
@@ -146,6 +147,7 @@ namespace Dreamteck.Splines
             for (int i = 0; i < diff; ++i)
             {
                 GameObject newKnot = Instantiate(knotPrefab, knotPrefab.transform.position, Quaternion.identity);
+                newKnot.tag = "knotrow";
                 newKnot.transform.parent = runtimeRows.transform;
                 newKnot.transform.position += transform.up * (i + prevRows) * curHeight;
                 if ((i + prevRows) % 2 == 1) newKnot.transform.position += transform.right * (width / 2);
