@@ -32,7 +32,7 @@ namespace Dreamteck.Splines
             Instantiate(knotPrefab);
             knotClone = GameObject.Find("KnotForNet(Clone)");
             splineComputer = knotClone.GetComponent<SplineComputer>();
-            runtimeRows.transform.position = knotClone.transform.position;
+            knotClone.transform.position = new Vector3(0, 0, 0);
 
             basePoints = splineComputer.GetPoints();
             basePointCount = basePoints.Length;
@@ -68,12 +68,18 @@ namespace Dreamteck.Splines
                 if (prevColumns != (int)columns.value)
                 {
                     ChangeColumns();
-                    DeleteRows(prevRows - 1);
-                    prevRows = 1;
-                    AddRows((int)rows.value - 1);
+                    UpdateRowsAfterColumnsChanged();
                 }
                 if (prevRows != (int)rows.value) ChangeRows();
             }
+        }
+
+        private void UpdateRowsAfterColumnsChanged()
+        {
+            DeleteRows(prevRows - 1);
+            prevRows = 1;
+            AddRows((int)rows.value - 1);
+            prevRows = (int)rows.value;
         }
 
         private void ChangeColumns()
@@ -153,7 +159,9 @@ namespace Dreamteck.Splines
             int firstChildDying = prevRows - diff - 1;
             for (int i = 0; i < diff; ++i)
             {
-                Destroy(runtimeRows.transform.GetChild(firstChildDying + i).gameObject);
+                var child = runtimeRows.transform.GetChild(firstChildDying).gameObject;
+                child.transform.parent = null;
+                Destroy(child);
             }
         }
     }
