@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -37,8 +38,11 @@ namespace Dreamteck.Splines
          */
 
         // Start is called before the first frame update
-        void Start()
+
+        private void Start()
         {
+            LoadPreviousKnot();
+
             prevAngle = angle.value;
             prevWidth = width.value;
             prevDetail = detail.value;
@@ -46,8 +50,33 @@ namespace Dreamteck.Splines
             lineWidth.text = prevWidth.ToString("0.00");
             realWidth.text = "0,00";
             realHeight.text = "0,00";
+
             CalculateBaseValues();
             ChangeWidth();
+        }
+
+        private void LoadPreviousKnot()
+        {
+            var before = (GameObject)Resources.Load("Knot");
+            if (before != null)
+            {
+                var points = before.GetComponent<SplineComputer>().GetPoints();
+                splineComputer.SetPoints(points);
+                tubeGenerator.sides = before.GetComponent<TubeGenerator>().sides;
+                FillSlidersAndTextsWithData();
+                //krivka nie je ako má byť, ale po zmene uhlu je všetko v pohode
+            }
+        }
+
+        private void FillSlidersAndTextsWithData()
+        {
+            angle.value = PlayerPrefs.GetFloat("angle");
+            width.value = PlayerPrefs.GetFloat("width");
+            detail.value = PlayerPrefs.GetFloat("detail");
+
+            lineWidth.text = PlayerPrefs.GetString("lWidth");
+            realWidth.text = PlayerPrefs.GetString("rWidth");
+            realHeight.text = PlayerPrefs.GetString("rHeight");
         }
 
         private void CalculateBaseValues()

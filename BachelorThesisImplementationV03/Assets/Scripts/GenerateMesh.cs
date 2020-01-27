@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Dreamteck.Splines
 {
-    public class GeneateMesh : MonoBehaviour
+    public class GenerateMesh : MonoBehaviour
     {
         public Slider columns;
         public Slider rows;
