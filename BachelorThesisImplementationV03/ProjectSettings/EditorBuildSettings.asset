@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/IntroMenu.unity
+    guid: 4b3a334f6349e594d82c8d448e4503c8
+  - enabled: 1
+    path: Assets/Scenes/CoveredNets.unity
+    guid: b00716a5edb2c1b48ac37b3e7349d3f7
+  - enabled: 1
+    path: Assets/Scenes/UncoveredNets.unity
+    guid: bb3f0464decce47419d98cd55225d42a
+  - enabled: 1
     path: Assets/Scenes/BasicKnot.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
