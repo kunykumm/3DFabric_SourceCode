@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/BasicKnot.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Scenes/EdgedKnot.unity
+    guid: 54d8952332fcbd94c9b168882e8d25ba
+  - enabled: 1
     path: Assets/Scenes/GenerateMesh.unity
     guid: b87e9d1bc25852a43b2fcf4f17ee7823
   m_configObjects: {}

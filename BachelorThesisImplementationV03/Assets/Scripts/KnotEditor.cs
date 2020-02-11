@@ -18,6 +18,8 @@ namespace Dreamteck.Splines
         public Text realWidth;
         public Text realHeight;
 
+        public int rotationWhenGenerated;
+
         private float prevAngle;
         private float prevWidth;
         private float prevDetail;
@@ -43,7 +45,6 @@ namespace Dreamteck.Splines
         {
             LoadPreviousKnot();
 
-            prevAngle = angle.value;
             prevWidth = width.value;
             prevDetail = detail.value;
 
@@ -51,7 +52,11 @@ namespace Dreamteck.Splines
             realWidth.text = "0,00";
             realHeight.text = "0,00";
 
-            CalculateBaseValues();
+            if (angle != null) 
+            {
+                prevAngle = angle.value;
+                CalculateBaseValues(); 
+            }
             ChangeWidth();
         }
 
@@ -70,13 +75,15 @@ namespace Dreamteck.Splines
 
         private void FillSlidersAndTextsWithData()
         {
-            angle.value = PlayerPrefs.GetFloat("angle");
+            if (angle != null) angle.value = PlayerPrefs.GetFloat("angle");
             width.value = PlayerPrefs.GetFloat("width");
             detail.value = PlayerPrefs.GetFloat("detail");
 
             lineWidth.text = PlayerPrefs.GetString("lWidth");
             realWidth.text = PlayerPrefs.GetString("rWidth");
             realHeight.text = PlayerPrefs.GetString("rHeight");
+
+            rotationWhenGenerated = PlayerPrefs.GetInt("rotation");
         }
 
         private void CalculateBaseValues()
@@ -89,7 +96,7 @@ namespace Dreamteck.Splines
 
         public void OnEdit()
         {
-            if (prevAngle != angle.value) ChangeAngle();
+            if (angle != null && prevAngle != angle.value) ChangeAngle();
             if (prevWidth != width.value) ChangeWidth();
             if (prevDetail != detail.value) ChangeDetail();
         }
@@ -104,7 +111,7 @@ namespace Dreamteck.Splines
         private void ChangeWidth()
         {
             prevWidth = width.value;
-            for (int i = 0; i < 5; ++i)
+            for (int i = 0; i < splineComputer.pointCount; ++i)
             {
                 splineComputer.SetPointSize(i, prevWidth);
             }
