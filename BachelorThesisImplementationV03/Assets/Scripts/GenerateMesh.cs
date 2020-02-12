@@ -70,23 +70,23 @@ namespace Dreamteck.Splines
         private void PrepareRotatedPrefab()
         {
             GameObject prefabRef = (GameObject)Resources.Load("BaseMeshes/" + PlayerPrefs.GetString("scene") + "MeshRotated");
-            GameObject prefabRotated = (GameObject)PrefabUtility.InstantiatePrefab(prefabRef);
+            //GameObject prefabRotated = (GameObject)PrefabUtility.InstantiatePrefab(prefabRef);
 
-            int pointCount = prefabRotated.GetComponent<SplineComputer>().pointCount;
+            //int pointCount = prefabRotated.GetComponent<SplineComputer>().pointCount;
             float pointSize = knotPrefab.GetComponent<SplineComputer>().GetPointSize(0);
 
-            for (int i = 0; i < pointCount; ++i)
-            {
-                prefabRotated.GetComponent<SplineComputer>().SetPointSize(i, pointSize);
-            }
+            //for (int i = 0; i < pointCount; ++i)
+            //{
+                //prefabRotated.GetComponent<SplineComputer>().SetPointSize(i, pointSize);
+            //}
 
-            prefabRotated.GetComponent<TubeGenerator>().sides = knotPrefab.GetComponent<TubeGenerator>().sides;
-            prefabRotated.GetComponent<SplineComputer>().RebuildImmediate();
+            //prefabRotated.GetComponent<TubeGenerator>().sides = knotPrefab.GetComponent<TubeGenerator>().sides;
+            //prefabRotated.GetComponent<SplineComputer>().RebuildImmediate();
 
-            PrefabUtility.SaveAsPrefabAsset(prefabRotated, "Assets/Resources/KnotRotated.prefab");
-            PrefabUtility.SaveAsPrefabAsset(prefabRotated, "Assets/Resources/KnotRotatedForNet.prefab");
+            //PrefabUtility.SaveAsPrefabAsset(prefabRotated, "Assets/Resources/KnotRotated.prefab");
+            //PrefabUtility.SaveAsPrefabAsset(prefabRotated, "Assets/Resources/KnotRotatedForNet.prefab");
 
-            Destroy(prefabRotated);
+            //Destroy(prefabRotated);
 
             rotatedPrefab = (GameObject)Resources.Load("KnotRotatedForNet");
             rotatedPrefab.GetComponent<KnotEditor>().enabled = false;
@@ -126,7 +126,7 @@ namespace Dreamteck.Splines
                 DeleteColumns(diff);
             }
             prevColumns = (int)columns.value;
-            PrefabUtility.SaveAsPrefabAsset(knotClone, "Assets/Resources/KnotForNet.prefab");
+            //PrefabUtility.SaveAsPrefabAsset(knotClone, "Assets/Resources/KnotForNet.prefab");
         }
 
         private void AddColumns(int diff)
@@ -138,7 +138,7 @@ namespace Dreamteck.Splines
                 currentPointCount -= newPoints;
                 GameObject rotated = Instantiate(rotatedPrefab);
                 GeneralAddColumns(newPoints, rotated.GetComponent<SplineComputer>());
-                PrefabUtility.SaveAsPrefabAsset(rotated, "Assets/Resources/KnotRotatedForNet.prefab");
+                //PrefabUtility.SaveAsPrefabAsset(rotated, "Assets/Resources/KnotRotatedForNet.prefab");
                 Destroy(rotated);
             }
         }
@@ -165,7 +165,7 @@ namespace Dreamteck.Splines
             {
                 GameObject rotated = Instantiate(rotatedPrefab);
                 GeneralDeleteColumns(new_count, rotated.GetComponent<SplineComputer>());
-                PrefabUtility.SaveAsPrefabAsset(rotated, "Assets/Resources/KnotRotatedForNet.prefab");
+                //PrefabUtility.SaveAsPrefabAsset(rotated, "Assets/Resources/KnotRotatedForNet.prefab");
                 Destroy(rotated);
             }
             currentPointCount = new_count;

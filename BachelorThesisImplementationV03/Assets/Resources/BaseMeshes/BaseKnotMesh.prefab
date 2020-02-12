@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5808351079509032705}
   - component: {fileID: 5808351079509032734}
   m_Layer: 0
-  m_Name: BaseKnot
+  m_Name: BaseKnotMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -721,6 +721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe60f990ca3b5d142af37588eee29efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knotName: 
   tubeGenerator: {fileID: 5808351079509032705}
   splineComputer: {fileID: 5808351079509032732}
   angle: {fileID: 0}

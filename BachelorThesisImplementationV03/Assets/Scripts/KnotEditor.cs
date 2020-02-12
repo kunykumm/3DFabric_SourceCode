@@ -43,7 +43,7 @@ namespace Dreamteck.Splines
 
         private void Start()
         {
-            LoadPreviousKnot();
+            //LoadPreviousKnot();
 
             prevWidth = width.value;
             prevDetail = detail.value;
@@ -63,13 +63,14 @@ namespace Dreamteck.Splines
         private void LoadPreviousKnot()
         {
             var before = (GameObject)Resources.Load("Knot");
-            if (before != null)
+            if (before.GetComponent<SplineComputer>().pointCount > 0)
             {
                 var points = before.GetComponent<SplineComputer>().GetPoints();
                 splineComputer.SetPoints(points);
                 tubeGenerator.sides = before.GetComponent<TubeGenerator>().sides;
                 FillSlidersAndTextsWithData();
                 //krivka nie je ako má byť, ale po zmene uhlu je všetko v pohode
+                before.GetComponent<SplineComputer>().SetPoints(new SplinePoint[] { });
             }
         }
 

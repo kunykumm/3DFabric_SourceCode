@@ -1252,31 +1252,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knot
       objectReference: {fileID: 0}
-    - target: {fileID: 5576185721748908211, guid: d56fb880eb2bfbe43a97a075d3716c12,
-        type: 3}
-      propertyPath: lineWidth
-      value: 
-      objectReference: {fileID: 127186331}
-    - target: {fileID: 5576185721748908211, guid: d56fb880eb2bfbe43a97a075d3716c12,
-        type: 3}
-      propertyPath: realWidth
-      value: 
-      objectReference: {fileID: 616460007}
-    - target: {fileID: 5576185721748908211, guid: d56fb880eb2bfbe43a97a075d3716c12,
-        type: 3}
-      propertyPath: realHeight
-      value: 
-      objectReference: {fileID: 2100637654}
-    - target: {fileID: 5576185721748908211, guid: d56fb880eb2bfbe43a97a075d3716c12,
-        type: 3}
-      propertyPath: width
-      value: 
-      objectReference: {fileID: 1185312943}
-    - target: {fileID: 5576185721748908211, guid: d56fb880eb2bfbe43a97a075d3716c12,
-        type: 3}
-      propertyPath: detail
-      value: 
-      objectReference: {fileID: 1058135219}
     - target: {fileID: 5576185721748908222, guid: d56fb880eb2bfbe43a97a075d3716c12,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1337,6 +1312,31 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1853714090}
+    - target: {fileID: 5576185721748908211, guid: d56fb880eb2bfbe43a97a075d3716c12,
+        type: 3}
+      propertyPath: lineWidth
+      value: 
+      objectReference: {fileID: 127186331}
+    - target: {fileID: 5576185721748908211, guid: d56fb880eb2bfbe43a97a075d3716c12,
+        type: 3}
+      propertyPath: realWidth
+      value: 
+      objectReference: {fileID: 616460007}
+    - target: {fileID: 5576185721748908211, guid: d56fb880eb2bfbe43a97a075d3716c12,
+        type: 3}
+      propertyPath: realHeight
+      value: 
+      objectReference: {fileID: 2100637654}
+    - target: {fileID: 5576185721748908211, guid: d56fb880eb2bfbe43a97a075d3716c12,
+        type: 3}
+      propertyPath: width
+      value: 
+      objectReference: {fileID: 1185312943}
+    - target: {fileID: 5576185721748908211, guid: d56fb880eb2bfbe43a97a075d3716c12,
+        type: 3}
+      propertyPath: detail
+      value: 
+      objectReference: {fileID: 1058135219}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d56fb880eb2bfbe43a97a075d3716c12, type: 3}
 --- !u!1 &1058135217
@@ -1644,9 +1644,9 @@ RectTransform:
   m_Father: {fileID: 1448190928}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 42.48401, y: -401}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 42.48401, y: 22}
   m_SizeDelta: {x: 80, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1290819005
