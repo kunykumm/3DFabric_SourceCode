@@ -13,7 +13,7 @@ public class CameraControlBase : MonoBehaviour
     private CameraMovement camNetMov;
 
     protected bool editNet;
-
+    public Text buttonText;
 
     protected void PrepareScene()
     {
@@ -30,6 +30,7 @@ public class CameraControlBase : MonoBehaviour
         camKnotMov.enabled = true;
         camNetMov.enabled = false;
         editNet = false;
+        buttonText.text = "Edit Net";
     }
 
     protected void FromKnotToNet()
@@ -39,6 +40,7 @@ public class CameraControlBase : MonoBehaviour
         camKnotMov.enabled = false;
         camNetMov.enabled = true;
         editNet = true;
+        buttonText.text = "Edit Knot";
     }
 
     private void StateOfSliders(GameObject panel, bool enabled)
