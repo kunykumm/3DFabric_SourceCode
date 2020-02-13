@@ -11,9 +11,9 @@ namespace Dreamteck.Splines
         public Slider rows;
         public GameObject runtimeRows;
 
-        private SplineComputer splineComputer;
-        private GameObject knotPrefab;
+        public GameObject knotPrefab;
         private GameObject knotClone;
+        private SplineComputer splineComputer;
 
         private int basePointCount;
         private SplinePoint[] basePoints;
@@ -32,12 +32,6 @@ namespace Dreamteck.Splines
         void Start()
         {
             SetupNet();
-            splineComputer = knotClone.GetComponent<SplineComputer>();
-
-            basePoints = splineComputer.GetPoints();
-            basePointCount = basePoints.Length;
-            currentPointCount = basePointCount;
-            point_size = splineComputer.GetPointSize(0);
             FindMaxsMins();
 
             rotationWhenGenerated = PlayerPrefs.GetInt("rotation");
@@ -51,7 +45,6 @@ namespace Dreamteck.Splines
 
         public void SetupNet()
         {
-            knotPrefab = GameObject.Find("Knot");
             knotClone = GameObject.Find("KnotForNet");
 
             var points = knotPrefab.GetComponent<SplineComputer>().GetPoints();
@@ -61,11 +54,25 @@ namespace Dreamteck.Splines
             knotClone.transform.parent = runtimeRows.transform;
             knotClone.tag = "knotrow";
             knotClone.layer = 9;
+
+            splineComputer = knotClone.GetComponent<SplineComputer>();
+            basePoints = splineComputer.GetPoints();
+            basePointCount = basePoints.Length;
+            currentPointCount = basePointCount;
+            point_size = splineComputer.GetPointSize(0);
         }
 
         public void UpdateNet()
         {
+            DeleteRows(prevRows - 1);
+            knotClone = runtimeRows.transform.GetChild(0).gameObject;
+            knotClone.transform.parent = null;
+
             SetupNet();
+
+            prevColumns = 1;
+            prevRows = 1;
+
             ChangeColumns();
             ChangeRows();
         }
@@ -117,19 +124,19 @@ namespace Dreamteck.Splines
                 if (prevColumns != (int)columns.value)
                 {
                     ChangeColumns();
-                    UpdateRowsAfterColumnsChanged();
+                    //UpdateRowsAfterColumnsChanged();
                 }
                 if (prevRows != (int)rows.value) ChangeRows();
             }
         }
 
-        private void UpdateRowsAfterColumnsChanged()
-        {
-            DeleteRows(prevRows - 1);
-            prevRows = 1;
-            AddRows((int)rows.value - 1);
-            prevRows = (int)rows.value;
-        }
+        //private void UpdateRowsAfterColumnsChanged()
+        //{
+        //    DeleteRows(prevRows - 1);
+        //    prevRows = 1;
+        //    AddRows((int)rows.value - 1);
+        //    prevRows = (int)rows.value;
+        //}
 
         private void ChangeColumns()
         {

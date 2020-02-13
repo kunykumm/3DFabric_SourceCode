@@ -8,8 +8,8 @@ public class GotoGeneration : MonoBehaviour
 
     public void GotoGenerateMeshScene()
     {
-        SaveInformation();
-        PreparePrefabs();
+        //SaveInformation();
+        //PreparePrefabs();
         SceneManager.LoadScene("GenerateMesh");
     }
 
