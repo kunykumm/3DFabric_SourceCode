@@ -6133,14 +6133,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2123285893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20303da439dea68478a91d425834cf6a, type: 3}
+  m_Script: {fileID: 11500000, guid: b4c6aa1bfb9663740a1e5dd0535b69b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cameraKnot: {fileID: 963194227}
   cameraNet: {fileID: 40219266}
-  generateMesh: {fileID: 2078240020}
   leftSliderPanel: {fileID: 1023279041}
   rightSliderPanel: {fileID: 428101571}
+  generateMesh: {fileID: 2078240020}
 --- !u!1001 &5808351078100318956
 PrefabInstance:
   m_ObjectHideFlags: 0

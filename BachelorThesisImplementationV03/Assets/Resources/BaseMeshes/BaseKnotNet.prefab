@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 883575786027122899}
   - component: {fileID: 883575786027122900}
   - component: {fileID: 883575786027122892}
-  - component: {fileID: 883575786027122890}
   m_Layer: 0
   m_Name: BaseKnotNet
   m_TagString: Untagged
@@ -709,24 +708,3 @@ MonoBehaviour:
   _capMode: 1
   _integrity: 360
   _capUVScale: 1
---- !u!114 &883575786027122890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 883575786027122906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe60f990ca3b5d142af37588eee29efa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tubeGenerator: {fileID: 883575786027122892}
-  splineComputer: {fileID: 883575786027122893}
-  angle: {fileID: 0}
-  width: {fileID: 0}
-  detail: {fileID: 0}
-  lineWidth: {fileID: 0}
-  realWidth: {fileID: 0}
-  realHeight: {fileID: 0}
-  rotationWhenGenerated: 0

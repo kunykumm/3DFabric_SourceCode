@@ -153,7 +153,7 @@ MonoBehaviour:
       tangent: {x: 4.0996413, y: 1.8245358, z: 0.48355567}
       tangent2: {x: 7.74834, y: -1.8241632, z: -0.4894308}
     closed: 0
-    type: 1
+    type: 0
     customValueInterpolation:
       serializedVersion: 2
       m_Curve: []

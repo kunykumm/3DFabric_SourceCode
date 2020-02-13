@@ -1,12 +1,10 @@
-﻿using Dreamteck.Splines;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraControl : CameraControlBase
+public class CameraControlTwoKnots : CameraControlBase
 {
-    public GenerateMesh generateMesh;
-
+    public GenerateMeshTwoKnots generateMeshTwoKnots;
     void Start()
     {
         PrepareScene();
@@ -21,7 +19,7 @@ public class CameraControl : CameraControlBase
         }
         else
         {
-            generateMesh.UpdateNet();
+            generateMeshTwoKnots.UpdateComplicatedNet();
             FromKnotToNet();
         }
     }
