@@ -13,18 +13,18 @@ namespace Dreamteck.Splines
         public GameObject runtimeRows;
 
         public GameObject knotPrefab;
-        private GameObject knotClone;
-        private SplineComputer splineComputer;
+        protected GameObject knotClone;
+        protected SplineComputer splineComputer;
 
-        private int basePointCount;
         private SplinePoint[] basePoints;
         private float width;
         private float height;
         private float point_size;
-        private int currentPointCount;
-
-        private int prevColumns;
-        private int prevRows;
+        
+        protected int currentPointCount;
+        protected int basePointCount;
+        protected int prevColumns;
+        protected int prevRows;
 
 
         void Start()
@@ -38,7 +38,7 @@ namespace Dreamteck.Splines
             ChangeRows();
         }
 
-        public void SetupNet()
+        protected void SetupNet()
         {
             knotClone = GameObject.Find("KnotForNet");
 
@@ -72,7 +72,7 @@ namespace Dreamteck.Splines
             ChangeRows();
         }
 
-        private void FindMaxsMins()
+        protected void FindMaxsMins()
         {
             float minx = basePoints[0].position.x;
             float maxx = basePoints[0].position.x;
@@ -96,48 +96,47 @@ namespace Dreamteck.Splines
             }
         }
 
-        private void ChangeColumns()
+        protected void ChangeColumns()
         {
             int diff = (int)columns.value - prevColumns;
             if (diff > 0)
             {
-                AddColumns(diff);
-
+                int newPoints = diff * (basePointCount - 1);
+                AddColumns(newPoints, splineComputer);
             }
             else
             {
-                DeleteColumns(diff);
+                int newCount = currentPointCount + diff * (basePointCount - 1);
+                DeleteColumns(newCount, splineComputer);
             }
             prevColumns = (int)columns.value;
         }
 
-        private void AddColumns(int diff)
+        protected void AddColumns(int newPoints, SplineComputer sc)
         {
-            int newPoints = diff * (basePointCount - 1);
             for (int i = 0; i < newPoints; ++i)
             {
                 int index = currentPointCount - basePointCount + 1;
-                var twinPoint = splineComputer.GetPoint(index);
-                splineComputer.SetPointPosition(currentPointCount, new Vector3(twinPoint.position.x + width, twinPoint.position.y, twinPoint.position.z));
-                splineComputer.SetPointSize(currentPointCount, point_size);
-                splineComputer.SetPointColor(currentPointCount, Color.white);
-                splineComputer.SetPointNormal(currentPointCount, splineComputer.GetPointNormal(index));
+                var twinPoint = sc.GetPoint(index);
+                sc.SetPointPosition(currentPointCount, new Vector3(twinPoint.position.x + width, twinPoint.position.y, twinPoint.position.z));
+                sc.SetPointSize(currentPointCount, point_size);
+                sc.SetPointColor(currentPointCount, Color.white);
+                sc.SetPointNormal(currentPointCount, sc.GetPointNormal(index));
                 currentPointCount++;
             }
         }
 
-        private void DeleteColumns(int diff)
+        protected void DeleteColumns(int newCount, SplineComputer sc)
         {
-            int new_count = currentPointCount + diff * (basePointCount - 1);
-            if (new_count < basePoints.Length) return;
-            SplinePoint[] short_segment = new SplinePoint[new_count];
-            SplinePoint[] old_points = splineComputer.GetPoints();
-            Array.Copy(old_points, 0, short_segment, 0, new_count);
-            splineComputer.SetPoints(short_segment);
-            currentPointCount = new_count;
+            if (newCount < basePoints.Length) return;
+            SplinePoint[] short_segment = new SplinePoint[newCount];
+            SplinePoint[] old_points = sc.GetPoints();
+            Array.Copy(old_points, 0, short_segment, 0, newCount);
+            sc.SetPoints(short_segment);
+            currentPointCount = newCount;
         }
 
-        private void ChangeRows()
+        protected void ChangeRows()
         {
             int diff = (int)rows.value - prevRows;
             if (diff > 0)
@@ -151,7 +150,7 @@ namespace Dreamteck.Splines
             prevRows = (int)rows.value;
         }
 
-        private void AddRows(int diff)
+        protected void AddRows(int diff)
         {
             float curHeight = -(height - 0.9f);
 
@@ -174,7 +173,7 @@ namespace Dreamteck.Splines
             knotClone.GetComponent<SplineComputer>().space = SplineComputer.Space.World;
         }
 
-        private void DeleteRows(int diff)
+        protected void DeleteRows(int diff)
         {
             int firstChildDying = prevRows - diff;
             for (int i = 0; i < diff; ++i)
