@@ -62,13 +62,19 @@ namespace Dreamteck.Splines
             knotClone = runtimeRows.transform.GetChild(0).gameObject;
             knotClone.transform.parent = null;
 
+            Debug.Log("UpdateBeforeSetup: " + runtimeRows.transform.childCount);
+
             SetupNet();
+
+            Debug.Log("UpdateAfterSetup: " + runtimeRows.transform.childCount);
 
             prevColumns = 1;
             prevRows = 1;
 
             ChangeColumns();
             ChangeRows();
+
+            Debug.Log("UpdateAfterChanges: " + runtimeRows.transform.childCount);
         }
 
         private void FindMaxsMins()

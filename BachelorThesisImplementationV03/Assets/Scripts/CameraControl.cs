@@ -15,21 +15,14 @@ public class CameraControl : MonoBehaviour
 
     private bool editNet;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         camKnotMov = cameraKnot.GetComponent<CameraMovement>();
         camNetMov = cameraNet.GetComponent<CameraMovement>();
-        
-        editNet = false;
-        ChangeCameras();
-        ChangeCameras();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        editNet = true;
+        ChangeCameras();
     }
 
     public void ChangeCameras()
