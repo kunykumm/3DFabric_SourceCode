@@ -1,31 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-using System.IO;
-using Dreamteck.Splines;
+﻿using UnityEngine;
 
 public class ExportMesh : MonoBehaviour
 {
     private GameObject[] theWholeMesh;
-    private int binCount = 1;
-    private int textCount = 1;
 
     public void ExportToBinarySTL()
     {
         theWholeMesh = GameObject.FindGameObjectsWithTag("knotrow");
-        string filePath = DefaultDirectory() + "/stl_example_binary" + binCount + ".stl";
+        string filePath = DefaultDirectory() + "/" + PlayerPrefs.GetString("scene") + "_net_bin_" + PlayerPrefs.GetInt("binary") + ".stl";
         STL.Export(theWholeMesh, filePath);
-        binCount++;
+        PlayerPrefs.SetInt("binary", PlayerPrefs.GetInt("binary") + 1);
     }
     
     public void ExportToTextSTL()
     {
         theWholeMesh = GameObject.FindGameObjectsWithTag("knotrow");
-        string filePath = DefaultDirectory() + "/stl_example_text" + textCount + ".stl";
+        string filePath = DefaultDirectory() + "/" + PlayerPrefs.GetString("scene") + "_net_text_" + PlayerPrefs.GetInt("text") + ".stl";
         bool asASCII = true;
         STL.Export(theWholeMesh, filePath, asASCII);
-        textCount++;
+        PlayerPrefs.SetInt("text", PlayerPrefs.GetInt("text") + 1);
     }
 
     private static string DefaultDirectory()

@@ -19,6 +19,7 @@ namespace Dreamteck.Splines
         public Text realHeight;
 
         public int rotationWhenGenerated;
+        public string sceneName;
 
         private float prevAngle;
         private float prevWidth;
@@ -43,6 +44,8 @@ namespace Dreamteck.Splines
 
         private void Start()
         {
+            PlayerPrefs.SetString("scene", sceneName);
+
             prevWidth = width.value;
             prevDetail = detail.value;
 
