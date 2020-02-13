@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5808351079509032707}
   - component: {fileID: 5808351079509032706}
   - component: {fileID: 5808351079509032705}
-  - component: {fileID: 5808351079509032734}
   m_Layer: 0
   m_Name: BaseKnotMesh
   m_TagString: Untagged
@@ -709,24 +708,3 @@ MonoBehaviour:
   _capMode: 1
   _integrity: 360
   _capUVScale: 1
---- !u!114 &5808351079509032734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5808351079509032704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe60f990ca3b5d142af37588eee29efa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tubeGenerator: {fileID: 5808351079509032705}
-  splineComputer: {fileID: 5808351079509032732}
-  angle: {fileID: 0}
-  width: {fileID: 0}
-  detail: {fileID: 0}
-  lineWidth: {fileID: 0}
-  realWidth: {fileID: 0}
-  realHeight: {fileID: 0}
-  rotationWhenGenerated: 0
