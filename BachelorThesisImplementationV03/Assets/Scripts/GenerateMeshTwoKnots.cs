@@ -11,8 +11,6 @@ public class GenerateMeshTwoKnots : GenerateMesh
 
     private SplineComputer splineComputerRotated;
 
-    //private SplinePoint[] basePointsRotated;
-
 
     void Start()
     {
@@ -44,21 +42,20 @@ public class GenerateMeshTwoKnots : GenerateMesh
         knotCloneRotated.GetComponent<SplineComputer>().SetPoints(points);
         knotCloneRotated.GetComponent<TubeGenerator>().sides = knotPrefabRotated.GetComponent<TubeGenerator>().sides;
 
-        knotCloneRotated.transform.parent = runtimeRows.transform;
-        knotCloneRotated.tag = "knotrow";
+        //knotCloneRotated.transform.parent = runtimeRows.transform;
+        //knotCloneRotated.tag = "knotrow";
         knotCloneRotated.layer = 10;
 
         splineComputerRotated = knotCloneRotated.GetComponent<SplineComputer>();
-        //basePointsRotated = splineComputerRotated.GetPoints();
     }
 
     public void UpdateComplicatedNet()
     {
-        DeleteRows(prevRows - 2);
+        DeleteRows(prevRows - 1);
         knotClone = runtimeRows.transform.GetChild(0).gameObject;
-        knotCloneRotated = runtimeRows.transform.GetChild(1).gameObject;
+        //knotCloneRotated = runtimeRows.transform.GetChild(1).gameObject;
         knotClone.transform.parent = null;
-        knotCloneRotated.transform.parent = null;
+        //knotCloneRotated.transform.parent = null;
 
         SetupNet();
         SetupComplicatedNet();
@@ -66,8 +63,8 @@ public class GenerateMeshTwoKnots : GenerateMesh
         prevColumns = 1;
         prevRows = 1;
 
-        //ChangeColumns();
-        //ChangeRows();
+        ChangeColumnsComplicated();
+        ChangeRowsComplicated();
     }
 
     private void ChangeColumnsComplicated()
@@ -98,31 +95,41 @@ public class GenerateMeshTwoKnots : GenerateMesh
         }
         else
         {
-            DeleteRowsComplicated(-diff);
+            DeleteRows(-diff);
         }
         prevRows = (int)rows.value;
     }
 
     private void AddRowsComplicated(int diff)
     {
+        float curHeight = -(height - 0.9f);
 
-    }
+        GameObject newKnot;
 
-    private void DeleteRowsComplicated(int diff)
-    {
-        int firstChildDying = prevRows - diff;
+        knotClone.GetComponent<SplineComputer>().space = SplineComputer.Space.Local;
+        knotCloneRotated.GetComponent<SplineComputer>().space = SplineComputer.Space.Local;
+
         for (int i = 0; i < diff; ++i)
         {
-            if (runtimeRows.transform.childCount == 2)
+            if ((i + prevRows) % 2 == 1)
             {
-                var hiddenchild = runtimeRows.transform.GetChild(firstChildDying).gameObject;
-                hiddenchild.layer = 10;
-                break;
+                newKnot = Instantiate(knotCloneRotated, knotCloneRotated.transform.position, Quaternion.identity);
+                newKnot.layer = 9;
+            } 
+            else
+            {
+                newKnot = Instantiate(knotClone, knotClone.transform.position, Quaternion.identity);
             }
+            newKnot.name = "KnotForNet";
+            newKnot.tag = "knotrow";
+            newKnot.transform.parent = runtimeRows.transform;
+            newKnot.transform.position += transform.up * (i + prevRows) * curHeight;
 
-            var child = runtimeRows.transform.GetChild(firstChildDying).gameObject;
-            child.transform.parent = null;
-            Destroy(child);
+            //if ((i + prevRows) % 2 == 1) newKnot.transform.position += transform.right * (width / 2);
+
+            newKnot.GetComponent<SplineComputer>().RebuildImmediate();
         }
+        knotClone.GetComponent<SplineComputer>().space = SplineComputer.Space.World;
+        knotCloneRotated.GetComponent<SplineComputer>().space = SplineComputer.Space.World;
     }
 }

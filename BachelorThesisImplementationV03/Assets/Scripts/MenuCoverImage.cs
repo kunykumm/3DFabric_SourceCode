@@ -26,7 +26,7 @@ public class MenuCoverImage : MonoBehaviour
 
     public void MouseHoversOver()
     {
-        cover.a = 0.6f;
+        cover.a = 0.8f;
         text.a = 1;
 
         coverImage.color = cover;

@@ -17,10 +17,10 @@ namespace Dreamteck.Splines
         protected SplineComputer splineComputer;
 
         private SplinePoint[] basePoints;
-        private float width;
-        private float height;
         private float point_size;
-        
+
+        protected float width;
+        protected float height;
         protected int currentPointCount;
         protected int basePointCount;
         protected int prevColumns;
