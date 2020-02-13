@@ -1864,7 +1864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe60f990ca3b5d142af37588eee29efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knotName: 
   tubeGenerator: {fileID: 5576185721748908210}
   splineComputer: {fileID: 5576185721748908223}
   angle: {fileID: 0}
