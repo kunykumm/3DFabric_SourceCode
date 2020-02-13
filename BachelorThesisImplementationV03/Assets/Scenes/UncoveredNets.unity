@@ -318,7 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coverImage: {fileID: 2030162244}
   title: {fileID: 990759867}
-  nextScene: EdgedKnot
+  nextScene: UncoveredNets
 --- !u!114 &175112018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 610b79720e094a64e8dd21130a6b46a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6693dedd649371244b5b88cc313f67ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 245971229}
   - component: {fileID: 245971228}
   m_Layer: 5
-  m_Name: UN_CoverImage
+  m_Name: CoverImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 369299175}
   - component: {fileID: 369299174}
   m_Layer: 5
-  m_Name: UN_CoverImage
+  m_Name: CoverImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -839,7 +839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coverImage: {fileID: 900546310}
   title: {fileID: 1242896762}
-  nextScene: BasicKnot
+  nextScene: UncoveredNets
 --- !u!114 &548215140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,7 +860,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b0e5f8ebe8e07bf40b46e417d9e62c00, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6693dedd649371244b5b88cc313f67ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -890,7 +890,7 @@ GameObject:
   - component: {fileID: 784447457}
   - component: {fileID: 784447456}
   m_Layer: 5
-  m_Name: UncoveredNetText
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -948,7 +948,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Edged Knot
+  m_Text: Soon
 --- !u!222 &784447457
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1123,7 +1123,7 @@ GameObject:
   - component: {fileID: 900546311}
   - component: {fileID: 900546310}
   m_Layer: 5
-  m_Name: UN_CoverImage
+  m_Name: CoverImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1356,7 +1356,7 @@ GameObject:
   - component: {fileID: 990759868}
   - component: {fileID: 990759867}
   m_Layer: 5
-  m_Name: UncoveredNetText
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1414,7 +1414,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Edged Knot
+  m_Text: Soon
 --- !u!222 &990759868
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1435,7 +1435,7 @@ GameObject:
   - component: {fileID: 1016220588}
   - component: {fileID: 1016220587}
   m_Layer: 5
-  m_Name: UncoveredNetText
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1621,7 +1621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coverImage: {fileID: 1466922356}
   title: {fileID: 1437481053}
-  nextScene: EdgedKnot
+  nextScene: UncoveredNets
 --- !u!114 &1093210291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1642,7 +1642,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 610b79720e094a64e8dd21130a6b46a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6693dedd649371244b5b88cc313f67ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1779,7 +1779,7 @@ GameObject:
   - component: {fileID: 1242896763}
   - component: {fileID: 1242896762}
   m_Layer: 5
-  m_Name: UncoveredNetText
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1837,7 +1837,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Basic Knot
+  m_Text: Soon
 --- !u!222 &1242896763
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2032,7 +2032,7 @@ GameObject:
   - component: {fileID: 1437481054}
   - component: {fileID: 1437481053}
   m_Layer: 5
-  m_Name: UncoveredNetText
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2090,7 +2090,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Edged Knot
+  m_Text: Soon
 --- !u!222 &1437481054
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2111,7 +2111,7 @@ GameObject:
   - component: {fileID: 1466922357}
   - component: {fileID: 1466922356}
   m_Layer: 5
-  m_Name: UN_CoverImage
+  m_Name: CoverImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2186,7 +2186,7 @@ GameObject:
   - component: {fileID: 1595004467}
   - component: {fileID: 1595004466}
   m_Layer: 5
-  m_Name: UncoveredNetText
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2265,7 +2265,7 @@ GameObject:
   - component: {fileID: 1607331505}
   - component: {fileID: 1607331504}
   m_Layer: 5
-  m_Name: UN_CoverImage
+  m_Name: CoverImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2681,7 +2681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coverImage: {fileID: 245971228}
   title: {fileID: 784447456}
-  nextScene: EdgedKnot
+  nextScene: UncoveredNets
 --- !u!114 &1970832641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2702,7 +2702,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 610b79720e094a64e8dd21130a6b46a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6693dedd649371244b5b88cc313f67ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2732,7 +2732,7 @@ GameObject:
   - component: {fileID: 2030162245}
   - component: {fileID: 2030162244}
   m_Layer: 5
-  m_Name: UN_CoverImage
+  m_Name: CoverImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
