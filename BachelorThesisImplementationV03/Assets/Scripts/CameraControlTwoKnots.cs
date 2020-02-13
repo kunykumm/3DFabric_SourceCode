@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraControlTwoKnots : CameraControlBase
 {
     public GenerateMeshTwoKnots generateMeshTwoKnots;
+
     void Start()
     {
         PrepareScene();

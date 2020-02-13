@@ -21,8 +21,8 @@ public class GenerateMeshTwoKnots : GenerateMesh
         prevColumns = 1;
         prevRows = 1;
 
-        //ChangeColumns();
-        //ChangeRows();
+        ChangeColumnsComplicated();
+        ChangeRowsComplicated();
     }
 
     void Update()
@@ -37,15 +37,10 @@ public class GenerateMeshTwoKnots : GenerateMesh
     protected void SetupComplicatedNet()
     {
         knotCloneRotated = GameObject.Find("KnotForNetRotated");
-
         var points = knotPrefabRotated.GetComponent<SplineComputer>().GetPoints();
         knotCloneRotated.GetComponent<SplineComputer>().SetPoints(points);
         knotCloneRotated.GetComponent<TubeGenerator>().sides = knotPrefabRotated.GetComponent<TubeGenerator>().sides;
-
-        //knotCloneRotated.transform.parent = runtimeRows.transform;
-        //knotCloneRotated.tag = "knotrow";
         knotCloneRotated.layer = 10;
-
         splineComputerRotated = knotCloneRotated.GetComponent<SplineComputer>();
     }
 
@@ -53,9 +48,7 @@ public class GenerateMeshTwoKnots : GenerateMesh
     {
         DeleteRows(prevRows - 1);
         knotClone = runtimeRows.transform.GetChild(0).gameObject;
-        //knotCloneRotated = runtimeRows.transform.GetChild(1).gameObject;
         knotClone.transform.parent = null;
-        //knotCloneRotated.transform.parent = null;
 
         SetupNet();
         SetupComplicatedNet();
