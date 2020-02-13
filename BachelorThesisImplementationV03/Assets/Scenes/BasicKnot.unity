@@ -6327,6 +6327,7 @@ MonoBehaviour:
   rows: {fileID: 650996772}
   runtimeRows: {fileID: 579546939}
   knotPrefab: {fileID: 670754746}
+  heightOffset: 0.9
 --- !u!4 &2078240021
 Transform:
   m_ObjectHideFlags: 0

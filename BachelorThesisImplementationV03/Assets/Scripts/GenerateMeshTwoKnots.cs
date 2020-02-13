@@ -95,7 +95,7 @@ public class GenerateMeshTwoKnots : GenerateMesh
 
     private void AddRowsComplicated(int diff)
     {
-        float curHeight = -(height - 0.9f);
+        float curHeight = -(height - heightOffset);
 
         GameObject newKnot;
 

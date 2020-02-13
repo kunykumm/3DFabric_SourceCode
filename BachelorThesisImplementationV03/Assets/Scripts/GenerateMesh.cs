@@ -11,14 +11,15 @@ namespace Dreamteck.Splines
         public Slider columns;
         public Slider rows;
         public GameObject runtimeRows;
-
         public GameObject knotPrefab;
-        protected GameObject knotClone;
-        protected SplineComputer splineComputer;
+        public float heightOffset;
+
 
         private SplinePoint[] basePoints;
         private float point_size;
 
+        protected GameObject knotClone;
+        protected SplineComputer splineComputer;
         protected float width;
         protected float height;
         protected int currentPointCount;
@@ -152,7 +153,7 @@ namespace Dreamteck.Splines
 
         protected void AddRows(int diff)
         {
-            float curHeight = -(height - 0.9f);
+            float curHeight = -(height - heightOffset);
 
             GameObject newKnot;
 

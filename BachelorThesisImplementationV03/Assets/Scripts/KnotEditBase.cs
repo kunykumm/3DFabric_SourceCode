@@ -24,14 +24,13 @@ namespace Dreamteck.Splines
 
         private void Start()
         {
+            PlayerPrefs.SetString("scene", sceneName);
             PrepareValues();
             ChangeWidth();
         }
 
         protected void PrepareValues()
         {
-            PlayerPrefs.SetString("scene", sceneName);
-
             prevWidth = width.value;
             prevDetail = detail.value;
 
