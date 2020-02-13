@@ -25,17 +25,11 @@ namespace Dreamteck.Splines
         private int prevColumns;
         private int prevRows;
 
-        private int rotationWhenGenerated;
-        //private GameObject rotatedPrefab;
 
-        // Start is called before the first frame update
         void Start()
         {
             SetupNet();
             FindMaxsMins();
-
-            rotationWhenGenerated = PlayerPrefs.GetInt("rotation");
-            if (rotationWhenGenerated == 1) PrepareRotatedPrefab();
 
             prevColumns = 1;
             prevRows = 1;
@@ -91,52 +85,15 @@ namespace Dreamteck.Splines
             width = maxx - minx;
         }
 
-        private void PrepareRotatedPrefab()
-        {
-            GameObject prefabRef = (GameObject)Resources.Load("BaseMeshes/" + PlayerPrefs.GetString("scene") + "MeshRotated");
-            //GameObject prefabRotated = (GameObject)PrefabUtility.InstantiatePrefab(prefabRef);
 
-            //int pointCount = prefabRotated.GetComponent<SplineComputer>().pointCount;
-            float pointSize = knotPrefab.GetComponent<SplineComputer>().GetPointSize(0);
-
-            //for (int i = 0; i < pointCount; ++i)
-            //{
-                //prefabRotated.GetComponent<SplineComputer>().SetPointSize(i, pointSize);
-            //}
-
-            //prefabRotated.GetComponent<TubeGenerator>().sides = knotPrefab.GetComponent<TubeGenerator>().sides;
-            //prefabRotated.GetComponent<SplineComputer>().RebuildImmediate();
-
-            //PrefabUtility.SaveAsPrefabAsset(prefabRotated, "Assets/Resources/KnotRotated.prefab");
-            //PrefabUtility.SaveAsPrefabAsset(prefabRotated, "Assets/Resources/KnotRotatedForNet.prefab");
-
-            //Destroy(prefabRotated);
-
-            //rotatedPrefab = (GameObject)Resources.Load("KnotRotatedForNet");
-            //rotatedPrefab.GetComponent<KnotEditor>().enabled = false;
-        }
-
-        // Update is called once per frame
         void Update()
         {
             if (Input.GetMouseButtonUp(0))
             {
-                if (prevColumns != (int)columns.value)
-                {
-                    ChangeColumns();
-                    //UpdateRowsAfterColumnsChanged();
-                }
+                if (prevColumns != (int)columns.value) ChangeColumns();
                 if (prevRows != (int)rows.value) ChangeRows();
             }
         }
-
-        //private void UpdateRowsAfterColumnsChanged()
-        //{
-        //    DeleteRows(prevRows - 1);
-        //    prevRows = 1;
-        //    AddRows((int)rows.value - 1);
-        //    prevRows = (int)rows.value;
-        //}
 
         private void ChangeColumns()
         {
@@ -156,13 +113,6 @@ namespace Dreamteck.Splines
         {
             int newPoints = diff * (basePointCount - 1);
             GeneralAddColumns(newPoints, splineComputer);
-            if (rotationWhenGenerated == 1)
-            {
-                //currentPointCount -= newPoints;
-                //GameObject rotated = Instantiate(rotatedPrefab);
-                //GeneralAddColumns(newPoints, rotated.GetComponent<SplineComputer>());
-                //Destroy(rotated);
-            }
         }
 
         private void GeneralAddColumns(int newPoints, SplineComputer sc)
@@ -183,12 +133,6 @@ namespace Dreamteck.Splines
         {
             int new_count = currentPointCount + diff * (basePointCount - 1);
             GeneralDeleteColumns(new_count, splineComputer);
-            if (rotationWhenGenerated == 1)
-            {
-                //GameObject rotated = Instantiate(rotatedPrefab);
-                //GeneralDeleteColumns(new_count, rotated.GetComponent<SplineComputer>());
-                //Destroy(rotated);
-            }
             currentPointCount = new_count;
         }
 
@@ -222,30 +166,20 @@ namespace Dreamteck.Splines
             GameObject newKnot;
 
             knotClone.GetComponent<SplineComputer>().space = SplineComputer.Space.Local;
-            //if (rotationWhenGenerated == 1) rotatedPrefab.GetComponent<SplineComputer>().space = SplineComputer.Space.Local;
 
             for (int i = 0; i < diff; ++i)
             {
                 newKnot = Instantiate(knotClone, knotClone.transform.position, Quaternion.identity);
-                if ((i + prevRows) % 2 == 1 && rotationWhenGenerated == 1)
-                {
-                    //newKnot = Instantiate(rotatedPrefab, rotatedPrefab.transform.position, Quaternion.identity);
-                }
-                else
-                {
-                    //newKnot = Instantiate(knotClone, knotClone.transform.position, Quaternion.identity);
-                }
                 newKnot.name = "KnotForNet";
                 newKnot.tag = "knotrow";
                 newKnot.transform.parent = runtimeRows.transform;
                 newKnot.transform.position += transform.up * (i + prevRows) * curHeight;
 
-                if ((i + prevRows) % 2 == 1 && rotationWhenGenerated != 1) newKnot.transform.position += transform.right * (width / 2);
+                if ((i + prevRows) % 2 == 1) newKnot.transform.position += transform.right * (width / 2);
 
                 newKnot.GetComponent<SplineComputer>().RebuildImmediate();
             }
             knotClone.GetComponent<SplineComputer>().space = SplineComputer.Space.World;
-            //if (rotationWhenGenerated == 1) rotatedPrefab.GetComponent<SplineComputer>().space = SplineComputer.Space.World;
         }
 
         private void DeleteRows(int diff)

@@ -17,7 +17,6 @@ namespace Dreamteck.Splines
         public Text realWidth;
         public Text realHeight;
 
-        public int rotationWhenGenerated;
         public string sceneName;
 
         protected float prevWidth;

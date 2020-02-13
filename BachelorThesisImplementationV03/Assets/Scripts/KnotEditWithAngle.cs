@@ -14,7 +14,7 @@ public class KnotEditWithAngle : KnotEditBase
     protected Vector3 secondPointStart;
 
     /**
-    * ANGLES
+    * ANGLES (BasicKnot)
     * Start position:   3.0  3.0  0.8
     *                   0.0  3.0 -0.8
     * End position:     1.5  3.0  1.6
