@@ -16,6 +16,7 @@ public class GenerateMeshTwoKnots : GenerateMesh
     {
         SetupNet();
         SetupComplicatedNet();
+        knotUti = new KnotUtility();
         knotUti.FindMaxsMins(ref height, ref width, basePoints);
 
         prevColumns = 1;
@@ -23,6 +24,8 @@ public class GenerateMeshTwoKnots : GenerateMesh
 
         ChangeColumnsComplicated();
         ChangeRowsComplicated();
+
+        sizeChanger.ChangeSizesNet();
     }
 
     void Update()
@@ -31,6 +34,7 @@ public class GenerateMeshTwoKnots : GenerateMesh
         {
             if (prevColumns != (int)columns.value) ChangeColumnsComplicated();
             if (prevRows != (int)rows.value) ChangeRowsComplicated();
+            sizeChanger.ChangeSizesNet();
         }
     }
 
@@ -58,6 +62,8 @@ public class GenerateMeshTwoKnots : GenerateMesh
 
         ChangeColumnsComplicated();
         ChangeRowsComplicated();
+
+        sizeChanger.ChangeSizesNet();
     }
 
     private void ChangeColumnsComplicated()
