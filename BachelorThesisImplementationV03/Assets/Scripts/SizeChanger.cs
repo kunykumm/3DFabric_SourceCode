@@ -18,6 +18,8 @@ public class SizeChanger : MonoBehaviour
     private float previousWidth;
     private float previousLineWidth;
 
+    private bool allowUpdate = false;
+
 
     public void setHeight(float height)
     {
@@ -44,7 +46,7 @@ public class SizeChanger : MonoBehaviour
     {
         ChangeHeight(change);
         ChangeWidth(change);
-        ChangeLineWidth(change);
+        ChangeLineWidth(-change);
     }
 
     private void ChangeHeight(float change)
@@ -63,6 +65,7 @@ public class SizeChanger : MonoBehaviour
 
     private void ChangeLineWidth(float change)
     {
+        allowUpdate = false;
         float newLineWidth = previousLineWidth + change * originalLineWidth / originalHeight;
         lineWidthText.text = newLineWidth.ToString("0.00") + " cm";
         previousLineWidth = newLineWidth;
@@ -71,7 +74,12 @@ public class SizeChanger : MonoBehaviour
 
     public void UpdateFromSlider(float newValue)
     {
-        setLineWidth(newValue);
+        if (allowUpdate) setLineWidth(newValue);
         lineWidthText.text = newValue.ToString("0.00") + " cm";
+    }
+
+    public void OnClickLineWidthSlider()
+    {
+        allowUpdate = true;
     }
 }
