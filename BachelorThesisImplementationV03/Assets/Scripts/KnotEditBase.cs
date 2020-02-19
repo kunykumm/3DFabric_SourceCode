@@ -12,12 +12,7 @@ namespace Dreamteck.Splines
 
         public Slider width;
         public Slider detail;
-
-        public Text lineWidth;
-        public Text realWidth;
-        public Text realHeight;
-
-        public SizeChanger SizeChanger;
+        public SizeChanger sizeChanger;
 
         public string sceneName;
 
@@ -43,12 +38,9 @@ namespace Dreamteck.Splines
             knotUti = new KnotUtility();
             knotUti.FindMaxsMins(ref rHeight, ref rWidth, splineComputer.GetPoints());
 
-            lineWidth.text = prevWidth.ToString("0.00");
-            //realWidth.text = rWidth.ToString();
-            //realHeight.text = rHeight.ToString();
-
-            SizeChanger.setHeight(rHeight);
-            SizeChanger.setWidth(rWidth);
+            sizeChanger.setHeight(rHeight);
+            sizeChanger.setWidth(rWidth);
+            sizeChanger.setLineWidth(prevWidth);
         }
 
         public void OnEdit()
@@ -64,7 +56,7 @@ namespace Dreamteck.Splines
             {
                 splineComputer.SetPointSize(i, prevWidth);
             }
-            lineWidth.text = prevWidth.ToString("0.00");
+            sizeChanger.UpdateFromSlider(prevWidth);
         }
 
         protected void ChangeDetail()
