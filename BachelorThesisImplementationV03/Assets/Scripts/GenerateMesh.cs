@@ -14,10 +14,10 @@ namespace Dreamteck.Splines
         public GameObject knotPrefab;
         public float heightOffset;
 
-
-        private SplinePoint[] basePoints;
         private float point_size;
 
+        protected SplinePoint[] basePoints;
+        protected KnotUtility knotUti;
         protected GameObject knotClone;
         protected SplineComputer splineComputer;
         protected float width;
@@ -31,7 +31,8 @@ namespace Dreamteck.Splines
         void Start()
         {
             SetupNet();
-            FindMaxsMins();
+            knotUti = new KnotUtility();
+            knotUti.FindMaxsMins(ref height, ref width, basePoints);
 
             prevColumns = 1;
             prevRows = 1;
@@ -73,19 +74,19 @@ namespace Dreamteck.Splines
             ChangeRows();
         }
 
-        protected void FindMaxsMins()
-        {
-            float minx = basePoints[0].position.x;
-            float maxx = basePoints[0].position.x;
-            height = basePoints[0].position.y;
-            for (int i = 1; i < basePointCount; ++i)
-            {
-                if (basePoints[i].position.x < minx) minx = basePoints[i].position.x;
-                if (basePoints[i].position.x > maxx) maxx = basePoints[i].position.x;
-                if (basePoints[i].position.y > height) height = basePoints[i].position.y;
-            }
-            width = maxx - minx;
-        }
+        //protected void FindMaxsMins()
+        //{
+        //    float minx = basePoints[0].position.x;
+        //    float maxx = basePoints[0].position.x;
+        //    height = basePoints[0].position.y;
+        //    for (int i = 1; i < basePointCount; ++i)
+        //    {
+        //        if (basePoints[i].position.x < minx) minx = basePoints[i].position.x;
+        //        if (basePoints[i].position.x > maxx) maxx = basePoints[i].position.x;
+        //        if (basePoints[i].position.y > height) height = basePoints[i].position.y;
+        //    }
+        //    width = maxx - minx;
+        //}
 
 
         void Update()

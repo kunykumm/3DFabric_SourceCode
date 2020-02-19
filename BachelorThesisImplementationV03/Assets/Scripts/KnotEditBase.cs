@@ -17,10 +17,16 @@ namespace Dreamteck.Splines
         public Text realWidth;
         public Text realHeight;
 
+        public SizeChanger SizeChanger;
+
         public string sceneName;
 
         protected float prevWidth;
         protected float prevDetail;
+
+        private float rWidth;
+        private float rHeight;
+        private KnotUtility knotUti;
 
         private void Start()
         {
@@ -34,9 +40,15 @@ namespace Dreamteck.Splines
             prevWidth = width.value;
             prevDetail = detail.value;
 
+            knotUti = new KnotUtility();
+            knotUti.FindMaxsMins(ref rHeight, ref rWidth, splineComputer.GetPoints());
+
             lineWidth.text = prevWidth.ToString("0.00");
-            realWidth.text = "0,00";
-            realHeight.text = "0,00";
+            //realWidth.text = rWidth.ToString();
+            //realHeight.text = rHeight.ToString();
+
+            SizeChanger.setHeight(rHeight);
+            SizeChanger.setWidth(rWidth);
         }
 
         public void OnEdit()
