@@ -3,12 +3,19 @@ using UnityEngine.UI;
 
 public class SizeChanger : MonoBehaviour
 {
+    //LeftSide (Knot)
     public Text heightText;
     public Text widthText;
     public Text lineWidthText;
     public Button addButton;
     public Button subButton;
     public Slider lineWidthSlider;
+
+    //RigthSide (Knot)
+    public Text netHeight;
+    public Text netWidth;
+    public Slider columnsSlider;
+    public Slider rowsSlider;
 
     private float originalHeight;
     private float originalWidth;
@@ -47,6 +54,7 @@ public class SizeChanger : MonoBehaviour
         ChangeHeight(change);
         ChangeWidth(change);
         ChangeLineWidth(-change);
+        ChangeSizesNet();
     }
 
     private void ChangeHeight(float change)
@@ -81,5 +89,14 @@ public class SizeChanger : MonoBehaviour
     public void OnClickLineWidthSlider()
     {
         allowUpdate = true;
+    }
+
+    public void ChangeSizesNet()
+    {
+        netHeight.text = rowsSlider.value.ToString() + " rows | " + (rowsSlider.value * previousHeight).ToString("0.00") + " cm";
+        netWidth.text = columnsSlider.value.ToString() + " columns | " + (columnsSlider.value * previousWidth).ToString("0.00") + " cm";
+
+        //netHeight.text = string.Format("{0} rows | {1,15} cm", rowsSlider.value, (rowsSlider.value * previousHeight).ToString("0.00"));
+        //netWidth.text = string.Format("{0} columns | {1,15} cm", columnsSlider.value, (columnsSlider.value * previousWidth).ToString("0.00"));
     }
 }

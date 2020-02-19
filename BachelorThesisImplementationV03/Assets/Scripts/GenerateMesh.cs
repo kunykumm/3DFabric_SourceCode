@@ -10,6 +10,7 @@ namespace Dreamteck.Splines
     {
         public Slider columns;
         public Slider rows;
+        public SizeChanger sizeChanger;
         public GameObject runtimeRows;
         public GameObject knotPrefab;
         public float heightOffset;
@@ -38,6 +39,8 @@ namespace Dreamteck.Splines
             prevRows = 1;
             ChangeColumns();
             ChangeRows();
+
+            sizeChanger.ChangeSizesNet();
         }
 
         protected void SetupNet()
@@ -72,6 +75,8 @@ namespace Dreamteck.Splines
 
             ChangeColumns();
             ChangeRows();
+
+            sizeChanger.ChangeSizesNet();
         }
 
         //protected void FindMaxsMins()
@@ -95,6 +100,7 @@ namespace Dreamteck.Splines
             {
                 if (prevColumns != (int)columns.value) ChangeColumns();
                 if (prevRows != (int)rows.value) ChangeRows();
+                sizeChanger.ChangeSizesNet();
             }
         }
 
