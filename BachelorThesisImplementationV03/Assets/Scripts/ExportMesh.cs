@@ -5,11 +5,13 @@ using UnityEngine.UI;
 public class ExportMesh : MonoBehaviour
 {
     private GameObject[] theWholeMesh;
+    private bool blah;
     private ExtensionFilter[] extensionList;
     public Text savedInfo;
 
     private void Start()
     {
+        blah = false;
         extensionList = new ExtensionFilter[] {
             new ExtensionFilter("Binary STL", "bin.stl"),
             new ExtensionFilter("Text STL", "txt.stl")
@@ -21,7 +23,7 @@ public class ExportMesh : MonoBehaviour
         theWholeMesh = GameObject.FindGameObjectsWithTag("knotrow");
         string fileName = PlayerPrefs.GetString("scene");
         string filePath = StandaloneFileBrowser.SaveFilePanel("Save File", "", fileName, extensionList);
-        if (!SaveAsStl(filePath)) ;
+        if (!SaveAsStl(filePath)) blah = true;
         savedInfo.text = "Your net was saved successfully.";
     }
 
