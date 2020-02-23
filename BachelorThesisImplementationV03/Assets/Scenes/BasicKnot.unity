@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40219263}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.2, y: -1.5, z: -35}
+  m_LocalPosition: {x: 8.25, y: -1.6, z: -35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1325,7 +1325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270610544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.2, y: -1.5, z: 0}
+  m_LocalPosition: {x: 8.25, y: -1.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1933,6 +1933,16 @@ PrefabInstance:
       propertyPath: rowsSlider
       value: 
       objectReference: {fileID: 650996772}
+    - target: {fileID: 7914266149970312176, guid: 0e159c03b955d7349a8c17c3d132175f,
+        type: 3}
+      propertyPath: cameraNetFocus
+      value: 
+      objectReference: {fileID: 1270610544}
+    - target: {fileID: 7914266149970312176, guid: 0e159c03b955d7349a8c17c3d132175f,
+        type: 3}
+      propertyPath: cameraNet
+      value: 
+      objectReference: {fileID: 40219266}
     - target: {fileID: 7914266150085638190, guid: 0e159c03b955d7349a8c17c3d132175f,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target

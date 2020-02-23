@@ -17,6 +17,10 @@ public class SizeChanger : MonoBehaviour
     public Slider columnsSlider;
     public Slider rowsSlider;
 
+    //CameraChange
+    public GameObject cameraNetFocus;
+    public Camera cameraNet;
+
     private float originalHeight;
     private float originalWidth;
     private float originalLineWidth;
@@ -24,6 +28,10 @@ public class SizeChanger : MonoBehaviour
     private float previousHeight;
     private float previousWidth;
     private float previousLineWidth;
+
+    private float editorNetHeight = 0;
+    private float editorNetWidth = 0;
+    private float heightOffset;
 
     private bool allowUpdate = false;
 
@@ -49,6 +57,17 @@ public class SizeChanger : MonoBehaviour
         lineWidthText.text = originalLineWidth.ToString("0.00") + " cm";
     }
 
+    public void SetHeightOffset(float offset)
+    {
+        heightOffset = offset;
+    }
+
+    //public void InitialiseEditorSizes()
+    //{
+    //    editorNetHeight = rowsSlider.value * originalHeight - (rowsSlider.value - 1) * heightOffset;
+    //    editorNetWidth = columnsSlider.value * originalWidth;
+    //}
+
     public void ChangeValues(float change)
     {
         ChangeHeight(change);
@@ -63,7 +82,7 @@ public class SizeChanger : MonoBehaviour
         heightText.text = newHeight.ToString("0.00") + " cm";
         previousHeight = newHeight;
     }
-    
+
     private void ChangeWidth(float change)
     {
         float newWidth = previousWidth + change * originalWidth / originalHeight;
@@ -93,10 +112,20 @@ public class SizeChanger : MonoBehaviour
 
     public void ChangeSizesNet()
     {
-        netHeight.text = rowsSlider.value.ToString() + " rows | " + (rowsSlider.value * previousHeight).ToString("0.00") + " cm";
+        var newHeight = rowsSlider.value * originalHeight - (rowsSlider.value - 1) * heightOffset;
+        var newWidth = columnsSlider.value * originalWidth;
+
+        if (newHeight != editorNetHeight || newWidth != editorNetWidth) ChangeNetCameraFocus(newHeight, newWidth);
+
+        netHeight.text = rowsSlider.value.ToString() + " rows | " + (rowsSlider.value * previousHeight - (rowsSlider.value - 1) * heightOffset).ToString("0.00") + " cm";
         netWidth.text = columnsSlider.value.ToString() + " columns | " + (columnsSlider.value * previousWidth).ToString("0.00") + " cm";
 
         //netHeight.text = string.Format("{0} rows | {1,15} cm", rowsSlider.value, (rowsSlider.value * previousHeight).ToString("0.00"));
         //netWidth.text = string.Format("{0} columns | {1,15} cm", columnsSlider.value, (columnsSlider.value * previousWidth).ToString("0.00"));
+    }
+
+    private void ChangeNetCameraFocus(float newHeight, float newWidth)
+    {
+        cameraNetFocus.transform.position = new Vector3(newWidth / 2 + originalWidth / 4, - newHeight / 2 + originalHeight, cameraNetFocus.transform.position.z);
     }
 }
