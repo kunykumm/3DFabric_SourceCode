@@ -1,43 +1,48 @@
-﻿using UnityEngine;
+﻿using SFB;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class ExportMesh : MonoBehaviour
 {
     private GameObject[] theWholeMesh;
+    private ExtensionFilter[] extensionList;
     public Text savedInfo;
 
-    public void ExportToBinarySTL()
+    private void Start()
     {
-        theWholeMesh = GameObject.FindGameObjectsWithTag("knotrow");
-        string fileName = PlayerPrefs.GetString("scene") + "_net_bin_" + PlayerPrefs.GetInt("binary") + ".stl";
-        string filePath = DefaultDirectory() + "/" + fileName;
-        STL.Export(theWholeMesh, filePath);
-        savedInfo.text = "Your net was saved on Desktop as " + fileName + ".";
-        PlayerPrefs.SetInt("binary", PlayerPrefs.GetInt("binary") + 1);
-    }
-    
-    public void ExportToTextSTL()
-    {
-        theWholeMesh = GameObject.FindGameObjectsWithTag("knotrow");
-        string fileName = PlayerPrefs.GetString("scene") + "_net_text_" + PlayerPrefs.GetInt("text") + ".stl";
-        string filePath = DefaultDirectory() + "/" + fileName;
-        bool asASCII = true;
-        STL.Export(theWholeMesh, filePath, asASCII);
-        savedInfo.text = "Your net was saved on Desktop as " + fileName + ".";
-        PlayerPrefs.SetInt("text", PlayerPrefs.GetInt("text") + 1);
+        extensionList = new ExtensionFilter[] {
+            new ExtensionFilter("Binary STL", "bin.stl"),
+            new ExtensionFilter("Text STL", "txt.stl")
+        };
     }
 
-    private static string DefaultDirectory()
+    public void ExportNet()
     {
-        string defaultDirectory = "";
-        if (Application.platform == RuntimePlatform.OSXEditor)
+        theWholeMesh = GameObject.FindGameObjectsWithTag("knotrow");
+        string fileName = PlayerPrefs.GetString("scene");
+        string filePath = StandaloneFileBrowser.SaveFilePanel("Save File", "", fileName, extensionList);
+        if (!SaveAsStl(filePath)) ;
+        savedInfo.text = "Your net was saved successfully.";
+    }
+
+    private bool SaveAsStl(string filePath)
+    {
+        string check = filePath.Substring(filePath.Length - 3, 3);
+        if (!check.Equals("stl")) return false;
+
+        string choice = filePath.Substring(filePath.Length - 7, 3);
+        if (choice.Equals("bin"))
         {
-            defaultDirectory = System.Environment.GetEnvironmentVariable("HOME") + "/Desktop";
+            filePath = filePath.Replace(".bin", "");
+            STL.Export(theWholeMesh, filePath);
         }
-        else
+        if (choice.Equals("txt"))
         {
-            defaultDirectory = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
+            filePath = filePath.Replace(".txt", "");
+            bool asASCII = true;
+            STL.Export(theWholeMesh, filePath, asASCII);
         }
-        return defaultDirectory;
+
+        return true;
     }
 }
