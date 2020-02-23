@@ -41,7 +41,6 @@ namespace Dreamteck.Splines
             ChangeRows();
 
             sizeChanger.SetHeightOffset(heightOffset);
-            //sizeChanger.InitialiseEditorSizes();
             sizeChanger.ChangeSizesNet();
         }
 

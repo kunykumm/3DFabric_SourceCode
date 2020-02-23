@@ -1943,6 +1943,11 @@ PrefabInstance:
       propertyPath: cameraNet
       value: 
       objectReference: {fileID: 40219266}
+    - target: {fileID: 7914266149970312176, guid: 0e159c03b955d7349a8c17c3d132175f,
+        type: 3}
+      propertyPath: horizontalOffset
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7914266150085638190, guid: 0e159c03b955d7349a8c17c3d132175f,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target

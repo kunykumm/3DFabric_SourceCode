@@ -26,7 +26,6 @@ public class GenerateMeshTwoKnots : GenerateMesh
         ChangeRowsComplicated();
 
         sizeChanger.SetHeightOffset(heightOffset);
-        //sizeChanger.InitialiseEditorSizes();
         sizeChanger.ChangeSizesNet();
     }
 

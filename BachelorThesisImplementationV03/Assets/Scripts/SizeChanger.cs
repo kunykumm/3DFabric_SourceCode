@@ -20,6 +20,7 @@ public class SizeChanger : MonoBehaviour
     //CameraChange
     public GameObject cameraNetFocus;
     public Camera cameraNet;
+    public int horizontalOffset;
 
     private float originalHeight;
     private float originalWidth;
@@ -61,12 +62,6 @@ public class SizeChanger : MonoBehaviour
     {
         heightOffset = offset;
     }
-
-    //public void InitialiseEditorSizes()
-    //{
-    //    editorNetHeight = rowsSlider.value * originalHeight - (rowsSlider.value - 1) * heightOffset;
-    //    editorNetWidth = columnsSlider.value * originalWidth;
-    //}
 
     public void ChangeValues(float change)
     {
@@ -126,6 +121,8 @@ public class SizeChanger : MonoBehaviour
 
     private void ChangeNetCameraFocus(float newHeight, float newWidth)
     {
-        cameraNetFocus.transform.position = new Vector3(newWidth / 2 + originalWidth / 4, - newHeight / 2 + originalHeight, cameraNetFocus.transform.position.z);
+        newWidth /= 2;
+        if (horizontalOffset == 1) newWidth += (originalWidth / 4);
+        cameraNetFocus.transform.position = new Vector3(newWidth, - newHeight / 2 + originalHeight, cameraNetFocus.transform.position.z);
     }
 }
