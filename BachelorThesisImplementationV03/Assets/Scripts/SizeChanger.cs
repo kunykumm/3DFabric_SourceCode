@@ -121,8 +121,19 @@ public class SizeChanger : MonoBehaviour
 
     private void ChangeNetCameraFocus(float newHeight, float newWidth)
     {
-        newWidth /= 2;
-        if (horizontalOffset == 1) newWidth += (originalWidth / 4);
-        cameraNetFocus.transform.position = new Vector3(newWidth, - newHeight / 2 + originalHeight, cameraNetFocus.transform.position.z);
+        float customWidth = newWidth / 2;
+        if (horizontalOffset == 1) customWidth += (originalWidth / 4);
+        cameraNetFocus.transform.position = new Vector3(customWidth, - newHeight / 2 + originalHeight, cameraNetFocus.transform.position.z);
+
+        //var prevCamPos = cameraNet.transform.position;
+        //float depth = 0;
+        //if (newHeight > newWidth)
+        //{
+        //    depth = 2 * newHeight;
+        //} else
+        //{
+        //    depth = 2 * newWidth;
+        //}
+        //cameraNet.transform.position = new Vector3(prevCamPos.x, prevCamPos.y, 0 - depth);
     }
 }
