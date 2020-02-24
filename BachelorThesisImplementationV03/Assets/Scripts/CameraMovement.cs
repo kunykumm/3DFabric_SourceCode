@@ -28,6 +28,7 @@ public class CameraMovement : MonoBehaviour
     private Quaternion rotation;
     private Vector3 position;
 
+
     void Start() { Init(); }
     void OnEnable() { Init(); }
 
@@ -103,6 +104,7 @@ public class CameraMovement : MonoBehaviour
         // calculate position based on the new currentDistance 
         position = target.position - (rotation * Vector3.forward * currentDistance + targetOffset);
         transform.position = position;
+
     }
 
     private static float ClampAngle(float angle, float min, float max)

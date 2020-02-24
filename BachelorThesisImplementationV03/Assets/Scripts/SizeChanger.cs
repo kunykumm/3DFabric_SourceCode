@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class SizeChanger : MonoBehaviour
@@ -35,7 +36,14 @@ public class SizeChanger : MonoBehaviour
     private float heightOffset;
 
     private bool allowUpdate = false;
+    private float zChange;
+    private CameraMovement cameraMovement;
 
+    private void Start()
+    {
+        zChange = cameraNet.transform.position.z;
+        cameraMovement = cameraNet.GetComponent<CameraMovement>();
+    }
 
     public void setHeight(float height)
     {
@@ -123,17 +131,16 @@ public class SizeChanger : MonoBehaviour
     {
         float customWidth = newWidth / 2;
         if (horizontalOffset == 1) customWidth += (originalWidth / 4);
-        cameraNetFocus.transform.position = new Vector3(customWidth, - newHeight / 2 + originalHeight, cameraNetFocus.transform.position.z);
-
-        //var prevCamPos = cameraNet.transform.position;
-        //float depth = 0;
-        //if (newHeight > newWidth)
-        //{
-        //    depth = 2 * newHeight;
-        //} else
-        //{
-        //    depth = 2 * newWidth;
-        //}
-        //cameraNet.transform.position = new Vector3(prevCamPos.x, prevCamPos.y, 0 - depth);
+        var currentCameraPos = cameraNet.transform.position;
+        if (newHeight > newWidth)
+        {
+            zChange = - newHeight * 2;
+        } else
+        {
+            zChange = - newWidth * 2;
+        }
+        cameraNetFocus.transform.position = new Vector3(customWidth, -newHeight / 2 + originalHeight, cameraNetFocus.transform.position.z);
+        editorNetHeight = newHeight;
+        editorNetWidth = newWidth;
     }
 }
