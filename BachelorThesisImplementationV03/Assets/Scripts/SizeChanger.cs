@@ -134,10 +134,10 @@ public class SizeChanger : MonoBehaviour
         var currentCameraPos = cameraNet.transform.position;
         if (newHeight > newWidth)
         {
-            zChange = - newHeight * 2;
+            zChange = - newHeight * 1.3f;
         } else
         {
-            zChange = - newWidth * 2;
+            zChange = - newWidth * 1.3f;
         }
         cameraNetFocus.transform.position = new Vector3(customWidth, -newHeight / 2 + originalHeight, cameraNetFocus.transform.position.z);
         editorNetHeight = newHeight;
