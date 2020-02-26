@@ -10,7 +10,7 @@ namespace Dreamteck.Splines
     {
         void Start()
         {
-            SetupNet();
+            SetupNet(runtimeRows.transform);
             SetupKnotUtility();
 
             ChangeColumns();
@@ -26,7 +26,7 @@ namespace Dreamteck.Splines
             knotClone = runtimeRows.transform.GetChild(0).gameObject;
             knotClone.transform.parent = null;
 
-            SetupNet();
+            SetupNet(runtimeRows.transform);
 
             prevColumns = 1;
             prevRows = 1;

@@ -14,7 +14,7 @@ public class GenerateMeshTwoKnots : GenerateMesh
 
     void Start()
     {
-        SetupNet();
+        SetupNet(runtimeRows.transform);
         SetupComplicatedNet();
         SetupKnotUtility();
 
@@ -51,7 +51,7 @@ public class GenerateMeshTwoKnots : GenerateMesh
         knotClone = runtimeRows.transform.GetChild(0).gameObject;
         knotClone.transform.parent = null;
 
-        SetupNet();
+        SetupNet(runtimeRows.transform);
         SetupComplicatedNet();
 
         prevColumns = 1;

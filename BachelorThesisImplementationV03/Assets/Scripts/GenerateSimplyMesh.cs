@@ -9,14 +9,14 @@ public class GenerateSimplyMesh : GenerateBase
 
     void Start()
     {
-        SetupNet();
+        SetupNet(runtimeRows.transform.GetChild(0).transform);
         SetupKnotUtility();
 
         ChangeColumnsSimply();
-        ChangeRowsSimply();
+        //ChangeRowsSimply();
 
-        sizeChanger.SetHeightOffset(heightOffset);
-        sizeChanger.ChangeSizesNet();
+        //sizeChanger.SetHeightOffset(heightOffset);
+        //sizeChanger.ChangeSizesNet();
     }
 
 
@@ -62,7 +62,6 @@ public class GenerateSimplyMesh : GenerateBase
         int childCount = runtimeRows.transform.childCount;
         var child = runtimeRows.transform.GetChild(0);
         int grandChildCount = child.transform.childCount;
-        int newDiff = diff - grandChildCount - 1;
 
         GameObject newKnot;
         knotClone.GetComponent<SplineComputer>().space = SplineComputer.Space.Local;
@@ -71,16 +70,18 @@ public class GenerateSimplyMesh : GenerateBase
         {
             var currentChild = runtimeRows.transform.GetChild(i);
 
-            for (int j = 0; j < newDiff; ++j)
+            for (int j = 0; j < diff; ++j)
             {
                 newKnot = Instantiate(knotClone, knotClone.transform.position, Quaternion.identity);
                 newKnot.name = "KnotForNet";
                 newKnot.tag = "knotrow";
                 newKnot.transform.parent = currentChild.transform;
-                newKnot.transform.position += transform.right * (child.transform.childCount + j) * 2 * verticalOffset;
+                newKnot.transform.position += transform.right * (grandChildCount + j) * 2 * verticalOffset;
                 newKnot.GetComponent<SplineComputer>().RebuildImmediate();
             }
         }
+
+        knotClone.GetComponent<SplineComputer>().space = SplineComputer.Space.World;
     }
 
     private void DeleteColumnsSimply(int diff)

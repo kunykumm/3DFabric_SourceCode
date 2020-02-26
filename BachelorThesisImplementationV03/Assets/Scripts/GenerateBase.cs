@@ -26,7 +26,7 @@ public class GenerateBase : MonoBehaviour
     protected int prevColumns = 1;
     protected int prevRows = 1;
 
-    protected void SetupNet()
+    protected void SetupNet(Transform parent)
     {
         knotClone = GameObject.Find("KnotForNet");
 
@@ -34,7 +34,7 @@ public class GenerateBase : MonoBehaviour
         knotClone.GetComponent<SplineComputer>().SetPoints(points);
         knotClone.GetComponent<TubeGenerator>().sides = knotPrefab.GetComponent<TubeGenerator>().sides;
 
-        knotClone.transform.parent = runtimeRows.transform;
+        knotClone.transform.parent = parent;
         knotClone.tag = "knotrow";
         knotClone.layer = 9;
 
