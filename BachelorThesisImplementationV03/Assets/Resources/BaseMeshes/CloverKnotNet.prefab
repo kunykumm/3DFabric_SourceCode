@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188214650746225}
   - component: {fileID: 1301188214650746224}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188214748270708}
   - component: {fileID: 1301188214748270711}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188214783987481}
   - component: {fileID: 1301188214783987480}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188214969252665}
   - component: {fileID: 1301188214969252664}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188215100740837}
   - component: {fileID: 1301188215100740836}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188215475195121}
   - component: {fileID: 1301188215475195120}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188215498742680}
   - component: {fileID: 1301188215498742681}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188215622009081}
   - component: {fileID: 1301188215622009080}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188215646001439}
   - component: {fileID: 1301188215646001438}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -541,7 +541,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188215699890372}
   - component: {fileID: 1301188215699890375}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,7 +600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188215719642064}
   - component: {fileID: 1301188215719642067}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188215897647233}
   - component: {fileID: 1301188215897647232}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,7 +718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188216001950724}
   - component: {fileID: 1301188216001950725}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -777,7 +777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188216085705607}
   - component: {fileID: 1301188216085705606}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -836,7 +836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188216196682094}
   - component: {fileID: 1301188216196682081}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -895,7 +895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188216257236712}
   - component: {fileID: 1301188216257236715}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -954,7 +954,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301188216630124081}
   - component: {fileID: 1301188216630124080}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Node_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1016,8 +1016,7 @@ GameObject:
   - component: {fileID: 6498975676925937976}
   - component: {fileID: 6498975676925937977}
   - component: {fileID: 6498975676925937974}
-  - component: {fileID: 6498975676925937975}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: CloverKnotNet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3283,21 +3282,3 @@ MonoBehaviour:
   _capMode: 1
   _integrity: 360
   _capUVScale: 1
---- !u!114 &6498975676925937975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6498975676925937972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe60f990ca3b5d142af37588eee29efa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tubeGenerator: {fileID: 6498975676925937974}
-  splineComputer: {fileID: 6498975676925937979}
-  width: {fileID: 0}
-  detail: {fileID: 0}
-  sizeChanger: {fileID: 0}
-  sceneName: CloverKnot

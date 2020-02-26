@@ -6,61 +6,18 @@ using UnityEngine.UI;
 
 namespace Dreamteck.Splines
 {
-    public class GenerateMesh : MonoBehaviour
+    public class GenerateMesh : GenerateBase
     {
-        public Slider columns;
-        public Slider rows;
-        public SizeChanger sizeChanger;
-        public GameObject runtimeRows;
-        public GameObject knotPrefab;
-        public float heightOffset;
-
-        private float point_size;
-
-        protected SplinePoint[] basePoints;
-        protected KnotUtility knotUti;
-        protected GameObject knotClone;
-        protected SplineComputer splineComputer;
-        protected float width;
-        protected float height;
-        protected int currentPointCount;
-        protected int basePointCount;
-        protected int prevColumns;
-        protected int prevRows;
-
-
         void Start()
         {
             SetupNet();
-            knotUti = new KnotUtility();
-            knotUti.FindMaxsMins(ref height, ref width, basePoints);
+            SetupKnotUtility();
 
-            prevColumns = 1;
-            prevRows = 1;
             ChangeColumns();
             ChangeRows();
 
             sizeChanger.SetHeightOffset(heightOffset);
             sizeChanger.ChangeSizesNet();
-        }
-
-        protected void SetupNet()
-        {
-            knotClone = GameObject.Find("KnotForNet");
-
-            var points = knotPrefab.GetComponent<SplineComputer>().GetPoints();
-            knotClone.GetComponent<SplineComputer>().SetPoints(points);
-            knotClone.GetComponent<TubeGenerator>().sides = knotPrefab.GetComponent<TubeGenerator>().sides;
-
-            knotClone.transform.parent = runtimeRows.transform;
-            knotClone.tag = "knotrow";
-            knotClone.layer = 9;
-
-            splineComputer = knotClone.GetComponent<SplineComputer>();
-            basePoints = splineComputer.GetPoints();
-            basePointCount = basePoints.Length;
-            currentPointCount = basePointCount;
-            point_size = splineComputer.GetPointSize(0);
         }
 
         public void UpdateNet()

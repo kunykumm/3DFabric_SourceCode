@@ -16,11 +16,7 @@ public class GenerateMeshTwoKnots : GenerateMesh
     {
         SetupNet();
         SetupComplicatedNet();
-        knotUti = new KnotUtility();
-        knotUti.FindMaxsMins(ref height, ref width, basePoints);
-
-        prevColumns = 1;
-        prevRows = 1;
+        SetupKnotUtility();
 
         ChangeColumnsComplicated();
         ChangeRowsComplicated();
