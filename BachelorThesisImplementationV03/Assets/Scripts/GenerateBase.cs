@@ -33,6 +33,7 @@ public class GenerateBase : MonoBehaviour
         var points = knotPrefab.GetComponent<SplineComputer>().GetPoints();
         knotClone.GetComponent<SplineComputer>().SetPoints(points);
         knotClone.GetComponent<TubeGenerator>().sides = knotPrefab.GetComponent<TubeGenerator>().sides;
+        if (knotPrefab.GetComponent<SplineComputer>().isClosed) knotClone.GetComponent<SplineComputer>().Close();
 
         knotClone.transform.parent = parent;
         knotClone.tag = "knotrow";
