@@ -52,7 +52,7 @@ public class GenerateSimplyMesh : GenerateBase
         int diff = (int)columns.value - prevColumns;
 
         if (diff > 0) AddColumnsSimply(diff);
-        else DeleteColumnsSimply(diff);
+        else DeleteColumnsSimply(-diff);
 
         prevColumns = (int)columns.value;
     }
@@ -60,8 +60,6 @@ public class GenerateSimplyMesh : GenerateBase
     private void AddColumnsSimply(int diff)
     {
         int childCount = runtimeRows.transform.childCount;
-        var child = runtimeRows.transform.GetChild(0);
-        int grandChildCount = child.transform.childCount;
 
         GameObject newKnot;
         knotClone.GetComponent<SplineComputer>().space = SplineComputer.Space.Local;
@@ -76,7 +74,7 @@ public class GenerateSimplyMesh : GenerateBase
                 newKnot.name = "KnotForNet";
                 newKnot.tag = "knotrow";
                 newKnot.transform.parent = currentChild.transform;
-                newKnot.transform.position += transform.right * (grandChildCount + j) * 2 * verticalOffset;
+                newKnot.transform.position += transform.right * (prevColumns + j) * 2 * verticalOffset;
                 newKnot.GetComponent<SplineComputer>().RebuildImmediate();
             }
         }
@@ -86,7 +84,20 @@ public class GenerateSimplyMesh : GenerateBase
 
     private void DeleteColumnsSimply(int diff)
     {
+        int childCount = runtimeRows.transform.childCount;
+        
+        for(int i = 0; i < childCount; ++i)
+        {
+            var child = runtimeRows.transform.GetChild(i);
+            int firstChildDying = prevColumns - diff;
 
+            for (int j = 0; j < diff; ++j)
+            {
+                var grandChild = child.transform.GetChild(firstChildDying).gameObject;
+                grandChild.transform.parent = null;
+                Destroy(grandChild);
+            }
+        }
     }
 
     private void ChangeRowsSimply()
