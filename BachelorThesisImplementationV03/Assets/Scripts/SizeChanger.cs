@@ -131,29 +131,29 @@ public class SizeChanger : MonoBehaviour
 
     private void ChangeNetCameraFocus(float newHeight, float newWidth)
     {
-        Debug.Log(editorNetWidth + " " + editorNetHeight);
         float customWidth = newWidth / 2;
         if (horizontalOffset == 1) customWidth += ((originalWidth - widthOffset) / 4);
         if (newHeight > newWidth)
         {
-            zChange = - newHeight * 1.2f;
-            if (editorNetHeight > newHeight) zChange *= 0;
-            if (editorNetWidth > newHeight) zChange *= (-1);
-            Debug.Log(zChange);
+            zChange = - newHeight * 1.7f;
+            if (editorNetHeight > newHeight) zChange *= (-1);
+            if (editorNetWidth > newHeight) zChange *= 0;
 
         } else
         {
-            zChange = - newWidth * 1.2f;
-            if (editorNetHeight > newWidth) zChange *= (-1);
-            if (editorNetWidth > newWidth) zChange *= 0;
-            Debug.Log(zChange);
+            zChange = - newWidth * 1.7f;
+            if (editorNetWidth > newWidth) zChange *= (-1);
+            if (editorNetHeight > newWidth) zChange *= 0;
         }
 
         cameraNetFocus.transform.position = new Vector3(customWidth, -newHeight / 2 + originalHeight, cameraNetFocus.transform.position.z);
 
-        var wantedVector = new Vector3(cameraNet.transform.position.x, cameraNet.transform.position.y, cameraNet.transform.position.z + zChange);
-        var newDistance = Vector3.Distance(wantedVector, cameraNetFocus.transform.position);
-        cameraMovement.SetNewDistance(newDistance);
+        if (zChange != 0)
+        {
+            var wantedVector = new Vector3(cameraNet.transform.position.x, cameraNet.transform.position.y, zChange);
+            var newDistance = Vector3.Distance(wantedVector, cameraNetFocus.transform.position);
+            cameraMovement.SetNewDistance(newDistance);
+        }
 
         editorNetHeight = newHeight;
         editorNetWidth = newWidth;
