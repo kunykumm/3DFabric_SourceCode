@@ -1911,7 +1911,7 @@ PrefabInstance:
     - target: {fileID: 7914266149180367896, guid: 0e159c03b955d7349a8c17c3d132175f,
         type: 3}
       propertyPath: m_PlaneDistance
-      value: 0.35
+      value: 0.31
       objectReference: {fileID: 0}
     - target: {fileID: 7914266149180367896, guid: 0e159c03b955d7349a8c17c3d132175f,
         type: 3}
@@ -2360,7 +2360,7 @@ PrefabInstance:
     - target: {fileID: 8678113340808913493, guid: 44c6e451704f4de4cabbb2aef13132b3,
         type: 3}
       propertyPath: m_PlaneDistance
-      value: 0.35
+      value: 0.31
       objectReference: {fileID: 0}
     - target: {fileID: 8678113340426351286, guid: 44c6e451704f4de4cabbb2aef13132b3,
         type: 3}
