@@ -34,6 +34,8 @@ public class SizeChanger : MonoBehaviour
     private float editorNetHeight = 0;
     private float editorNetWidth = 0;
     private float heightOffset;
+    private float widthOffset;
+    private float alternation;
 
     private bool allowUpdate = false;
     private float zChange;
@@ -66,9 +68,11 @@ public class SizeChanger : MonoBehaviour
         lineWidthText.text = originalLineWidth.ToString("0.00") + " cm";
     }
 
-    public void SetHeightOffset(float offset)
+    public void SetOffsets(float heightOff, float widthOff = 0, int alt = 1)
     {
-        heightOffset = offset;
+        heightOffset = heightOff;
+        widthOffset = widthOff;
+        alternation = alt;
     }
 
     public void ChangeValues(float change)
@@ -116,21 +120,18 @@ public class SizeChanger : MonoBehaviour
     public void ChangeSizesNet()
     {
         var newHeight = rowsSlider.value * originalHeight - (rowsSlider.value - 1) * heightOffset;
-        var newWidth = columnsSlider.value * originalWidth;
+        var newWidth = columnsSlider.value * alternation * (originalWidth - widthOffset);
 
         if (newHeight != editorNetHeight || newWidth != editorNetWidth) ChangeNetCameraFocus(newHeight, newWidth);
 
         netHeight.text = rowsSlider.value.ToString() + " rows | " + (rowsSlider.value * previousHeight - (rowsSlider.value - 1) * heightOffset).ToString("0.00") + " cm";
-        netWidth.text = columnsSlider.value.ToString() + " columns | " + (columnsSlider.value * previousWidth).ToString("0.00") + " cm";
-
-        //netHeight.text = string.Format("{0} rows | {1,15} cm", rowsSlider.value, (rowsSlider.value * previousHeight).ToString("0.00"));
-        //netWidth.text = string.Format("{0} columns | {1,15} cm", columnsSlider.value, (columnsSlider.value * previousWidth).ToString("0.00"));
+        netWidth.text = columnsSlider.value.ToString() + " columns | " + (columnsSlider.value * previousWidth - (columnsSlider.value - 1) * widthOffset).ToString("0.00") + " cm";
     }
 
     private void ChangeNetCameraFocus(float newHeight, float newWidth)
     {
         float customWidth = newWidth / 2;
-        if (horizontalOffset == 1) customWidth += (originalWidth / 4);
+        if (horizontalOffset == 1) customWidth += ((originalWidth - widthOffset) / 4);
         var currentCameraPos = cameraNet.transform.position;
         if (newHeight > newWidth)
         {

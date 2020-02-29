@@ -29,11 +29,7 @@ public class GenerateBase : MonoBehaviour
     protected void SetupNet(Transform parent)
     {
         knotClone = GameObject.Find("KnotForNet");
-
-        var points = knotPrefab.GetComponent<SplineComputer>().GetPoints();
-        knotClone.GetComponent<SplineComputer>().SetPoints(points);
-        knotClone.GetComponent<TubeGenerator>().sides = knotPrefab.GetComponent<TubeGenerator>().sides;
-        if (knotPrefab.GetComponent<SplineComputer>().isClosed) knotClone.GetComponent<SplineComputer>().Close();
+        UpdateKnot();
 
         knotClone.transform.parent = parent;
         knotClone.tag = "knotrow";
@@ -44,6 +40,14 @@ public class GenerateBase : MonoBehaviour
         basePointCount = basePoints.Length;
         currentPointCount = basePointCount;
         point_size = splineComputer.GetPointSize(0);
+    }
+
+    protected void UpdateKnot()
+    {
+        var points = knotPrefab.GetComponent<SplineComputer>().GetPoints();
+        knotClone.GetComponent<SplineComputer>().SetPoints(points);
+        knotClone.GetComponent<TubeGenerator>().sides = knotPrefab.GetComponent<TubeGenerator>().sides;
+        if (knotPrefab.GetComponent<SplineComputer>().isClosed) knotClone.GetComponent<SplineComputer>().Close();
     }
 
     protected void SetupKnotUtility()

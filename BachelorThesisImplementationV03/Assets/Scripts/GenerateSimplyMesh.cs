@@ -22,7 +22,7 @@ public class GenerateSimplyMesh : GenerateBase
         ChangeRowsSimply();
         ChangeColumnsSimply();
 
-        sizeChanger.SetHeightOffset(heightOffset);
+        sizeChanger.SetOffsets(heightOffset, width - verticalOffset, 2);
         sizeChanger.ChangeSizesNet();
     }
 
@@ -39,19 +39,7 @@ public class GenerateSimplyMesh : GenerateBase
 
     public void UpdateNet()
     {
-        SetupNet(runtimeRows.transform.GetChild(0).transform);
-        knotClone.transform.parent = null;
-        knotClone.layer = 10;
-        knotClone.tag = "hidden";
-
-        DeleteRowsSimply(prevRows);
-
-        prevColumns = 0;
-        prevRows = 0;
-
-        ChangeRowsSimply();
-        ChangeColumnsSimply();
-
+        UpdateKnot();
         sizeChanger.ChangeSizesNet();
     }
 
