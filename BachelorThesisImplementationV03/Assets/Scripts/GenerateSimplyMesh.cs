@@ -12,11 +12,18 @@ public class GenerateSimplyMesh : GenerateBase
         SetupNet(runtimeRows.transform.GetChild(0).transform);
         SetupKnotUtility();
 
-        ChangeColumnsSimply();
-        //ChangeRowsSimply();
+        knotClone.transform.parent = null;
+        knotClone.layer = 10;
+        knotClone.tag = "hidden";
 
-        //sizeChanger.SetHeightOffset(heightOffset);
-        //sizeChanger.ChangeSizesNet();
+        prevColumns = 0;
+        prevRows = 1;
+
+        ChangeRowsSimply();
+        ChangeColumnsSimply();
+
+        sizeChanger.SetHeightOffset(heightOffset);
+        sizeChanger.ChangeSizesNet();
     }
 
 
@@ -32,19 +39,21 @@ public class GenerateSimplyMesh : GenerateBase
 
     public void UpdateNet()
     {
-        //DeleteRows(prevRows - 1);
-        //knotClone = runtimeRows.transform.GetChild(0).gameObject;
-        //knotClone.transform.parent = null;
+        SetupNet(runtimeRows.transform.GetChild(0).transform);
+        knotClone.transform.parent = null;
+        knotClone.layer = 10;
+        knotClone.tag = "hidden";
 
-        //SetupNet();
+        DeleteRowsSimply(prevRows);
+        //DeleteColumnsSimply(prevColumns - 1);
 
-        //prevColumns = 1;
-        //prevRows = 1;
+        prevColumns = 0;
+        prevRows = 0;
 
-        //ChangeColumns();
-        //ChangeRows();
+        ChangeRowsSimply();
+        ChangeColumnsSimply();
 
-        //sizeChanger.ChangeSizesNet();
+        sizeChanger.ChangeSizesNet();
     }
 
     private void ChangeColumnsSimply()
@@ -57,24 +66,29 @@ public class GenerateSimplyMesh : GenerateBase
         prevColumns = (int)columns.value;
     }
 
-    private void AddColumnsSimply(int diff)
+    private void AddColumnsSimply(int diff, int beginning = 0)
     {
         int childCount = runtimeRows.transform.childCount;
 
         GameObject newKnot;
         knotClone.GetComponent<SplineComputer>().space = SplineComputer.Space.Local;
 
-        for (int i = 0; i < childCount; ++i)
+        for (int i = beginning; i < childCount; ++i)
         {
             var currentChild = runtimeRows.transform.GetChild(i);
 
             for (int j = 0; j < diff; ++j)
             {
-                newKnot = Instantiate(knotClone, knotClone.transform.position, Quaternion.identity);
+                var newPosition = new Vector3(0, 0, 0);
+                newPosition += transform.right * (prevColumns + j) * 2 * verticalOffset;
+                newPosition -= transform.up * i * (height - heightOffset);
+                if (i % 2 == 1) newPosition += transform.right * verticalOffset;
+
+                newKnot = Instantiate(knotClone, newPosition, Quaternion.identity);
                 newKnot.name = "KnotForNet";
                 newKnot.tag = "knotrow";
+                newKnot.layer = 9;
                 newKnot.transform.parent = currentChild.transform;
-                newKnot.transform.position += transform.right * (prevColumns + j) * 2 * verticalOffset;
                 newKnot.GetComponent<SplineComputer>().RebuildImmediate();
             }
         }
@@ -117,6 +131,10 @@ public class GenerateSimplyMesh : GenerateBase
             var newChild = (GameObject)Instantiate(Resources.Load("BaseMeshes/Row"));
             newChild.transform.parent = runtimeRows.transform;
         }
+        int tmp = prevColumns;
+        prevColumns = 0;
+        AddColumnsSimply(tmp, prevRows);
+        prevColumns = tmp;
     }
 
     private void DeleteRowsSimply(int diff)
