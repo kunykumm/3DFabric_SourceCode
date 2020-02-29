@@ -45,7 +45,6 @@ public class GenerateSimplyMesh : GenerateBase
         knotClone.tag = "hidden";
 
         DeleteRowsSimply(prevRows);
-        //DeleteColumnsSimply(prevColumns - 1);
 
         prevColumns = 0;
         prevRows = 0;
