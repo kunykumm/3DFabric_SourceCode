@@ -102,15 +102,39 @@ public class GenerateSimplyMesh : GenerateBase
 
     private void ChangeRowsSimply()
     {
-        //int diff = (int)rows.value - prevRows;
-        //if (diff > 0)
-        //{
-        //    AddRows(diff);
-        //}
-        //else
-        //{
-        //    DeleteRows(-diff);
-        //}
-        //prevRows = (int)rows.value;
+        int diff = (int)rows.value - prevRows;
+
+        if (diff > 0) AddRowsSimply(diff);
+        else DeleteRowsSimply(-diff);
+
+        prevRows = (int)rows.value;
+    }
+
+    private void AddRowsSimply(int diff)
+    {
+        for (int i = 0; i < diff; ++i)
+        {
+            var newChild = (GameObject)Instantiate(Resources.Load("BaseMeshes/Row"));
+            newChild.transform.parent = runtimeRows.transform;
+        }
+    }
+
+    private void DeleteRowsSimply(int diff)
+    {
+        int firstChildDying = prevRows - diff;
+
+        for (int i = 0; i < diff; ++i)
+        {
+            var dyingChild = runtimeRows.transform.GetChild(firstChildDying).gameObject;
+            int count = dyingChild.transform.childCount;
+            for (int j = 0; j < count; ++j)
+            {
+                var grandChild = dyingChild.transform.GetChild(0).gameObject;
+                grandChild.transform.parent = null;
+                Destroy(grandChild);
+            }
+            dyingChild.transform.parent = null;
+            Destroy(dyingChild);
+        }
     }
 }

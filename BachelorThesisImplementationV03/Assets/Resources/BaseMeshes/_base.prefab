@@ -210,7 +210,5 @@ MonoBehaviour:
   splineComputer: {fileID: 452267586579511392}
   width: {fileID: 0}
   detail: {fileID: 0}
-  lineWidth: {fileID: 0}
-  realWidth: {fileID: 0}
-  realHeight: {fileID: 0}
+  sizeChanger: {fileID: 0}
   sceneName: EdgedKnot
