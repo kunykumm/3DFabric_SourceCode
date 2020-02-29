@@ -115,4 +115,9 @@ public class CameraMovement : MonoBehaviour
             angle -= 360;
         return Mathf.Clamp(angle, min, max);
     }
+
+    public void SetNewDistance(float newDistance)
+    {
+        desiredDistance = newDistance;
+    }
 }

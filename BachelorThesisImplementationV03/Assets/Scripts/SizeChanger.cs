@@ -41,27 +41,28 @@ public class SizeChanger : MonoBehaviour
     private float zChange;
     private CameraMovement cameraMovement;
 
+
     private void Start()
     {
         zChange = cameraNet.transform.position.z;
         cameraMovement = cameraNet.GetComponent<CameraMovement>();
     }
 
-    public void setHeight(float height)
+    public void SetHeight(float height)
     {
         previousHeight = height;
         originalHeight = height;
         heightText.text = originalHeight.ToString("0.00") + " cm";
     }
 
-    public void setWidth(float width)
+    public void SetWidth(float width)
     {
         previousWidth = width;
         originalWidth = width;
         widthText.text = originalWidth.ToString("0.00") + " cm";
     }
 
-    public void setLineWidth(float lineWidth)
+    public void SetLineWidth(float lineWidth)
     {
         originalLineWidth = lineWidth;
         previousLineWidth = lineWidth;
@@ -108,7 +109,7 @@ public class SizeChanger : MonoBehaviour
 
     public void UpdateFromSlider(float newValue)
     {
-        if (allowUpdate) setLineWidth(newValue);
+        if (allowUpdate) SetLineWidth(newValue);
         lineWidthText.text = newValue.ToString("0.00") + " cm";
     }
 
@@ -130,17 +131,30 @@ public class SizeChanger : MonoBehaviour
 
     private void ChangeNetCameraFocus(float newHeight, float newWidth)
     {
+        Debug.Log(editorNetWidth + " " + editorNetHeight);
         float customWidth = newWidth / 2;
         if (horizontalOffset == 1) customWidth += ((originalWidth - widthOffset) / 4);
-        var currentCameraPos = cameraNet.transform.position;
         if (newHeight > newWidth)
         {
-            zChange = - newHeight * 1.3f;
+            zChange = - newHeight * 1.2f;
+            if (editorNetHeight > newHeight) zChange *= 0;
+            if (editorNetWidth > newHeight) zChange *= (-1);
+            Debug.Log(zChange);
+
         } else
         {
-            zChange = - newWidth * 1.3f;
+            zChange = - newWidth * 1.2f;
+            if (editorNetHeight > newWidth) zChange *= (-1);
+            if (editorNetWidth > newWidth) zChange *= 0;
+            Debug.Log(zChange);
         }
+
         cameraNetFocus.transform.position = new Vector3(customWidth, -newHeight / 2 + originalHeight, cameraNetFocus.transform.position.z);
+
+        var wantedVector = new Vector3(cameraNet.transform.position.x, cameraNet.transform.position.y, cameraNet.transform.position.z + zChange);
+        var newDistance = Vector3.Distance(wantedVector, cameraNetFocus.transform.position);
+        cameraMovement.SetNewDistance(newDistance);
+
         editorNetHeight = newHeight;
         editorNetWidth = newWidth;
     }

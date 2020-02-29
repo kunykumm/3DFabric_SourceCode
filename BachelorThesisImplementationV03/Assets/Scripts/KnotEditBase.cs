@@ -38,9 +38,9 @@ namespace Dreamteck.Splines
             knotUti = new KnotUtility();
             knotUti.FindMaxsMins(ref rHeight, ref rWidth, splineComputer.GetPoints());
 
-            sizeChanger.setHeight(rHeight);
-            sizeChanger.setWidth(rWidth);
-            sizeChanger.setLineWidth(prevWidth);
+            sizeChanger.SetHeight(rHeight);
+            sizeChanger.SetWidth(rWidth);
+            sizeChanger.SetLineWidth(prevWidth);
         }
 
         public void OnEdit()
