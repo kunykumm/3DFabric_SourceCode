@@ -2058,6 +2058,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1424661170}
+    - target: {fileID: 8678113340808913493, guid: 44c6e451704f4de4cabbb2aef13132b3,
+        type: 3}
+      propertyPath: m_PlaneDistance
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 8678113340426351286, guid: 44c6e451704f4de4cabbb2aef13132b3,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2553,6 +2558,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasLeftSide
       objectReference: {fileID: 0}
+    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2130067284}
+    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1746500392}
     - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
       propertyPath: netHeight
@@ -2583,16 +2598,6 @@ PrefabInstance:
       propertyPath: cameraNet
       value: 
       objectReference: {fileID: 1424661170}
-    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2130067284}
-    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1746500392}
     - target: {fileID: 4007053513069151515, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2713,6 +2718,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 714351081}
+    - target: {fileID: 4007053514052371210, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_PlaneDistance
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 4007053513556490978, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
       propertyPath: m_AnchorMax.x
