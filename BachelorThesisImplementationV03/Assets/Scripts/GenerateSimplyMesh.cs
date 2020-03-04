@@ -9,6 +9,11 @@ public class GenerateSimplyMesh : GenerateBase
 
     void Start()
     {
+        BaseStart();
+    }
+
+    protected void BaseStart()
+    {
         SetupNet(runtimeRows.transform.GetChild(0).transform);
         SetupKnotUtility();
 
@@ -26,7 +31,6 @@ public class GenerateSimplyMesh : GenerateBase
         sizeChanger.ChangeSizesNet();
     }
 
-
     void Update()
     {
         if (Input.GetMouseButtonUp(0))
@@ -43,7 +47,7 @@ public class GenerateSimplyMesh : GenerateBase
         sizeChanger.ChangeSizesNet();
     }
 
-    private void ChangeColumnsSimply()
+    protected void ChangeColumnsSimply()
     {
         int diff = (int)columns.value - prevColumns;
 
@@ -86,10 +90,14 @@ public class GenerateSimplyMesh : GenerateBase
     private void DeleteColumnsSimply(int diff)
     {
         int childCount = runtimeRows.transform.childCount;
-        
-        for(int i = 0; i < childCount; ++i)
+        HelperDeleteColumns(runtimeRows, diff, childCount);
+    }
+
+    protected void HelperDeleteColumns(GameObject rows, int diff, int childCount)
+    {
+        for (int i = 0; i < childCount; ++i)
         {
-            var child = runtimeRows.transform.GetChild(i);
+            var child = rows.transform.GetChild(i);
             int firstChildDying = prevColumns - diff;
 
             for (int j = 0; j < diff; ++j)
@@ -101,7 +109,7 @@ public class GenerateSimplyMesh : GenerateBase
         }
     }
 
-    private void ChangeRowsSimply()
+    protected void ChangeRowsSimply()
     {
         int diff = (int)rows.value - prevRows;
 
@@ -127,10 +135,14 @@ public class GenerateSimplyMesh : GenerateBase
     private void DeleteRowsSimply(int diff)
     {
         int firstChildDying = prevRows - diff;
+        HelperDeleteRows(runtimeRows, diff, firstChildDying);
+    }
 
+    protected void HelperDeleteRows(GameObject rows, int diff, int firstChildDying)
+    {
         for (int i = 0; i < diff; ++i)
         {
-            var dyingChild = runtimeRows.transform.GetChild(firstChildDying).gameObject;
+            var dyingChild = rows.transform.GetChild(firstChildDying).gameObject;
             int count = dyingChild.transform.childCount;
             for (int j = 0; j < count; ++j)
             {
