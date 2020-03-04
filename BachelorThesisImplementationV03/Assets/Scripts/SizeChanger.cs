@@ -150,6 +150,7 @@ public class SizeChanger : MonoBehaviour
 
         if (zChange != 0)
         {
+            if (cameraMovement == null) cameraMovement = cameraNet.GetComponent<CameraMovement>();                      //in case generateMesh started sooner
             var wantedVector = new Vector3(cameraNet.transform.position.x, cameraNet.transform.position.y, zChange);
             var newDistance = Vector3.Distance(wantedVector, cameraNetFocus.transform.position);
             cameraMovement.SetNewDistance(newDistance);
