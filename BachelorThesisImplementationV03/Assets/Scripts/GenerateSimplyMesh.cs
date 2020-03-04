@@ -90,15 +90,15 @@ public class GenerateSimplyMesh : GenerateBase
     private void DeleteColumnsSimply(int diff)
     {
         int childCount = runtimeRows.transform.childCount;
-        HelperDeleteColumns(runtimeRows, diff, childCount);
+        HelperDeleteColumns(runtimeRows, diff, childCount, prevColumns);
     }
 
-    protected void HelperDeleteColumns(GameObject rows, int diff, int childCount)
+    protected void HelperDeleteColumns(GameObject rows, int diff, int childCount, int columnsNum)
     {
         for (int i = 0; i < childCount; ++i)
         {
             var child = rows.transform.GetChild(i);
-            int firstChildDying = prevColumns - diff;
+            int firstChildDying = columnsNum - diff;
 
             for (int j = 0; j < diff; ++j)
             {
