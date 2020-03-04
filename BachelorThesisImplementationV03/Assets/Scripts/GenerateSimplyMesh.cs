@@ -121,15 +121,20 @@ public class GenerateSimplyMesh : GenerateBase
 
     private void AddRowsSimply(int diff)
     {
-        for (int i = 0; i < diff; ++i)
-        {
-            var newChild = (GameObject)Instantiate(Resources.Load("BaseMeshes/Row"));
-            newChild.transform.parent = runtimeRows.transform;
-        }
+        HelperAddRows(runtimeRows, diff);
         int tmp = prevColumns;
         prevColumns = 0;
         AddColumnsSimply(tmp, prevRows);
         prevColumns = tmp;
+    }
+
+    protected void HelperAddRows(GameObject rows, int diff)
+    {
+        for (int i = 0; i < diff; ++i)
+        {
+            var newChild = (GameObject)Instantiate(Resources.Load("BaseMeshes/Row"));
+            newChild.transform.parent = rows.transform;
+        }
     }
 
     private void DeleteRowsSimply(int diff)
