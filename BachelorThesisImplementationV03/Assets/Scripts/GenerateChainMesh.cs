@@ -8,8 +8,8 @@ public class GenerateChainMesh : GenerateSimplyMesh
     public GameObject runtimeInterRows;
     public GameObject starter;
 
-    private GameObject subnet0;
-    private GameObject subnet1;
+    //private GameObject subnet0;
+    //private GameObject subnet1;
     private int prevInterColumns;
     private int prevInterRows;
 
@@ -18,8 +18,8 @@ public class GenerateChainMesh : GenerateSimplyMesh
     {
         BaseStart();
 
-        subnet0 = GameObject.Find("subnet0");
-        subnet1 = GameObject.Find("subnet1");
+        //subnet0 = GameObject.Find("subnet0");
+        //subnet1 = GameObject.Find("subnet1");
 
         prevInterColumns = 0;
         prevInterRows = 1;
@@ -36,13 +36,11 @@ public class GenerateChainMesh : GenerateSimplyMesh
             {
                 ChangeColumnsSimply();
                 ChangeInterColumns();
-                Debug.Log("Cols:" + prevColumns + ", Inters:" + prevInterColumns);
             }
             if (prevRows != (int)rows.value)
             {
                 ChangeRowsSimply();
                 ChangeInterRows();
-                Debug.Log("Rows:" + prevRows + ", Inters:" + prevInterRows);
             }
             sizeChanger.ChangeSizesNet();
         }
@@ -50,14 +48,12 @@ public class GenerateChainMesh : GenerateSimplyMesh
 
     private void ChangeInterColumns()
     {
-        int offset = 1;
-        if (prevInterColumns % 2 == 1) prevInterColumns += 1;
-        int diff = 2 * ((int)columns.value - 1) - prevInterColumns - 1;
+        int diff = 2 * (int)columns.value - 1 - prevInterColumns;
 
         if (diff > 0) AddInterColumns(diff);
-        else DeleteInterColumns(-diff, offset);
+        else DeleteInterColumns(-diff);
 
-        prevInterColumns = (int)columns.value;
+        prevInterColumns = 2 * (int)columns.value - 1;
     }
 
     private void AddInterColumns(int diff, int beginning = 0)
@@ -76,21 +72,7 @@ public class GenerateChainMesh : GenerateSimplyMesh
                 var newPosition = new Vector3(3.4f, -1.4f, 0);
                 int xRotation = 45;
 
-                if((j + prevInterColumns) % 2 == 0)
-                {
-
-                    if (i % 2 == 0) xRotation *= -1;
-                    if (i % 2 == 1) newPosition = new Vector3(0.6f, -1.4f, 0);
-
-                } else
-                {
-                    if (i % 2 == 1) xRotation *= -1;
-                    if (i % 2 == 0) newPosition = new Vector3(0.6f, -1.4f, 0);
-
-                }
-
-                newPosition += transform.right * (prevInterColumns + j) * width;
-                newPosition -= transform.up * i * height;
+                InterColumnsPosAngleChanger(i, j, ref newPosition, ref xRotation);
 
                 newKnot = Instantiate(knotClone, newPosition, Quaternion.Euler(new Vector3(xRotation, 90, 0)));
 
@@ -102,14 +84,33 @@ public class GenerateChainMesh : GenerateSimplyMesh
             }
         }
 
-        Debug.Log(runtimeInterRows.transform.GetChild(0).transform.childCount);
         knotClone.GetComponent<SplineComputer>().space = SplineComputer.Space.World;
     }
 
-    private void DeleteInterColumns(int diff, int offset)
+    private void InterColumnsPosAngleChanger(int childIndex, int diffIndex, ref Vector3 position, ref int rotation)
+    {
+        if ((diffIndex + prevInterColumns) % 2 == 0)
+        {
+
+            if (childIndex % 2 == 0) rotation *= -1;
+            if (childIndex % 2 == 1) position = new Vector3(0.6f, -1.4f, 0);
+
+        }
+        else
+        {
+            if (childIndex % 2 == 1) rotation *= -1;
+            if (childIndex % 2 == 0) position = new Vector3(0.6f, -1.4f, 0);
+
+        }
+
+        position += transform.right * (prevInterColumns + diffIndex) * width;
+        position -= transform.up * childIndex * height;
+    }
+
+    private void DeleteInterColumns(int diff)
     {
         int childCount = runtimeInterRows.transform.childCount;
-        HelperDeleteColumns(runtimeInterRows, diff + offset, childCount, prevInterColumns);
+        HelperDeleteColumns(runtimeInterRows, diff, childCount, prevInterColumns);
     }
 
     private void ChangeInterRows()
