@@ -1,6 +1,4 @@
 ﻿using Dreamteck.Splines;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GenerateChainMesh : GenerateSimplyMesh
@@ -8,8 +6,6 @@ public class GenerateChainMesh : GenerateSimplyMesh
     public GameObject runtimeInterRows;
     public GameObject starter;
 
-    //private GameObject subnet0;
-    //private GameObject subnet1;
     private int prevInterColumns;
     private int prevInterRows;
 
@@ -17,9 +13,6 @@ public class GenerateChainMesh : GenerateSimplyMesh
     void Start()
     {
         BaseStart();
-
-        //subnet0 = GameObject.Find("subnet0");
-        //subnet1 = GameObject.Find("subnet1");
 
         prevInterColumns = 0;
         prevInterRows = 1;
