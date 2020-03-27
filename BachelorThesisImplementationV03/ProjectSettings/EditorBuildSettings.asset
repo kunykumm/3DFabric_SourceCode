@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CircleKnot.unity
     guid: 51554bcd36d85324691c1173bb150b16
+  - enabled: 1
+    path: Assets/Scenes/SquareKnot.unity
+    guid: fe0869b03ccc671489b1adfbd13cc27d
   m_configObjects: {}

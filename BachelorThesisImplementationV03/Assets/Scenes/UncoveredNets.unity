@@ -948,7 +948,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Soon
+  m_Text: Square Knot
 --- !u!222 &784447457
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2576,7 +2576,7 @@ GameObject:
   - component: {fileID: 1970832640}
   - component: {fileID: 1970832639}
   m_Layer: 5
-  m_Name: EdgedKnot (3)
+  m_Name: SquareKnot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2681,7 +2681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coverImage: {fileID: 245971228}
   title: {fileID: 784447456}
-  nextScene: UncoveredNets
+  nextScene: SquareKnot
 --- !u!114 &1970832641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2702,7 +2702,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6693dedd649371244b5b88cc313f67ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1b1af321024eeb24f803818d84f5e17f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
