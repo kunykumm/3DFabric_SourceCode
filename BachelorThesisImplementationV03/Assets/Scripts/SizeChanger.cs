@@ -111,7 +111,7 @@ public class SizeChanger : MonoBehaviour
 
     public void UpdateFromSlider(float newValue)
     {
-        if (allowUpdate) SetLineWidth(newValue);
+        if (allowUpdate) previousLineWidth = newValue;
         lineWidthText.text = newValue.ToString("0.00") + " cm";
     }
 
