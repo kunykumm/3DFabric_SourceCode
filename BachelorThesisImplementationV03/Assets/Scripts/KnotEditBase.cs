@@ -54,7 +54,7 @@ namespace Dreamteck.Splines
             prevWidth = width.value;
             for (int i = 0; i < splineComputer.pointCount; ++i)
             {
-                splineComputer.SetPointSize(i, prevWidth);
+                splineComputer.SetPointSize(i, prevWidth * knotUti.getLineWidthRatio(prevWidth));
             }
             sizeChanger.UpdateFromSlider(prevWidth);
         }

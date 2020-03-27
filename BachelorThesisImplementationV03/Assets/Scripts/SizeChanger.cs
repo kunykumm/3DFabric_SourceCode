@@ -30,6 +30,7 @@ public class SizeChanger : MonoBehaviour
     private float previousHeight;
     private float previousWidth;
     private float previousLineWidth;
+    private float lineRatio;
 
     private float editorNetHeight = 0;
     private float editorNetWidth = 0;
@@ -66,6 +67,7 @@ public class SizeChanger : MonoBehaviour
     {
         originalLineWidth = lineWidth;
         previousLineWidth = lineWidth;
+        lineRatio = 4f / 5;
         lineWidthText.text = originalLineWidth.ToString("0.00") + " cm";
     }
 
@@ -80,7 +82,7 @@ public class SizeChanger : MonoBehaviour
     {
         ChangeHeight(change);
         ChangeWidth(change);
-        ChangeLineWidth(-change);
+        ChangeLineWidth(change);    //-change
         ChangeSizesNet();
     }
 
@@ -150,7 +152,7 @@ public class SizeChanger : MonoBehaviour
 
         if (zChange != 0)
         {
-            if (cameraMovement == null) cameraMovement = cameraNet.GetComponent<CameraMovement>();                      //in case generateMesh started sooner
+            if (cameraMovement == null) cameraMovement = cameraNet.GetComponent<CameraMovement>();    //in case generateMesh started sooner
             var wantedVector = new Vector3(cameraNet.transform.position.x, cameraNet.transform.position.y, zChange);
             var newDistance = Vector3.Distance(wantedVector, cameraNetFocus.transform.position);
             cameraMovement.SetNewDistance(newDistance);
