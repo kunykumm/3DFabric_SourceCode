@@ -103,7 +103,8 @@ public class SizeChanger : MonoBehaviour
     private void ChangeLineWidth(float change)
     {
         allowUpdate = false;
-        float newLineWidth = previousLineWidth + change * originalLineWidth / originalHeight;
+        float newLineWidth = previousLineWidth + (change * 2) * originalLineWidth * originalWidth / originalHeight;
+        Debug.Log("New width: " + newLineWidth);
         lineWidthText.text = newLineWidth.ToString("0.00") + " cm";
         previousLineWidth = newLineWidth;
         lineWidthSlider.value = newLineWidth;
