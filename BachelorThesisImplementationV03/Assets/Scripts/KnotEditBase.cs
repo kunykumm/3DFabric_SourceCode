@@ -51,7 +51,7 @@ namespace Dreamteck.Splines
 
         protected void ChangeWidth()
         {
-
+            Debug.Log("SliderValue: " + width.value);
             prevWidth = width.value;
             for (int i = 0; i < splineComputer.pointCount; ++i)
             {

@@ -103,10 +103,12 @@ public class SizeChanger : MonoBehaviour
 
     private void ChangeLineWidth()
     {
-        Debug.Log("Ratio: " + baseLineWidthRatio);
+        Debug.Log("LineWidthRatio: " + baseLineWidthRatio);
+        Debug.Log("CurrentScale: " + currentScale);
         allowUpdate = false;
         float newLineWidth = previousLineWidth * currentScale * baseLineWidthRatio;
-        Debug.Log("gvdiuy8d: " + newLineWidth);
+        Debug.Log("NewLineWidth: " + newLineWidth);
+        Debug.Log("TextValue: " + (previousLineWidth * baseLineWidthRatio * 4 / 5 * (currentScale * currentScale)));
         lineWidthText.text = (previousLineWidth * baseLineWidthRatio * 4/5 * (currentScale * currentScale)).ToString("0.00") + " cm";
         lineWidthSlider.value = newLineWidth;
     }
@@ -115,7 +117,6 @@ public class SizeChanger : MonoBehaviour
     {
         if (allowUpdate)
         {
-            allowUpdate = false;
             baseLineWidthRatio = newValue / previousLineWidth;
             lineWidthText.text = (newValue * 4/5 * (currentScale * currentScale)).ToString("0.00") + " cm";
         }
@@ -124,6 +125,11 @@ public class SizeChanger : MonoBehaviour
     public void OnClickLineWidthSlider()
     {
         allowUpdate = true;
+    }
+
+    public float LineWidthRatio()
+    {
+        return baseLineWidthRatio;
     }
 
     public void ChangeSizesNet()
