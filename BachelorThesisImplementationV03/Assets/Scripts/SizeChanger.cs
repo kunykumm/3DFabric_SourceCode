@@ -39,6 +39,7 @@ public class SizeChanger : MonoBehaviour
 
     private float changer = 0.0f;
     private float currentScale = 1.0f;
+    private float baseLineWidthRatio = 1.0f;
     private bool allowUpdate = false;
     private float zChange;
     private CameraMovement cameraMovement;
@@ -102,10 +103,11 @@ public class SizeChanger : MonoBehaviour
 
     private void ChangeLineWidth()
     {
+        Debug.Log("Ratio: " + baseLineWidthRatio);
         allowUpdate = false;
-        float newLineWidth = previousLineWidth * currentScale;
+        float newLineWidth = previousLineWidth * currentScale * baseLineWidthRatio;
         Debug.Log("gvdiuy8d: " + newLineWidth);
-        lineWidthText.text = (previousLineWidth * 4/5 * (currentScale * currentScale)).ToString("0.00") + " cm";
+        lineWidthText.text = (previousLineWidth * baseLineWidthRatio * 4/5 * (currentScale * currentScale)).ToString("0.00") + " cm";
         lineWidthSlider.value = newLineWidth;
     }
 
@@ -113,8 +115,9 @@ public class SizeChanger : MonoBehaviour
     {
         if (allowUpdate)
         {
-            previousLineWidth = newValue;
-            lineWidthText.text = (newValue * 3.85/5).ToString("0.00") + " cm";
+            allowUpdate = false;
+            baseLineWidthRatio = newValue / previousLineWidth;
+            lineWidthText.text = (newValue * 4/5 * (currentScale * currentScale)).ToString("0.00") + " cm";
         }
     }
 
