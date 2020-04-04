@@ -168,6 +168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4007053512854771826}
   - component: {fileID: 4007053512854771825}
+  - component: {fileID: 5722340353079051567}
   m_Layer: 5
   m_Name: KnotWidthSlider
   m_TagString: Untagged
@@ -258,17 +259,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: OnEdit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 4007053513823905428}
         m_MethodName: OnClickLineWidthSlider
         m_Mode: 1
@@ -282,6 +272,19 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &5722340353079051567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4007053512854771827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e81861dac6fd14b925537df437d8c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sizeChanger: {fileID: 4007053513823905428}
 --- !u!1 &4007053512856718017
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeChanger: {fileID: 4007053513823905428}
-  change: -0.01
+  change: -0.001
 --- !u!1 &4007053512944987333
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,7 +697,7 @@ MonoBehaviour:
   m_MinValue: 3
   m_MaxValue: 15
   m_WholeNumbers: 1
-  m_Value: 7
+  m_Value: 5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1540,6 +1543,9 @@ MonoBehaviour:
   netWidth: {fileID: 0}
   columnsSlider: {fileID: 0}
   rowsSlider: {fileID: 0}
+  cameraNetFocus: {fileID: 0}
+  cameraNet: {fileID: 0}
+  horizontalOffset: 0
 --- !u!1 &4007053513892769740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,7 +1800,7 @@ GameObject:
   - component: {fileID: 4007053514052371211}
   - component: {fileID: 4007053514052371212}
   m_Layer: 5
-  m_Name: CanvasLeftSide
+  m_Name: CanvasLeftSideBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2208,7 +2214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeChanger: {fileID: 4007053513823905428}
-  change: 0.01
+  change: 0.001
 --- !u!1 &4007053514469105768
 GameObject:
   m_ObjectHideFlags: 0

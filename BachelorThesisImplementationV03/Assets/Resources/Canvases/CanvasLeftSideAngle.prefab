@@ -1410,7 +1410,7 @@ MonoBehaviour:
   m_MinValue: 3
   m_MaxValue: 15
   m_WholeNumbers: 1
-  m_Value: 7
+  m_Value: 5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2721,6 +2721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7914266150914860797}
   - component: {fileID: 7914266150914860796}
+  - component: {fileID: 5646982722740653032}
   m_Layer: 5
   m_Name: KnotWidthSlider
   m_TagString: Untagged
@@ -2811,19 +2812,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7914266149970312176}
-        m_MethodName: OnClickLineWidthSlider
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &5646982722740653032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7914266150914860794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e81861dac6fd14b925537df437d8c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sizeChanger: {fileID: 0}
 --- !u!1 &7914266151031063846
 GameObject:
   m_ObjectHideFlags: 0
