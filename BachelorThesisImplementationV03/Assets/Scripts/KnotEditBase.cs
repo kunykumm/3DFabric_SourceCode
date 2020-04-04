@@ -51,6 +51,7 @@ namespace Dreamteck.Splines
 
         protected void ChangeWidth()
         {
+
             prevWidth = width.value;
             for (int i = 0; i < splineComputer.pointCount; ++i)
             {

@@ -114,7 +114,7 @@ public class SizeChanger : MonoBehaviour
         if (allowUpdate)
         {
             previousLineWidth = newValue;
-            lineWidthText.text = (newValue * 4/5).ToString("0.00") + " cm";
+            lineWidthText.text = (newValue * 3.85/5).ToString("0.00") + " cm";
         }
     }
 
