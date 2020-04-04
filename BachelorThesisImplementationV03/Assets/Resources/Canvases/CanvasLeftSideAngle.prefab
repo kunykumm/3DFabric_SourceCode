@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 7914266149180367897}
   - component: {fileID: 7914266149180367894}
   m_Layer: 5
-  m_Name: CanvasLeftSide
+  m_Name: CanvasLeftSideAngle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -934,7 +934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeChanger: {fileID: 7914266149970312176}
-  change: -0.01
+  change: -0.001
 --- !u!1 &7914266149688673586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeChanger: {fileID: 7914266149970312176}
-  change: 0.01
+  change: 0.001
 --- !u!1 &7914266149937920732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,6 +1322,9 @@ MonoBehaviour:
   netWidth: {fileID: 0}
   columnsSlider: {fileID: 0}
   rowsSlider: {fileID: 0}
+  cameraNetFocus: {fileID: 0}
+  cameraNet: {fileID: 0}
+  horizontalOffset: 0
 --- !u!1 &7914266150085638188
 GameObject:
   m_ObjectHideFlags: 0

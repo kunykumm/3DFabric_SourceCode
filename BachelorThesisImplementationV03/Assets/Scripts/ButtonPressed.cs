@@ -10,7 +10,6 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public float change;
 
     private bool ispressed;
-    private int multiplicator = 1;
     private const float minimumHeldDuration = 0.25f;
     private float buttonPressedTime = 0;
 
@@ -41,9 +40,5 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         ispressed = false;
         buttonPressedTime = 0;
-        Debug.Log("OnPointerUp");
-        sizeChanger.ChangeValues(multiplicator * 0.0001f);
-        Debug.Log("OnPointerUp");
-        multiplicator *= (-1);
     }
 }
