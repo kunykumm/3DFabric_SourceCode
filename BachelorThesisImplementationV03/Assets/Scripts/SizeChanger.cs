@@ -30,7 +30,6 @@ public class SizeChanger : MonoBehaviour
     private float previousHeight;
     private float previousWidth;
     private float previousLineWidth;
-    private float lineRatio;
 
     private float editorNetHeight = 0;
     private float editorNetWidth = 0;
@@ -38,6 +37,8 @@ public class SizeChanger : MonoBehaviour
     private float widthOffset;
     private float alternation;
 
+    private float changer = 0.0f;
+    private float currentScale = 1.0f;
     private bool allowUpdate = false;
     private float zChange;
     private CameraMovement cameraMovement;
@@ -67,7 +68,6 @@ public class SizeChanger : MonoBehaviour
     {
         originalLineWidth = lineWidth;
         previousLineWidth = lineWidth;
-        lineRatio = 4f / 5;
         lineWidthText.text = originalLineWidth.ToString("0.00") + " cm";
     }
 
@@ -78,42 +78,44 @@ public class SizeChanger : MonoBehaviour
         alternation = alt;
     }
 
-    public void ChangeValues(float change)
+    public void ChangeValues(float newChange)
     {
-        ChangeHeight(change);
-        ChangeWidth(change);
-        ChangeLineWidth(change);    //-change
+        changer += newChange;
+        currentScale = 1 + changer;
+        ChangeHeight();
+        ChangeWidth();
+        ChangeLineWidth();    //-change
         ChangeSizesNet();
     }
 
-    private void ChangeHeight(float change)
+    private void ChangeHeight()
     {
-        float newHeight = previousHeight + change;
+        float newHeight = previousHeight * currentScale;
         heightText.text = newHeight.ToString("0.00") + " cm";
-        previousHeight = newHeight;
     }
 
-    private void ChangeWidth(float change)
+    private void ChangeWidth()
     {
-        float newWidth = previousWidth + change * originalWidth / originalHeight;
+        float newWidth = previousWidth * currentScale;
         widthText.text = newWidth.ToString("0.00") + " cm";
-        previousWidth = newWidth;
     }
 
-    private void ChangeLineWidth(float change)
+    private void ChangeLineWidth()
     {
         allowUpdate = false;
-        float newLineWidth = previousLineWidth + (change * 2) * originalLineWidth * originalWidth / originalHeight;
-        Debug.Log("New width: " + newLineWidth);
-        lineWidthText.text = newLineWidth.ToString("0.00") + " cm";
-        previousLineWidth = newLineWidth;
+        float newLineWidth = previousLineWidth * currentScale;
+        Debug.Log("gvdiuy8d: " + newLineWidth);
+        lineWidthText.text = (previousLineWidth * 4/5 * (currentScale * currentScale)).ToString("0.00") + " cm";
         lineWidthSlider.value = newLineWidth;
     }
 
     public void UpdateFromSlider(float newValue)
     {
-        if (allowUpdate) previousLineWidth = newValue;
-        lineWidthText.text = newValue.ToString("0.00") + " cm";
+        if (allowUpdate)
+        {
+            previousLineWidth = newValue;
+            lineWidthText.text = (newValue * 4/5).ToString("0.00") + " cm";
+        }
     }
 
     public void OnClickLineWidthSlider()

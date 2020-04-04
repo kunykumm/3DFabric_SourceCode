@@ -52,10 +52,9 @@ namespace Dreamteck.Splines
         protected void ChangeWidth()
         {
             prevWidth = width.value;
-            float result = prevWidth * knotUti.getLineWidthRatio(prevWidth);
             for (int i = 0; i < splineComputer.pointCount; ++i)
             {
-                splineComputer.SetPointSize(i, result);
+                splineComputer.SetPointSize(i, prevWidth);
             }
             sizeChanger.UpdateFromSlider(prevWidth);
         }
