@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,10 +24,6 @@ public class SizeChanger : MonoBehaviour
     public Camera cameraNet;
     public int horizontalOffset;
 
-    private float originalHeight;
-    private float originalWidth;
-    private float originalLineWidth;
-
     private float previousHeight;
     private float previousWidth;
     private float previousLineWidth;
@@ -39,7 +36,8 @@ public class SizeChanger : MonoBehaviour
 
     private float changer = 0.0f;
     private float currentScale = 1.0f;
-    private float baseLineWidthRatio = 1.0f;
+    private float previousScale = 1.0f;
+    private float newLineWidth = 0.5f;
     private bool allowUpdate = false;
     private float zChange;
     private CameraMovement cameraMovement;
@@ -51,25 +49,22 @@ public class SizeChanger : MonoBehaviour
         cameraMovement = cameraNet.GetComponent<CameraMovement>();
     }
 
-    public void SetHeight(float height)
+    public void SetHeight(float height, float lineWidth = 0.5f)
     {
         previousHeight = height;
-        originalHeight = height;
-        heightText.text = originalHeight.ToString("0.00") + " cm";
+        heightText.text = (previousHeight + lineWidth).ToString("0.00") + " cm";
     }
 
-    public void SetWidth(float width)
+    public void SetWidth(float width, float lineWidth = 0.5f)
     {
         previousWidth = width;
-        originalWidth = width;
-        widthText.text = originalWidth.ToString("0.00") + " cm";
+        widthText.text = (previousWidth + lineWidth).ToString("0.00") + " cm";
     }
 
     public void SetLineWidth(float lineWidth)
     {
-        originalLineWidth = lineWidth;
         previousLineWidth = lineWidth;
-        lineWidthText.text = (originalLineWidth * 4/5).ToString("0.00") + " cm";
+        lineWidthText.text = previousLineWidth.ToString("0.00") + " cm";
     }
 
     public void SetOffsets(float heightOff, float widthOff = 0, int alt = 1)
@@ -83,38 +78,37 @@ public class SizeChanger : MonoBehaviour
     {
         changer += newChange;
         currentScale = 1 + changer;
+        ChangeLineWidth();
         ChangeHeight();
         ChangeWidth();
-        ChangeLineWidth();
         ChangeSizesNet();
     }
 
     private void ChangeHeight()
     {
         float newHeight = previousHeight * currentScale;
-        heightText.text = newHeight.ToString("0.00") + " cm";
+        heightText.text = (newHeight + newLineWidth).ToString("0.00") + " cm";
     }
 
     private void ChangeWidth()
     {
         float newWidth = previousWidth * currentScale;
-        widthText.text = newWidth.ToString("0.00") + " cm";
+        widthText.text = (newWidth + newLineWidth).ToString("0.00") + " cm";
     }
 
     private void ChangeLineWidth()
     {
         allowUpdate = false;
-        float newLineWidth = previousLineWidth * currentScale * baseLineWidthRatio;
-        lineWidthText.text = (previousLineWidth * baseLineWidthRatio * 4/5 * (currentScale * currentScale)).ToString("0.00") + " cm";
+        newLineWidth = previousLineWidth * currentScale * currentScale; 
+        lineWidthText.text = newLineWidth.ToString("0.00") + " cm";
         lineWidthSlider.value = newLineWidth;
     }
 
     public void UpdateFromSlider(float newValue)
     {
         if (allowUpdate)
-        {
-            baseLineWidthRatio = newValue / previousLineWidth;
-            lineWidthText.text = (newValue * 4/5 * (currentScale * currentScale)).ToString("0.00") + " cm";
+        { 
+            lineWidthText.text = newValue.ToString("0.00") + " cm";
         }
     }
 
@@ -123,15 +117,27 @@ public class SizeChanger : MonoBehaviour
         allowUpdate = true;
     }
 
-    public float LineWidthRatio()
+    public void UpdateAllValues()
     {
-        return baseLineWidthRatio;
+        previousLineWidth = lineWidthSlider.value;
+        previousWidth *= currentScale;
+        previousHeight *= currentScale;
+        previousScale *= currentScale;
+        currentScale = 1.0f;
+        changer = 0.0f;
+        SetWidth(previousWidth, previousLineWidth);
+        SetHeight(previousHeight, previousLineWidth);
+    }
+
+    public float GetCurrentScale()
+    {
+        return currentScale * previousScale;
     }
 
     public void ChangeSizesNet()
     {
-        var newHeight = rowsSlider.value * originalHeight - (rowsSlider.value - 1) * heightOffset;
-        var newWidth = columnsSlider.value * alternation * (originalWidth - widthOffset);
+        var newHeight = rowsSlider.value * previousHeight - (rowsSlider.value - 1) * heightOffset;
+        var newWidth = columnsSlider.value * alternation * (previousWidth - widthOffset);
 
         if (newHeight != editorNetHeight || newWidth != editorNetWidth) ChangeNetCameraFocus(newHeight, newWidth);
 
@@ -142,7 +148,7 @@ public class SizeChanger : MonoBehaviour
     private void ChangeNetCameraFocus(float newHeight, float newWidth)
     {
         float customWidth = newWidth / 2;
-        if (horizontalOffset == 1) customWidth += ((originalWidth - widthOffset) / 4);
+        if (horizontalOffset == 1) customWidth += ((previousWidth - widthOffset) / 4);
         if (newHeight > newWidth)
         {
             zChange = - newHeight * 1.7f;
@@ -156,7 +162,7 @@ public class SizeChanger : MonoBehaviour
             if (editorNetHeight > newWidth) zChange *= 0;
         }
 
-        cameraNetFocus.transform.position = new Vector3(customWidth, -newHeight / 2 + originalHeight, cameraNetFocus.transform.position.z);
+        cameraNetFocus.transform.position = new Vector3(customWidth, -newHeight / 2 + previousHeight, cameraNetFocus.transform.position.z);
 
         if (zChange != 0)
         {

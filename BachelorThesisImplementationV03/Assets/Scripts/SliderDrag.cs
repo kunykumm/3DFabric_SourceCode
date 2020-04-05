@@ -9,6 +9,6 @@ public class SliderDrag : MonoBehaviour, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        sizeChanger.ChangeValues(0);
+        sizeChanger.UpdateAllValues();
     }
 }

@@ -52,9 +52,10 @@ namespace Dreamteck.Splines
         protected void ChangeWidth()
         {
             prevWidth = width.value;
+            float realValue = prevWidth / sizeChanger.GetCurrentScale();
             for (int i = 0; i < splineComputer.pointCount; ++i)
             {
-                splineComputer.SetPointSize(i, prevWidth);
+                splineComputer.SetPointSize(i, realValue);
             }
             sizeChanger.UpdateFromSlider(prevWidth);
         }
