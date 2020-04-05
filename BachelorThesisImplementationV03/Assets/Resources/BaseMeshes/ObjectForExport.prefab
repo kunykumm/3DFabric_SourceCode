@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8178680726648976599}
   - component: {fileID: 8178680726648976598}
   - component: {fileID: 8178680726648976601}
-  - component: {fileID: 8178680726648976600}
   m_Layer: 10
   m_Name: ObjectForExport
   m_TagString: Untagged
@@ -194,21 +193,3 @@ MonoBehaviour:
   _capMode: 1
   _integrity: 360
   _capUVScale: 1
---- !u!114 &8178680726648976600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8178680726648976603}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe60f990ca3b5d142af37588eee29efa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tubeGenerator: {fileID: 8178680726648976601}
-  splineComputer: {fileID: 8178680726648976596}
-  width: {fileID: 0}
-  detail: {fileID: 0}
-  sizeChanger: {fileID: 0}
-  sceneName: EdgedKnot

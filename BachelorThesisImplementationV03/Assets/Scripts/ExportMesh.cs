@@ -51,7 +51,7 @@ public class ExportMesh : MonoBehaviour
 
     private void SaveAsFbx(string filePath)
     {
-  
+        theWholeMesh[0]
     }
 
     private void CombineMeshes()
