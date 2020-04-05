@@ -6,13 +6,13 @@ public class ExportMesh : MonoBehaviour
 {
     private GameObject[] theWholeMesh;
     private ExtensionFilter[] extensionList;
+
     public Text savedInfo;
 
     private void Start()
     {
         extensionList = new ExtensionFilter[] {
-            new ExtensionFilter("Binary STL", "bin.stl"),
-            new ExtensionFilter("Text STL", "txt.stl")
+            new ExtensionFilter("Binary STL", "stl")
         };
     }
 
@@ -21,33 +21,26 @@ public class ExportMesh : MonoBehaviour
         theWholeMesh = GameObject.FindGameObjectsWithTag("knotrow");
         string fileName = PlayerPrefs.GetString("scene");
         string filePath = StandaloneFileBrowser.SaveFilePanel("Save File", "", fileName, extensionList);
-        if (filePath.Equals("")) return;
-        if (!SaveAsStl(filePath)) SaveAsOtherFileType();
-        savedInfo.text = "Your net was saved successfully.";
+        string check = filePath.Substring(filePath.Length - 3, 3);
+
+        if (check.Equals("stl")) SaveAsStl(filePath);
+        if (check.Equals("obj")) SaveAsObj(filePath);
+        if (check.Equals("fbx")) SaveAsFbx(filePath);
     }
 
     private bool SaveAsStl(string filePath)
     {
-        string check = filePath.Substring(filePath.Length - 3, 3);
-        if (!check.Equals("stl")) return false;
-
-        string choice = filePath.Substring(filePath.Length - 7, 3);
-        if (choice.Equals("bin"))
-        {
-            filePath = filePath.Replace(".bin", "");
-            STL.Export(theWholeMesh, filePath);
-        }
-        if (choice.Equals("txt"))
-        {
-            filePath = filePath.Replace(".txt", "");
-            bool asASCII = true;
-            STL.Export(theWholeMesh, filePath, asASCII);
-        }
-
+        STL.Export(theWholeMesh, filePath);
+        savedInfo.text = "Your net was saved successfully.";
         return true;
     }
 
-    private void SaveAsOtherFileType()
+    private void SaveAsObj(string filePath)
+    {
+
+    }
+
+    private void SaveAsFbx(string filePath)
     {
 
     }
