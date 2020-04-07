@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -238,11 +238,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: OnClickLineWidthSlider
-      objectReference: {fileID: 0}
-    - target: {fileID: 4007053512675584242, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4007053513069151515, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
@@ -439,10 +434,20 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4007053512825582097, guid: 495329860a1fed449bf3564f74f218df,
+    - target: {fileID: 4007053512675584242, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
-      propertyPath: m_Text
-      value: Hook Knot
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4007053513823905429, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4007053512854771827, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4007053514052371211, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
@@ -464,11 +469,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 4007053512854771827, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4007053512944987333, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
       propertyPath: m_Layer
@@ -485,11 +485,6 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4007053513200591582, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4007053513823905429, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
       propertyPath: m_Layer
       value: 8
@@ -523,6 +518,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4007053512825582097, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_Text
+      value: Hook Knot
       objectReference: {fileID: 0}
     - target: {fileID: 4007053512856718017, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
@@ -2566,11 +2566,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExportNet
       objectReference: {fileID: 0}
-    - target: {fileID: 8678113340808913492, guid: 44c6e451704f4de4cabbb2aef13132b3,
-        type: 3}
-      propertyPath: m_ScreenMatchMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8678113339908673307, guid: 44c6e451704f4de4cabbb2aef13132b3,
         type: 3}
       propertyPath: m_Layer
@@ -2700,6 +2695,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678113340808913492, guid: 44c6e451704f4de4cabbb2aef13132b3,
+        type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44c6e451704f4de4cabbb2aef13132b3, type: 3}
