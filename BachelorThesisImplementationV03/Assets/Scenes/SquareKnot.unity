@@ -842,6 +842,11 @@ PrefabInstance:
       propertyPath: horizontalOffset
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: alternation
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size

@@ -2035,6 +2035,16 @@ PrefabInstance:
       propertyPath: horizontalOffset
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7914266149970312176, guid: 0e159c03b955d7349a8c17c3d132175f,
+        type: 3}
+      propertyPath: continuousLine
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914266149970312176, guid: 0e159c03b955d7349a8c17c3d132175f,
+        type: 3}
+      propertyPath: halfKnotAtEnd
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7914266149180367899, guid: 0e159c03b955d7349a8c17c3d132175f,
         type: 3}
       propertyPath: m_LocalPosition.x

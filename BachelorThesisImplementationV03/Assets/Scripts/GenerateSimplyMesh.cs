@@ -27,7 +27,7 @@ public class GenerateSimplyMesh : GenerateBase
         ChangeRowsSimply();
         ChangeColumnsSimply();
 
-        sizeChanger.SetOffsets(heightOffset, width - verticalOffset, 2);
+        sizeChanger.SetOffsets(width - verticalOffset);
         sizeChanger.ChangeSizesNet();
     }
 

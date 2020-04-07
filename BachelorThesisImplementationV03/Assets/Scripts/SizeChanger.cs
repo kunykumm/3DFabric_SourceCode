@@ -18,28 +18,32 @@ public class SizeChanger : MonoBehaviour
     public Text netWidth;
     public Slider columnsSlider;
     public Slider rowsSlider;
+    public int halfKnotAtEnd = 0; // pripad basic knot
+    public int continuousLine = 0; // pripad vsetkych, ktore su napojene v jednej linii
+    public int alternation = 1; // clover knot, vynechavanie uzlov, napr. kazdy druhy v riadku
 
     //CameraChange
     public GameObject cameraNetFocus;
     public Camera cameraNet;
     public int horizontalOffset;
 
+    //Left Side Info
     private float previousHeight;
     private float previousWidth;
     private float previousLineWidth;
-
-    private float editorNetHeight = 0;
-    private float editorNetWidth = 0;
-    private float heightOffset;
-    private float widthOffset;
-    private float alternation;
 
     private float changer = 0.0f;
     private float currentScale = 1.0f;
     private float previousScale = 1.0f;
     private float newLineWidth = 0.5f;
     private bool allowUpdate = false;
+
+    //Right Side Info
+    private float editorNetHeight = 0;
+    private float editorNetWidth = 0;
+    public float widthOffset = 0; // posunutie v horizontálnej osi
     private float zChange;
+
     private CameraMovement cameraMovement;
 
 
@@ -67,11 +71,9 @@ public class SizeChanger : MonoBehaviour
         lineWidthText.text = previousLineWidth.ToString("0.00") + " cm";
     }
 
-    public void SetOffsets(float heightOff, float widthOff = 0, int alt = 1)
+    public void SetOffsets(float widthOff)
     {
-        heightOffset = heightOff;
         widthOffset = widthOff;
-        alternation = alt;
     }
 
     public void ChangeValues(float newChange)
@@ -136,13 +138,41 @@ public class SizeChanger : MonoBehaviour
 
     public void ChangeSizesNet()
     {
-        var newHeight = rowsSlider.value * previousHeight - (rowsSlider.value - 1) * heightOffset;
-        var newWidth = columnsSlider.value * alternation * (previousWidth - widthOffset);
+        float realHeight = previousHeight;
+        float realWidth = previousWidth;
+
+        CalculateDimensions(ref realHeight, rowsSlider.value, 1, previousHeight, false);
+        CalculateDimensions(ref realWidth, columnsSlider.value, alternation, previousWidth, true);
+    
+        float newHeight = 0;
+        float newWidth = 0;
 
         if (newHeight != editorNetHeight || newWidth != editorNetWidth) ChangeNetCameraFocus(newHeight, newWidth);
 
-        netHeight.text = rowsSlider.value.ToString() + " rows | " + (rowsSlider.value * previousHeight - (rowsSlider.value - 1) * heightOffset).ToString("0.00") + " cm";
-        netWidth.text = columnsSlider.value.ToString() + " columns | " + (columnsSlider.value * previousWidth - (columnsSlider.value - 1) * widthOffset).ToString("0.00") + " cm";
+        netHeight.text = "Editor: " + newHeight.ToString("0.00") + " cm | Real: " + realHeight.ToString("0.00") + " cm";
+        netWidth.text = "Editor: " + newWidth.ToString("0.00") + " cm | Real: " + realWidth.ToString("0.00") + " cm";
+    }
+
+    private void CalculateDimensions(ref float dimension, float sliderValue, int alter, float prevDimension, bool isWidth)
+    {
+        dimension = 0;
+        float lineWidth = previousLineWidth;
+        float newPrevDim = prevDimension;
+
+        if (isWidth)
+        {
+            if (halfKnotAtEnd == 1) dimension += ((prevDimension + lineWidth) / 2);
+            if (continuousLine == 1)
+            {
+                newPrevDim = prevDimension + lineWidth;
+                lineWidth = 0;
+            }
+            if (alternation > 1) dimension += (2 * (prevDimension - 3 * lineWidth));
+        }
+
+        if (sliderValue == 2) dimension += (alter * sliderValue * (newPrevDim - lineWidth));
+        if (sliderValue > 2) dimension += (alter * (sliderValue - 2) * (newPrevDim - 3 * lineWidth) +
+                2 * (newPrevDim - lineWidth));
     }
 
     private void ChangeNetCameraFocus(float newHeight, float newWidth)
