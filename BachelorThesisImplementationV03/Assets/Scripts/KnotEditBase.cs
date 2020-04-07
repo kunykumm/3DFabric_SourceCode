@@ -41,6 +41,7 @@ namespace Dreamteck.Splines
             sizeChanger.SetHeight(rHeight);
             sizeChanger.SetWidth(rWidth);
             sizeChanger.SetLineWidth(prevWidth);
+            sizeChanger.ChangeSizesNet();
         }
 
         public void OnEdit()

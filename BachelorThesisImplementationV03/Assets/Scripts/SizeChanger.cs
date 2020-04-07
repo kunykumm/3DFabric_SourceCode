@@ -41,6 +41,7 @@ public class SizeChanger : MonoBehaviour
     //Right Side Info
     private float editorNetHeight = 0;
     private float editorNetWidth = 0;
+    private float heightOffset = 0; //posunutie vo vertikalnej osi
     public float widthOffset = 0; // posunutie v horizontálnej osi
     private float zChange;
 
@@ -71,8 +72,9 @@ public class SizeChanger : MonoBehaviour
         lineWidthText.text = previousLineWidth.ToString("0.00") + " cm";
     }
 
-    public void SetOffsets(float widthOff)
+    public void SetOffsets(float heightOff, float widthOff = 0)
     {
+        heightOffset = heightOff;
         widthOffset = widthOff;
     }
 
@@ -143,9 +145,9 @@ public class SizeChanger : MonoBehaviour
 
         CalculateDimensions(ref realHeight, rowsSlider.value, 1, previousHeight, false);
         CalculateDimensions(ref realWidth, columnsSlider.value, alternation, previousWidth, true);
-    
-        float newHeight = 0;
-        float newWidth = 0;
+
+        float newHeight = rowsSlider.value * (previousHeight + previousLineWidth) - (rowsSlider.value - 1) * (heightOffset + previousLineWidth);
+        float newWidth = columnsSlider.value * alternation * (previousWidth + previousLineWidth - widthOffset);
 
         if (newHeight != editorNetHeight || newWidth != editorNetWidth) ChangeNetCameraFocus(newHeight, newWidth);
 
