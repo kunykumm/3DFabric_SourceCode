@@ -892,31 +892,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasLeftSide
       objectReference: {fileID: 0}
-    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1027237595}
-    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 973456695}
-    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: OnClickLineWidthSlider
-      objectReference: {fileID: 0}
-    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnEdit
-      objectReference: {fileID: 0}
     - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
       propertyPath: netHeight
@@ -951,6 +926,31 @@ PrefabInstance:
         type: 3}
       propertyPath: horizontalOffset
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1027237595}
+    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 973456695}
+    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnClickLineWidthSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnEdit
       objectReference: {fileID: 0}
     - target: {fileID: 4007053513069151515, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
@@ -1150,7 +1150,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 973456694}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 973456697}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82cb1077e1eaef047bfb489676b1c7c3, type: 3}
@@ -1159,6 +1159,12 @@ MonoBehaviour:
 --- !u!1 &973456696 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4007053512675584242, guid: 495329860a1fed449bf3564f74f218df,
+    type: 3}
+  m_PrefabInstance: {fileID: 973456694}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &973456697 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4007053513823905429, guid: 495329860a1fed449bf3564f74f218df,
     type: 3}
   m_PrefabInstance: {fileID: 973456694}
   m_PrefabAsset: {fileID: 0}
@@ -1674,6 +1680,8 @@ MonoBehaviour:
   cameraNet: {fileID: 1152194303}
   leftSliderPanel: {fileID: 973456696}
   rightSliderPanel: {fileID: 1760969783}
+  leftAddMinusButtons: {fileID: 973456697}
+  rightExportButton: {fileID: 1760969787}
   buttonText: {fileID: 1760969782}
   generateSimplyMesh: {fileID: 2128038248}
 --- !u!4 &1277674635
@@ -2238,6 +2246,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1760969787 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8678113340335977727, guid: 44c6e451704f4de4cabbb2aef13132b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1760969779}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!43 &1798701716

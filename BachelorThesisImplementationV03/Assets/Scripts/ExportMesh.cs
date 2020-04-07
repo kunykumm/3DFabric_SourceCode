@@ -25,6 +25,7 @@ public class ExportMesh : MonoBehaviour
         theWholeMesh = GameObject.FindGameObjectsWithTag("knotrow");
         string fileName = PlayerPrefs.GetString("scene");
         string filePath = StandaloneFileBrowser.SaveFilePanel("Save File", "", fileName, extensionList);
+        if (filePath.Equals("")) return;
         string check = filePath.Substring(filePath.Length - 3, 3);
 
         if (check.Equals("stl")) SaveAsStl(filePath);

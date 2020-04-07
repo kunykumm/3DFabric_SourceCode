@@ -277,7 +277,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 4007053513840493799}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4007053513840493800}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82cb1077e1eaef047bfb489676b1c7c3, type: 3}
@@ -1256,6 +1256,8 @@ MonoBehaviour:
   cameraNet: {fileID: 1424661170}
   leftSliderPanel: {fileID: 1265888277}
   rightSliderPanel: {fileID: 637104816}
+  leftAddMinusButtons: {fileID: 4007053513840493800}
+  rightExportButton: {fileID: 1549527124}
   buttonText: {fileID: 29215621}
   generateMeshTwoKnots: {fileID: 2141472904}
 --- !u!4 &912084577
@@ -2450,6 +2452,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1549527124 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8678113340335977727, guid: 44c6e451704f4de4cabbb2aef13132b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1549527119}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1613151563
 GameObject:
   m_ObjectHideFlags: 0
@@ -2983,21 +2997,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasLeftSide
       objectReference: {fileID: 0}
-    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2130067284}
-    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 252043891}
-    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: OnClickLineWidthSlider
-      objectReference: {fileID: 0}
     - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
       propertyPath: netHeight
@@ -3028,6 +3027,21 @@ PrefabInstance:
       propertyPath: cameraNet
       value: 
       objectReference: {fileID: 1424661170}
+    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2130067284}
+    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 252043891}
+    - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnClickLineWidthSlider
+      objectReference: {fileID: 0}
     - target: {fileID: 4007053513069151515, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3215,3 +3229,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 495329860a1fed449bf3564f74f218df, type: 3}
+--- !u!1 &4007053513840493800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4007053513823905429, guid: 495329860a1fed449bf3564f74f218df,
+    type: 3}
+  m_PrefabInstance: {fileID: 4007053513840493799}
+  m_PrefabAsset: {fileID: 0}

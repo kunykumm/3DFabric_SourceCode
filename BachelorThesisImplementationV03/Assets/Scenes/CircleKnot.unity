@@ -613,6 +613,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasLeftSide
       objectReference: {fileID: 0}
+    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: netHeight
+      value: 
+      objectReference: {fileID: 454490530}
+    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: netWidth
+      value: 
+      objectReference: {fileID: 454490526}
+    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: columnsSlider
+      value: 
+      objectReference: {fileID: 454490532}
+    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: rowsSlider
+      value: 
+      objectReference: {fileID: 454490531}
+    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: cameraNetFocus
+      value: 
+      objectReference: {fileID: 149469248}
+    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: cameraNet
+      value: 
+      objectReference: {fileID: 61000762}
+    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: horizontalOffset
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -662,41 +697,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_MaxValue
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: netHeight
-      value: 
-      objectReference: {fileID: 454490530}
-    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: netWidth
-      value: 
-      objectReference: {fileID: 454490526}
-    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: columnsSlider
-      value: 
-      objectReference: {fileID: 454490532}
-    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: rowsSlider
-      value: 
-      objectReference: {fileID: 454490531}
-    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: cameraNetFocus
-      value: 
-      objectReference: {fileID: 149469248}
-    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: cameraNet
-      value: 
-      objectReference: {fileID: 61000762}
-    - target: {fileID: 4007053513823905428, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: horizontalOffset
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4007053513069151515, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
@@ -921,7 +921,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 419330955}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 419330960}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82cb1077e1eaef047bfb489676b1c7c3, type: 3}
@@ -957,6 +957,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &419330960 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4007053513823905429, guid: 495329860a1fed449bf3564f74f218df,
+    type: 3}
+  m_PrefabInstance: {fileID: 419330955}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &422083763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1453,6 +1459,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &454490533 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8678113340335977727, guid: 44c6e451704f4de4cabbb2aef13132b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 454490525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &607063213
 Mesh:
   m_ObjectHideFlags: 0
@@ -1649,6 +1667,8 @@ MonoBehaviour:
   cameraNet: {fileID: 61000762}
   leftSliderPanel: {fileID: 419330957}
   rightSliderPanel: {fileID: 454490529}
+  leftAddMinusButtons: {fileID: 419330960}
+  rightExportButton: {fileID: 454490533}
   buttonText: {fileID: 454490528}
   generateSimplyMesh: {fileID: 305573953}
 --- !u!4 &729162722

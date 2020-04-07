@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
@@ -31,6 +32,7 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (GetComponent<Button>().interactable == false) return;
         ispressed = true;
         sizeChanger.ChangeValues(change);
         buttonPressedTime = Time.timeSinceLevelLoad;
@@ -38,6 +40,7 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        //if (GetComponent<Button>().interactable == false) return;
         ispressed = false;
         buttonPressedTime = 0;
     }

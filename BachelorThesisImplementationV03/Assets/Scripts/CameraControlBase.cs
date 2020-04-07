@@ -8,6 +8,8 @@ public class CameraControlBase : MonoBehaviour
     public Camera cameraNet;
     public GameObject leftSliderPanel;
     public GameObject rightSliderPanel;
+    public GameObject leftAddMinusButtons;
+    public Button rightExportButton;
 
     private CameraMovement camKnotMov;
     private CameraMovement camNetMov;
@@ -26,7 +28,9 @@ public class CameraControlBase : MonoBehaviour
     protected void FromNetToKnot()
     {
         StateOfSliders(leftSliderPanel, true);
+        StateOfButtons(leftAddMinusButtons, true);
         StateOfSliders(rightSliderPanel, false);
+        rightExportButton.interactable = false;
         camKnotMov.enabled = true;
         camNetMov.enabled = false;
         editNet = false;
@@ -36,7 +40,9 @@ public class CameraControlBase : MonoBehaviour
     protected void FromKnotToNet()
     {
         StateOfSliders(leftSliderPanel, false);
+        StateOfButtons(leftAddMinusButtons, false);
         StateOfSliders(rightSliderPanel, true);
+        rightExportButton.interactable = true;
         camKnotMov.enabled = false;
         camNetMov.enabled = true;
         editNet = true;
@@ -49,6 +55,15 @@ public class CameraControlBase : MonoBehaviour
         for (int i = 0; i < childrenCount; ++i)
         {
             if (i % 2 == 1) panel.transform.GetChild(i).gameObject.GetComponent<Slider>().enabled = enabled;
+        }
+    }
+
+    private void StateOfButtons(GameObject panel, bool enabled)
+    {
+        int childrenCount = panel.transform.childCount;
+        for (int i = 0; i < childrenCount; ++i)
+        {
+            panel.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = enabled;
         }
     }
 }
