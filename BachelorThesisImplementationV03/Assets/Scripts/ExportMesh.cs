@@ -11,6 +11,7 @@ public class ExportMesh : MonoBehaviour
 
     public Text savedInfo;
     public GameObject objectForExport;
+    private SizeChanger sizeChanger;
 
     private void Start()
     {
@@ -18,6 +19,8 @@ public class ExportMesh : MonoBehaviour
             new ExtensionFilter("Binary STL", "stl"),
             new ExtensionFilter("Wavefront OBJ", "obj")
         };
+        objectForExport.transform.GetComponent<MeshFilter>().mesh = new Mesh();
+        sizeChanger = GameObject.Find("SizeChanger").GetComponent<SizeChanger>();
     }
 
     public void ExportNet()
@@ -39,17 +42,15 @@ public class ExportMesh : MonoBehaviour
 
     private void SaveAsStl(string filePath)
     {
-        STL.Export(theWholeMesh, filePath);
+        PrepareObjectForExport();
+        STL.Export(objectForExport, filePath);
         savedInfo.text = "Your net was saved successfully.";
     }
 
     private void SaveAsObj(string filePath)
     {
-        CombineMeshes();
-        objectForExport.transform.GetComponent<MeshFilter>().mesh = new Mesh();
-        objectForExport.transform.GetComponent<MeshFilter>().mesh.CombineMeshes(combineInstances);
+        PrepareObjectForExport();
         ObjExporter.MeshToFile(objectForExport.transform.GetComponent<MeshFilter>(), filePath);
-        objectForExport.transform.GetComponent<MeshFilter>().mesh = new Mesh();
         savedInfo.text = "Your net was saved successfully.";
     }
 
@@ -73,5 +74,13 @@ public class ExportMesh : MonoBehaviour
             combineInstances[j].mesh = meshFilters[j].sharedMesh;
             combineInstances[j].transform = meshFilters[j].transform.localToWorldMatrix;
         }
+    }
+
+    private void PrepareObjectForExport()
+    {
+        CombineMeshes();
+        objectForExport.transform.GetComponent<MeshFilter>().mesh = new Mesh();
+        objectForExport.transform.GetComponent<MeshFilter>().mesh.CombineMeshes(combineInstances);
+        objectForExport.transform.localScale *= sizeChanger.GetScale();
     }
 }
