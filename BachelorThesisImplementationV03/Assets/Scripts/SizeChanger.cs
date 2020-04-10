@@ -90,16 +90,26 @@ public class SizeChanger : MonoBehaviour
         ChangeSizesNet();
     }
 
+    public float AllowChangeValues()
+    {
+        bool result;
+        if (isCovered) result = newLineWidth >= 0.12;
+        else result = newLineWidth >= 0.2 && newLineWidth <= 1;
+
+        if (!result) return (float)Math.Round(newLineWidth, 2);
+        return 0;
+    }
+
     private void ChangeHeight()
     {
         float newHeight = previousHeight * currentScale;
-        heightText.text = (newHeight + newLineWidth).ToString("0.00") + " cm";
+        heightText.text = (newHeight + (isCovered ? 0 : newLineWidth)).ToString("0.00") + " cm";
     }
 
     private void ChangeWidth()
     {
         float newWidth = previousWidth * currentScale;
-        widthText.text = (newWidth + newLineWidth).ToString("0.00") + " cm";
+        widthText.text = (newWidth + (isCovered ? 0 : newLineWidth)).ToString("0.00") + " cm";
     }
 
     private void ChangeLineWidth()

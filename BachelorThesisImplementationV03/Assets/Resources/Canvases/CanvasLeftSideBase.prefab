@@ -422,6 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeChanger: {fileID: 4007053513823905428}
   change: -0.001
+  otherButton: {fileID: 4007053514435894707}
 --- !u!1 &4007053512944987333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,13 +1540,18 @@ MonoBehaviour:
   addButton: {fileID: 4007053514435894707}
   subButton: {fileID: 4007053512856718028}
   lineWidthSlider: {fileID: 4007053512854771825}
+  isCovered: 0
   netHeight: {fileID: 0}
   netWidth: {fileID: 0}
   columnsSlider: {fileID: 0}
   rowsSlider: {fileID: 0}
+  halfKnotAtEnd: 0
+  continuousLine: 0
+  alternation: 1
   cameraNetFocus: {fileID: 0}
   cameraNet: {fileID: 0}
   horizontalOffset: 0
+  widthOffset: 0
 --- !u!1 &4007053513892769740
 GameObject:
   m_ObjectHideFlags: 0
@@ -2215,6 +2221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeChanger: {fileID: 4007053513823905428}
   change: 0.001
+  otherButton: {fileID: 4007053512856718028}
 --- !u!1 &4007053514469105768
 GameObject:
   m_ObjectHideFlags: 0

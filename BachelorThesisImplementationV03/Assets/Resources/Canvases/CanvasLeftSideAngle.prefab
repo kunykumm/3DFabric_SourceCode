@@ -935,6 +935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeChanger: {fileID: 7914266149970312176}
   change: -0.001
+  otherButton: {fileID: 7914266149831701458}
 --- !u!1 &7914266149688673586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,6 +1188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeChanger: {fileID: 7914266149970312176}
   change: 0.001
+  otherButton: {fileID: 7914266149650517469}
 --- !u!1 &7914266149937920732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,13 +1320,18 @@ MonoBehaviour:
   addButton: {fileID: 7914266149831701458}
   subButton: {fileID: 7914266149650517469}
   lineWidthSlider: {fileID: 7914266150914860796}
+  isCovered: 0
   netHeight: {fileID: 0}
   netWidth: {fileID: 0}
   columnsSlider: {fileID: 0}
   rowsSlider: {fileID: 0}
+  halfKnotAtEnd: 0
+  continuousLine: 0
+  alternation: 1
   cameraNetFocus: {fileID: 0}
   cameraNet: {fileID: 0}
   horizontalOffset: 0
+  widthOffset: 0
 --- !u!1 &7914266150085638188
 GameObject:
   m_ObjectHideFlags: 0

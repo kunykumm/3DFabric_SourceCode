@@ -1429,6 +1429,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 243.46408
       objectReference: {fileID: 0}
+    - target: {fileID: 4007053513765158194, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: scene
+      value: CoveredNets
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 495329860a1fed449bf3564f74f218df, type: 3}
 --- !u!114 &1496087393 stripped

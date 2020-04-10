@@ -9,6 +9,7 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 {
     public SizeChanger sizeChanger;
     public float change;
+    public Button otherButton;
 
     private bool ispressed;
     private const float minimumHeldDuration = 0.25f;
@@ -27,20 +28,45 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     private void Change()
     {
-        sizeChanger.ChangeValues(change);
+        float result = sizeChanger.AllowChangeValues();
+        if (result == 0) sizeChanger.ChangeValues(change);
+        else
+        {
+            if (change < 0 && result == 0.12f) GetComponent<Button>().interactable = false;
+            if (change < 0 && result == 0.2f) GetComponent<Button>().interactable = false;
+            if (change > 0 && result == 1f) GetComponent<Button>().interactable = false;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        float result = sizeChanger.AllowChangeValues();
+        if (result != 0)
+        {
+            if (change > 0 && result == 0.12f)
+            {
+                otherButton.GetComponent<Button>().interactable = true;
+                result = 0;
+            }
+            if (change > 0 && result == 0.2f)
+            {
+                otherButton.GetComponent<Button>().interactable = true;
+                result = 0;
+            }
+            if (change < 0 && result == 1f)
+            {
+                otherButton.GetComponent<Button>().interactable = true;
+                result = 0;
+            }
+        }
         if (GetComponent<Button>().interactable == false) return;
         ispressed = true;
-        sizeChanger.ChangeValues(change);
+        if (result == 0) sizeChanger.ChangeValues(change);
         buttonPressedTime = Time.timeSinceLevelLoad;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        //if (GetComponent<Button>().interactable == false) return;
         ispressed = false;
         buttonPressedTime = 0;
     }
