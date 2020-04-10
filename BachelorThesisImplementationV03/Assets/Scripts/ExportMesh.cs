@@ -8,6 +8,8 @@ public class ExportMesh : MonoBehaviour
     private GameObject[] theWholeMesh;
     private ExtensionFilter[] extensionList;
     private CombineInstance[] combineInstances = { };
+    private Mesh[] meshes = { };
+    private Matrix4x4[] matrices = { };
 
     public Text savedInfo;
     public GameObject objectForExport;
@@ -42,8 +44,9 @@ public class ExportMesh : MonoBehaviour
 
     private void SaveAsStl(string filePath)
     {
-        PrepareObjectForExport();
-        STL.Export(objectForExport, filePath);
+        float scale = sizeChanger.GetScale();
+        PrepareMeshesForStl();
+        STL.Export(meshes, matrices, filePath);
         savedInfo.text = "Your net was saved successfully.";
     }
 
@@ -56,6 +59,21 @@ public class ExportMesh : MonoBehaviour
 
     private void SaveAsFbx(string filePath)
     {
+    }
+
+    private void PrepareMeshesForStl()
+    {
+        int length = theWholeMesh.Length;
+        meshes = new Mesh[length];
+        matrices = new Matrix4x4[length];
+        float scale = sizeChanger.GetScale();
+        Vector3 scaleV = new Vector3(scale, scale, scale);
+        for (int i = 0; i < length; ++i)
+        {
+            meshes[i] = theWholeMesh[i].GetComponent<MeshFilter>().mesh;
+            matrices[i] = Matrix4x4.TRS(theWholeMesh[i].transform.position, theWholeMesh[i].transform.rotation, scaleV);
+
+        }
     }
 
     private void CombineMeshes()

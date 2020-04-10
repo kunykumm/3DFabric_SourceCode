@@ -39,99 +39,101 @@ public class STL
 	/// <summary>
 	/// Exports all meshes found in MeshFilter and SkinnedMeshRenderer components attached to the supplied game object (and it's children) to a binary stl file at specified file path formated as binary (default) or ASCII. Returns success status.
 	/// </summary>
-	public static bool Export( GameObject gameObject, string filePath, bool asASCII = false )
-	{
-		return Export( new GameObject[]{ gameObject }, filePath, asASCII );
-	}
+	public static bool Export(GameObject gameObject, string filePath, bool asASCII = false)
+    {
+        return Export(new GameObject[] { gameObject }, filePath, asASCII);
+    }
 
 
-	/// <summary>
-	/// Exports all meshes found in MeshFilter and SkinnedMeshRenderer components attached to the supplied game objects (and their children) to a binary stl file at specified file path as binary (default) or ASCII. Returns success status.
-	/// </summary>
-	public static bool Export( GameObject[] gameObjects, string filePath, bool asASCII = false )
-	{
-		Mesh[] meshes;
-		Matrix4x4[] matrices;
-		GetMeshesAndMatrixes( gameObjects, out meshes, out matrices );
-		return Export( meshes, matrices, filePath, asASCII );
-	}
+    /// <summary>
+    /// Exports all meshes found in MeshFilter and SkinnedMeshRenderer components attached to the supplied game objects (and their children) to a binary stl file at specified file path as binary (default) or ASCII. Returns success status.
+    /// </summary>
+    public static bool Export(GameObject[] gameObjects, string filePath, bool asASCII = false)
+    {
+        Mesh[] meshes;
+        Matrix4x4[] matrices;
+        GetMeshesAndMatrixes(gameObjects, out meshes, out matrices);
+        return Export(meshes, matrices, filePath, asASCII);
+    }
 
 
-	/// <summary>
-	/// Exports mesh found in supplied MeshFilter to a binary stl file at specified file path formated as binary (default) or ASCII. Returns success status.
-	/// </summary>
-	public static bool Export( MeshFilter filter, string filePath, bool asASCII = false )
-	{
-		if( !filter.sharedMesh ){
-			Debug.LogError( logPrepend + "Export failed. Meshfilter has no mesh.\n" );
-			return false;
-		}
-		return Export(new MeshFilter[]{ filter }, filePath, asASCII );
-	}
+    /// <summary>
+    /// Exports mesh found in supplied MeshFilter to a binary stl file at specified file path formated as binary (default) or ASCII. Returns success status.
+    /// </summary>
+    public static bool Export(MeshFilter filter, string filePath, bool asASCII = false)
+    {
+        if (!filter.sharedMesh)
+        {
+            Debug.LogError(logPrepend + "Export failed. Meshfilter has no mesh.\n");
+            return false;
+        }
+        return Export(new MeshFilter[] { filter }, filePath, asASCII);
+    }
 
 
-	/// <summary>
-	/// Exports all meshes found in supplied MeshFilters to a binary stl file at specified file path formated as binary (default) or ASCII. Returns success status.
-	/// </summary>
-	public static bool Export( MeshFilter[] filters, string filePath, bool asASCII = false )
-	{
-		Mesh[] meshes;
-		Matrix4x4[] matrices;
-		GetMeshesAndMatrixes( filters, out meshes, out matrices );
-		return Export( meshes, matrices, filePath, asASCII );
-	}
+    /// <summary>
+    /// Exports all meshes found in supplied MeshFilters to a binary stl file at specified file path formated as binary (default) or ASCII. Returns success status.
+    /// </summary>
+    public static bool Export(MeshFilter[] filters, string filePath, bool asASCII = false)
+    {
+        Mesh[] meshes;
+        Matrix4x4[] matrices;
+        GetMeshesAndMatrixes(filters, out meshes, out matrices);
+        return Export(meshes, matrices, filePath, asASCII);
+    }
 
 
-	/// <summary>
-	/// Exports mesh found in supplied SkinnedMeshRenderer component to a binary stl file at specified file path formated as binary (default) or ASCII. Returns success status.
-	/// </summary>
-	public static bool Export( SkinnedMeshRenderer skin, string filePath, bool asASCII = false )
-	{
-		if( !skin.sharedMesh ){
-			Debug.LogError( logPrepend + "Export failed. SkinnedMeshRenderer has no mesh.\n" );
-			return false;
-		}
-		return Export( new SkinnedMeshRenderer[]{ skin }, filePath, asASCII );
-	}
+    /// <summary>
+    /// Exports mesh found in supplied SkinnedMeshRenderer component to a binary stl file at specified file path formated as binary (default) or ASCII. Returns success status.
+    /// </summary>
+    public static bool Export(SkinnedMeshRenderer skin, string filePath, bool asASCII = false)
+    {
+        if (!skin.sharedMesh)
+        {
+            Debug.LogError(logPrepend + "Export failed. SkinnedMeshRenderer has no mesh.\n");
+            return false;
+        }
+        return Export(new SkinnedMeshRenderer[] { skin }, filePath, asASCII);
+    }
 
 
-	/// <summary>
-	/// Exports all meshes found in supplied SkinnedMeshRenderer components to a binary stl file at specified file path formated as binary (default) or ASCII. Returns success status.
-	/// </summary>
-	public static bool Export( SkinnedMeshRenderer[] skins, string filePath, bool asASCII = false )
-	{
-		Mesh[] meshes;
-		Matrix4x4[] matrices;
-		GetMeshesAndMatrixes( skins, out meshes, out matrices );
-		return Export( meshes, matrices, filePath, asASCII );
-	}
+    /// <summary>
+    /// Exports all meshes found in supplied SkinnedMeshRenderer components to a binary stl file at specified file path formated as binary (default) or ASCII. Returns success status.
+    /// </summary>
+    public static bool Export(SkinnedMeshRenderer[] skins, string filePath, bool asASCII = false)
+    {
+        Mesh[] meshes;
+        Matrix4x4[] matrices;
+        GetMeshesAndMatrixes(skins, out meshes, out matrices);
+        return Export(meshes, matrices, filePath, asASCII);
+    }
 
 
-	/// <summary>
-	/// Exports a mesh to a binary stl file at specified file path formated as binary (default) or ASCII. Returns success status.
-	/// </summary>
-	public static bool Export( Mesh mesh, string filePath, bool asASCII = false )
-	{
-		return Export( new Mesh[]{ mesh }, new Matrix4x4[]{ Matrix4x4.identity }, filePath, asASCII );
-	}
+    /// <summary>
+    /// Exports a mesh to a binary stl file at specified file path formated as binary (default) or ASCII. Returns success status.
+    /// </summary>
+    public static bool Export(Mesh mesh, string filePath, bool asASCII = false)
+    {
+        return Export(new Mesh[] { mesh }, new Matrix4x4[] { Matrix4x4.identity }, filePath, asASCII);
+    }
 
 
-	/// <summary>
-	/// Exports a mesh to a binary stl file at specified file path formated as binary (default) or ASCII. Returns success status.
-	/// </summary>
-	public static bool Export( Mesh[] meshes, string filePath, bool asASCII = false )
-	{
-		Matrix4x4[] matrices = new Matrix4x4[meshes.Length];
-		for( int m = 0; m < matrices.Length; m++ ) matrices[m] = Matrix4x4.identity;
-		return Export( meshes, matrices, filePath, asASCII );
-	}
+    /// <summary>
+    /// Exports a mesh to a binary stl file at specified file path formated as binary (default) or ASCII. Returns success status.
+    /// </summary>
+    public static bool Export(Mesh[] meshes, string filePath, bool asASCII = false)
+    {
+        Matrix4x4[] matrices = new Matrix4x4[meshes.Length];
+        for (int m = 0; m < matrices.Length; m++) matrices[m] = Matrix4x4.identity;
+        return Export(meshes, matrices, filePath, asASCII);
+    }
 
     /// <summary>
     /// Exports a mesh with matrix transformation to a binary stl file at specified file path formated as binary (default) or ASCII. Returns success status.
     /// </summary>
-    public static bool Export( Mesh mesh, Matrix4x4 matrix, string filePath, bool asASCII = false )
+    public static bool Export(Mesh mesh, Matrix4x4 matrix, string filePath, bool asASCII = false)
     {
-        return Export( new Mesh[]{ mesh }, new Matrix4x4[]{ matrix }, filePath, asASCII );
+        return Export(new Mesh[] { mesh }, new Matrix4x4[] { matrix }, filePath, asASCII);
     }
 
 
@@ -827,85 +829,85 @@ public class STL
     }
 
 
-	/// <summary>
-	/// Deprecated. Use the Export method instead.
-	/// </summary>
-	[System.Obsolete( "Deprecated. Use the Export method instead." )]
-	public static void ExportBinary( GameObject[] gameObjects, string filePath )
-	{
-		Export( gameObjects, filePath );
-	}
+    /// <summary>
+    /// Deprecated. Use the Export method instead.
+    /// </summary>
+    [System.Obsolete("Deprecated. Use the Export method instead.")]
+    public static void ExportBinary(GameObject[] gameObjects, string filePath)
+    {
+        Export(gameObjects, filePath);
+    }
 
 
-	/// <summary>
-	/// Deprecated. Use the Export method instead.
-	/// </summary>
-	[System.Obsolete( "Deprecated. Use the Export method instead." )]
-	public static void ExportBinary( MeshFilter[] filters, string filePath )
-	{
-		Export( filters, filePath );
-	}
+    /// <summary>
+    /// Deprecated. Use the Export method instead.
+    /// </summary>
+    [System.Obsolete("Deprecated. Use the Export method instead.")]
+    public static void ExportBinary(MeshFilter[] filters, string filePath)
+    {
+        Export(filters, filePath);
+    }
 
 
-	/// <summary>
-	/// Deprecated. Use the Export method instead.
-	/// </summary>
-	[System.Obsolete( "Deprecated. Use the Export method instead." )]
-	public static void ExportBinary( SkinnedMeshRenderer[] skins, string filePath )
-	{
-		Export( skins, filePath );
-	}
+    /// <summary>
+    /// Deprecated. Use the Export method instead.
+    /// </summary>
+    [System.Obsolete("Deprecated. Use the Export method instead.")]
+    public static void ExportBinary(SkinnedMeshRenderer[] skins, string filePath)
+    {
+        Export(skins, filePath);
+    }
 
 
-	/// <summary>
-	/// Deprecated. Use the Export method instead.
-	/// </summary>
-	[System.Obsolete( "Deprecated. Use the Export method instead." )]
-	public static void ExportBinary( Mesh mesh, Matrix4x4 matrix, string filePath )
-	{
-		Export( mesh, filePath );
-	}
+    /// <summary>
+    /// Deprecated. Use the Export method instead.
+    /// </summary>
+    [System.Obsolete("Deprecated. Use the Export method instead.")]
+    public static void ExportBinary(Mesh mesh, Matrix4x4 matrix, string filePath)
+    {
+        Export(mesh, filePath);
+    }
 
 
-	/// <summary>
-	/// Deprecated. Use the Export method instead.
-	/// </summary>
-	[System.Obsolete( "Deprecated. Use the Export method instead." )]
-	public static void ExportBinary( Mesh[] meshes, Matrix4x4[] matrices, string filePath )
-	{
-		Export( meshes, matrices, filePath );
-	}
+    /// <summary>
+    /// Deprecated. Use the Export method instead.
+    /// </summary>
+    [System.Obsolete("Deprecated. Use the Export method instead.")]
+    public static void ExportBinary(Mesh[] meshes, Matrix4x4[] matrices, string filePath)
+    {
+        Export(meshes, matrices, filePath);
+    }
 
 
-	/// <summary>
-	/// Deprecated. Use the Export method instead.
-	/// </summary>
-	[System.Obsolete( "Deprecated. Use the Export method instead." )]
-	public static void ExportText( GameObject[] gameObjects, string filePath )
-	{
-		bool asASCII = true;
-		Export( gameObjects, filePath, asASCII );
-	}
+    /// <summary>
+    /// Deprecated. Use the Export method instead.
+    /// </summary>
+    [System.Obsolete("Deprecated. Use the Export method instead.")]
+    public static void ExportText(GameObject[] gameObjects, string filePath)
+    {
+        bool asASCII = true;
+        Export(gameObjects, filePath, asASCII);
+    }
 
 
-	/// <summary>
-	/// Deprecated. Use the Export method instead.
-	/// </summary>
-	[System.Obsolete( "Deprecated. Use the Export method instead." )]
-	public static void ExportText( Mesh mesh, Matrix4x4 matrix, string filePath )
-	{
-		bool asASCII = true;
-		Export( mesh, filePath, asASCII );
-	}
+    /// <summary>
+    /// Deprecated. Use the Export method instead.
+    /// </summary>
+    [System.Obsolete("Deprecated. Use the Export method instead.")]
+    public static void ExportText(Mesh mesh, Matrix4x4 matrix, string filePath)
+    {
+        bool asASCII = true;
+        Export(mesh, filePath, asASCII);
+    }
 
 
-	/// <summary>
-	/// Deprecated. Use the Export method instead.
-	/// </summary>
-	[System.Obsolete( "Deprecated. Use the Export method instead." )]
-	public static void ExportText( Mesh[] meshes, Matrix4x4[] matrices, string filePath )
-	{
-		bool asASCII = true;
-		Export( meshes, filePath, asASCII );
-	}
+    /// <summary>
+    /// Deprecated. Use the Export method instead.
+    /// </summary>
+    [System.Obsolete("Deprecated. Use the Export method instead.")]
+    public static void ExportText(Mesh[] meshes, Matrix4x4[] matrices, string filePath)
+    {
+        bool asASCII = true;
+        Export(meshes, filePath, asASCII);
+    }
 }
