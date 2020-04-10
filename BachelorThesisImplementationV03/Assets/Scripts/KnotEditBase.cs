@@ -25,7 +25,6 @@ namespace Dreamteck.Splines
 
         private void Start()
         {
-            PlayerPrefs.SetString("scene", sceneName);
             PrepareValues();
             ChangeWidth();
         }

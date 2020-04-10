@@ -12,6 +12,7 @@ public class SizeChanger : MonoBehaviour
     public Button addButton;
     public Button subButton;
     public Slider lineWidthSlider;
+    public bool isCovered;
 
     //RigthSide (Knot)
     public Text netHeight;
@@ -82,7 +83,8 @@ public class SizeChanger : MonoBehaviour
     {
         changer += newChange;
         currentScale = 1 + changer;
-        ChangeLineWidth();
+        if (isCovered) ChangeLineWidthCovered();
+        else ChangeLineWidth();
         ChangeHeight();
         ChangeWidth();
         ChangeSizesNet();
@@ -106,6 +108,12 @@ public class SizeChanger : MonoBehaviour
         newLineWidth = previousLineWidth * currentScale * currentScale; 
         lineWidthText.text = newLineWidth.ToString("0.00") + " cm";
         lineWidthSlider.value = newLineWidth;
+    }
+
+    private void ChangeLineWidthCovered()
+    {
+        newLineWidth = previousLineWidth * currentScale * currentScale;
+        lineWidthText.text = newLineWidth.ToString("0.00") + " cm";
     }
 
     public void UpdateFromSlider(float newValue)
@@ -142,17 +150,27 @@ public class SizeChanger : MonoBehaviour
     {
         float realHeight = previousHeight;
         float realWidth = previousWidth;
+        float savedLineWidth = previousLineWidth;
+        if (isCovered) previousLineWidth = 0;
 
         CalculateDimensions(ref realHeight, rowsSlider.value, 1, previousHeight, false);
         CalculateDimensions(ref realWidth, columnsSlider.value, alternation, previousWidth, true);
 
-        float newHeight = rowsSlider.value * (previousHeight + previousLineWidth) - (rowsSlider.value - 1) * (heightOffset + previousLineWidth);
-        float newWidth = columnsSlider.value * alternation * (previousWidth + previousLineWidth - widthOffset);
+        float newHeight = realHeight;
+        float newWidth = realWidth;
+
+        if (!isCovered)
+        {
+            newHeight = rowsSlider.value * (previousHeight + previousLineWidth) - (rowsSlider.value - 1) * (heightOffset + previousLineWidth);
+            newWidth = columnsSlider.value * alternation * (previousWidth + previousLineWidth - widthOffset);
+        }
 
         if (newHeight != editorNetHeight || newWidth != editorNetWidth) ChangeNetCameraFocus(newHeight, newWidth);
 
         netHeight.text = "Editor: " + newHeight.ToString("0.00") + " cm | Real: " + realHeight.ToString("0.00") + " cm";
         netWidth.text = "Editor: " + newWidth.ToString("0.00") + " cm | Real: " + realWidth.ToString("0.00") + " cm";
+
+        previousLineWidth = savedLineWidth;
     }
 
     private void CalculateDimensions(ref float dimension, float sliderValue, int alter, float prevDimension, bool isWidth)
@@ -175,6 +193,7 @@ public class SizeChanger : MonoBehaviour
         if (sliderValue == 2) dimension += (alter * sliderValue * (newPrevDim - lineWidth));
         if (sliderValue > 2) dimension += (alter * (sliderValue - 2) * (newPrevDim - 3 * lineWidth) +
                 2 * (newPrevDim - lineWidth));
+        if (isCovered) dimension += ((sliderValue - 1) * widthOffset);
     }
 
     private void ChangeNetCameraFocus(float newHeight, float newWidth)

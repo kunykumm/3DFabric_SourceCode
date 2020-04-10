@@ -87,7 +87,7 @@ public class GenerateSimplyMesh : GenerateBase
         knotClone.GetComponent<SplineComputer>().space = SplineComputer.Space.World;
     }
 
-    private void DeleteColumnsSimply(int diff)
+    protected void DeleteColumnsSimply(int diff)
     {
         int childCount = runtimeRows.transform.childCount;
         HelperDeleteColumns(runtimeRows, diff, childCount, prevColumns);
@@ -137,7 +137,7 @@ public class GenerateSimplyMesh : GenerateBase
         }
     }
 
-    private void DeleteRowsSimply(int diff)
+    protected void DeleteRowsSimply(int diff)
     {
         int firstChildDying = prevRows - diff;
         HelperDeleteRows(runtimeRows, diff, firstChildDying);
