@@ -9,8 +9,8 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
     void Start()
     {
         knotClone = GameObject.Find("KnotForNet");
-        height = 1;
-        width = 1;
+        height = 1f;
+        width = 1f;
 
         knotClone.transform.parent = null;
         knotClone.layer = 10;
@@ -22,7 +22,7 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
         ChangeRowsCovered();
         ChangeColumnsCovered();
 
-        sizeChanger.SetOffsets(0.1f, 0.1f);
+        sizeChanger.SetOffsets(0.14f, 0.14f);
         sizeChanger.ChangeSizesNet();
     }
 
@@ -62,7 +62,7 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
             for (int j = 0; j < diff; ++j)
             {
                 var newPosition = new Vector3(0, 0, 0);
-                newPosition += transform.right * (prevColumns + j) * 2 * verticalOffset;
+                newPosition += transform.right * (prevColumns + j) * (width - verticalOffset);
                 newPosition -= transform.up * i * (height - heightOffset);
                 if (hexagonal) newPosition += transform.right * verticalOffset;
 

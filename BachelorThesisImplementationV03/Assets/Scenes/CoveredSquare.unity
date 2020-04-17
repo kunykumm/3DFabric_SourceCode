@@ -573,8 +573,8 @@ MonoBehaviour:
   sizeChanger: {fileID: 1496087393}
   runtimeRows: {fileID: 1765117178}
   knotPrefab: {fileID: 1039918326}
-  heightOffset: -0.1
-  verticalOffset: 0.55
+  heightOffset: -0.14
+  verticalOffset: 0.57
   hexagonal: 0
 --- !u!4 &555341976
 Transform:
