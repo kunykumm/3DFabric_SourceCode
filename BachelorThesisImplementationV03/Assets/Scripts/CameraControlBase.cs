@@ -1,47 +1,85 @@
 ﻿using Dreamteck.Splines;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CameraControlBase : CameraControlCovered
+public class CameraControlBase : MonoBehaviour
 {
-    public GameObject leftSliderPanel;
-    public GameObject rightSliderPanel;
+    public GenerateMesh generateMesh;
 
-    protected void FromNetToKnot()
+    public Button editNet;
+    public Button editKnot;
+
+    public Camera cameraKnot;
+    public Camera cameraNet;
+    public GameObject leftAddMinusButtons;
+    public Button rightExportButton;
+
+    protected CameraMovement camKnotMov;
+    protected CameraMovement camNetMov;
+    protected Color customGrey;
+    protected Color customSilver;
+    protected Color customOrange;
+
+    protected bool isEditNet;
+
+    void Start()
     {
-        StateOfSliders(leftSliderPanel, true);
-        StateOfButtons(leftAddMinusButtons, true, customSilver);
-        StateOfSliders(rightSliderPanel, false);
-
-        FromNetToKnotBase();
+        PrepareScene();
+        ChangeCameras();
     }
 
-    protected void FromKnotToNet()
+    protected void PrepareScene()
     {
-        StateOfSliders(leftSliderPanel, false);
-        StateOfButtons(leftAddMinusButtons, false, customGrey);
-        StateOfSliders(rightSliderPanel, true);
+        camKnotMov = cameraKnot.GetComponent<CameraMovement>();
+        camNetMov = cameraNet.GetComponent<CameraMovement>();
 
-        FromKnotToNetBase();
+        isEditNet = true;
+
+        customGrey = new Color(0.35f, 0.35f, 0.35f, 1);
+        customOrange = new Color(1, 0.6578746f, 0, 1);
+        customSilver = new Color(195, 195, 195, 1);
     }
 
-    private void StateOfSliders(GameObject panel, bool enabled)
+    protected void FromNetToKnotBase()
     {
-        int childrenCount = panel.transform.childCount;
-        for (int i = 0; i < childrenCount; ++i)
+        rightExportButton.interactable = false;
+        rightExportButton.GetComponentInChildren<Text>().color = customGrey;
+        editNet.interactable = true;
+        editNet.GetComponentInChildren<Text>().color = customOrange;
+        editKnot.interactable = false;
+        editKnot.GetComponentInChildren<Text>().color = customGrey;
+
+        camKnotMov.enabled = true;
+        camNetMov.enabled = false;
+        isEditNet = false;
+    }
+
+    protected void FromKnotToNetBase()
+    {
+        rightExportButton.interactable = true;
+        rightExportButton.GetComponentInChildren<Text>().color = customOrange;
+        editNet.interactable = false;
+        editNet.GetComponentInChildren<Text>().color = customGrey;
+        editKnot.interactable = true;
+        editKnot.GetComponentInChildren<Text>().color = customOrange;
+
+        camKnotMov.enabled = false;
+        camNetMov.enabled = true;
+        isEditNet = true;
+    }
+
+    public virtual void ChangeCameras()
+    {
+        if (isEditNet)
         {
-            if (i % 2 == 1) panel.transform.GetChild(i).gameObject.GetComponent<Slider>().enabled = enabled;
+            FromNetToKnotBase();
         }
-    }
-
-    private void StateOfButtons(GameObject panel, bool enabled, Color color)
-    {
-        int childrenCount = panel.transform.childCount;
-        for (int i = 0; i < childrenCount; ++i)
+        else
         {
-            var button = panel.transform.GetChild(i).gameObject.GetComponent<Button>();
-            button.interactable = enabled;
-            button.GetComponentInChildren<Text>().color = color;
+            generateMesh.UpdateNet();
+            FromKnotToNetBase();
         }
     }
 }

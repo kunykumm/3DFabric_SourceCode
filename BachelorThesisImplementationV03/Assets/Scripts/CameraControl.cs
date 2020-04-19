@@ -1,19 +1,51 @@
 ﻿using Dreamteck.Splines;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraControl : CameraControlBase
 {
-    public GenerateMesh generateMesh;
+    public GameObject leftSliderPanel;
+    public GameObject rightSliderPanel;
 
-    void Start()
+    protected void FromNetToKnot()
     {
-        PrepareScene();
-        ChangeCameras();
+        StateOfSliders(leftSliderPanel, true);
+        StateOfButtons(leftAddMinusButtons, true, customSilver);
+        StateOfSliders(rightSliderPanel, false);
+
+        FromNetToKnotBase();
     }
 
-    public void ChangeCameras()
+    protected void FromKnotToNet()
+    {
+        StateOfSliders(leftSliderPanel, false);
+        StateOfButtons(leftAddMinusButtons, false, customGrey);
+        StateOfSliders(rightSliderPanel, true);
+
+        FromKnotToNetBase();
+    }
+
+    private void StateOfSliders(GameObject panel, bool enabled)
+    {
+        int childrenCount = panel.transform.childCount;
+        for (int i = 0; i < childrenCount; ++i)
+        {
+            if (i % 2 == 1) panel.transform.GetChild(i).gameObject.GetComponent<Slider>().enabled = enabled;
+        }
+    }
+
+    private void StateOfButtons(GameObject panel, bool enabled, Color color)
+    {
+        int childrenCount = panel.transform.childCount;
+        for (int i = 0; i < childrenCount; ++i)
+        {
+            var button = panel.transform.GetChild(i).gameObject.GetComponent<Button>();
+            button.interactable = enabled;
+            button.GetComponentInChildren<Text>().color = color;
+        }
+    }
+
+    public override void ChangeCameras()
     {
         if (isEditNet)
         {

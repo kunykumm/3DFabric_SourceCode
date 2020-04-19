@@ -5,7 +5,6 @@ using UnityEngine;
 public class GenerateCoveredMesh : GenerateSimplyMesh
 {
     public bool hexagonal;
-    private float hexagonalOffset;
 
     void Start()
     {
@@ -25,8 +24,6 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
 
         sizeChanger.SetOffsets(0.14f, 0.14f);
         sizeChanger.ChangeSizesNet();
-
-        if (hexagonal) CalculateHexagonalOffset();
     }
 
     void Update()
@@ -39,12 +36,7 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
         }
     }
 
-    private void CalculateHexagonalOffset()
-    {
-        hexagonalOffset = Mathf.Sqrt(Mathf.Pow(width / 2, 2) - Mathf.Pow(height / 2, 2));
-    }
-
-    public void UpdateCoveredNet()
+    public override void UpdateNet()
     { 
         sizeChanger.ChangeSizesNet();
     }

@@ -2190,18 +2190,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1076346550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baa9c004aa9f74a40aeff4b213fa33f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e18ef4c023bcec44a1460ffc31cce4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generateMesh: {fileID: 352164149}
   editNet: {fileID: 284102259}
   editKnot: {fileID: 1130865700}
   cameraKnot: {fileID: 302719968}
   cameraNet: {fileID: 1093384505}
-  leftSliderPanel: {fileID: 1893829239}
-  rightSliderPanel: {fileID: 1262548580}
   leftAddMinusButtons: {fileID: 284102256}
   rightExportButton: {fileID: 1130865698}
-  generateMeshTwoKnots: {fileID: 352164149}
+  leftSliderPanel: {fileID: 1893829239}
+  rightSliderPanel: {fileID: 1262548580}
 --- !u!4 &1076346552
 Transform:
   m_ObjectHideFlags: 0

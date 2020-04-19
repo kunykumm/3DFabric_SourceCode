@@ -20,7 +20,7 @@ namespace Dreamteck.Splines
             sizeChanger.ChangeSizesNet();
         }
 
-        public void UpdateNet()
+        public virtual void UpdateNet()
         {
             DeleteRows(prevRows - 1);
             knotClone = runtimeRows.transform.GetChild(0).gameObject;

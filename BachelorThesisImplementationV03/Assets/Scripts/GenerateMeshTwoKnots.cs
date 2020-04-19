@@ -45,7 +45,7 @@ public class GenerateMeshTwoKnots : GenerateMesh
         splineComputerRotated = knotCloneRotated.GetComponent<SplineComputer>();
     }
 
-    public void UpdateComplicatedNet()
+    public override void UpdateNet()
     {
         DeleteRows(prevRows - 1);
         knotClone = runtimeRows.transform.GetChild(0).gameObject;

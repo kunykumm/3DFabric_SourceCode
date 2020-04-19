@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenerateSimplyMesh : GenerateBase
+public class GenerateSimplyMesh : GenerateMesh
 {
     public float verticalOffset;
 
@@ -41,7 +41,7 @@ public class GenerateSimplyMesh : GenerateBase
         }
     }
 
-    public void UpdateNet()
+    public override void UpdateNet()
     {
         UpdateKnot();
         sizeChanger.ChangeSizesNet();

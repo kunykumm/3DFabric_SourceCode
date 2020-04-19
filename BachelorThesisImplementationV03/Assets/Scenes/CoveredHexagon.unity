@@ -716,7 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09a0b801a4110f419bfa67b9340c595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generateCoveredMesh: {fileID: 1541885013}
+  generateMesh: {fileID: 1541885013}
   editNet: {fileID: 1346685891}
   editKnot: {fileID: 1499334794}
   cameraKnot: {fileID: 591961734}
