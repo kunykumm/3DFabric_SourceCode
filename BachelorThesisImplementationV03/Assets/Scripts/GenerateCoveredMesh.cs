@@ -5,6 +5,7 @@ using UnityEngine;
 public class GenerateCoveredMesh : GenerateSimplyMesh
 {
     public bool hexagonal;
+    private float hexagonalOffset;
 
     void Start()
     {
@@ -24,6 +25,8 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
 
         sizeChanger.SetOffsets(0.14f, 0.14f);
         sizeChanger.ChangeSizesNet();
+
+        if (hexagonal) CalculateHexagonalOffset();
     }
 
     void Update()
@@ -34,6 +37,11 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
             if (prevRows != (int)rows.value) ChangeRowsCovered();
             sizeChanger.ChangeSizesNet();
         }
+    }
+
+    private void CalculateHexagonalOffset()
+    {
+        hexagonalOffset = Mathf.Sqrt(Mathf.Pow(width / 2, 2) - Mathf.Pow(height / 2, 2));
     }
 
     public void UpdateCoveredNet()
@@ -62,10 +70,13 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
             for (int j = 0; j < diff; ++j)
             {
                 var newPosition = new Vector3(0, 0, 0);
-                newPosition += transform.right * (prevColumns + j) * (width - verticalOffset);
                 newPosition -= transform.up * i * (height - heightOffset);
-                if (hexagonal) newPosition += transform.right * verticalOffset;
-
+                newPosition += transform.right * (prevColumns + j) * (width - verticalOffset);
+                if (hexagonal)
+                {
+                    newPosition -= transform.right * (prevColumns + j) * (-verticalOffset);
+                    if ((prevColumns + j) % 2 == 1) newPosition += transform.up * (- height / 2 + heightOffset / 2);
+                }
                 GameObject newKnot = Instantiate(knotClone, newPosition, Quaternion.identity);
                 newKnot.name = "KnotForNet";
                 newKnot.tag = "knotrow";

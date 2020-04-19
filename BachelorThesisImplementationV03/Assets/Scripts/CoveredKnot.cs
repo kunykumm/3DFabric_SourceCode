@@ -7,8 +7,8 @@ public class CoveredKnot : MonoBehaviour
     public SizeChanger sizeChanger;
     public int triangleCount;
 
-    private float rWidth = 1f;
-    private float rHeight = 1f;
+    public float rWidth;
+    public float rHeight;
 
     void Start()
     {

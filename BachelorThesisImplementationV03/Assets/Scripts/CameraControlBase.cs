@@ -2,37 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CameraControlBase : MonoBehaviour
+public class CameraControlBase : CameraControlCovered
 {
-    public Button editNet;
-    public Button editKnot;
-
-    public Camera cameraKnot;
-    public Camera cameraNet;
     public GameObject leftSliderPanel;
     public GameObject rightSliderPanel;
-    public GameObject leftAddMinusButtons;
-    public Button rightExportButton;
-
-    private CameraMovement camKnotMov;
-    private CameraMovement camNetMov;
-    private Color customGrey;
-    private Color customSilver;
-    private Color customOrange;
-
-    protected bool isEditNet;
-
-    protected void PrepareScene()
-    {
-        camKnotMov = cameraKnot.GetComponent<CameraMovement>();
-        camNetMov = cameraNet.GetComponent<CameraMovement>();
-
-        isEditNet = true;
-
-        customGrey = new Color(0.35f, 0.35f, 0.35f, 1);
-        customOrange = new Color(1, 0.6578746f, 0, 1);
-        customSilver = new Color(195, 195, 195, 1);
-    }
 
     protected void FromNetToKnot()
     {
@@ -40,16 +13,7 @@ public class CameraControlBase : MonoBehaviour
         StateOfButtons(leftAddMinusButtons, true, customSilver);
         StateOfSliders(rightSliderPanel, false);
 
-        rightExportButton.interactable = false;
-        rightExportButton.GetComponentInChildren<Text>().color = customGrey;
-        editNet.interactable = true;
-        editNet.GetComponentInChildren<Text>().color = customOrange;
-        editKnot.interactable = false;
-        editKnot.GetComponentInChildren<Text>().color = customGrey;
-
-        camKnotMov.enabled = true;
-        camNetMov.enabled = false;
-        isEditNet = false;
+        FromNetToKnotBase();
     }
 
     protected void FromKnotToNet()
@@ -58,16 +22,7 @@ public class CameraControlBase : MonoBehaviour
         StateOfButtons(leftAddMinusButtons, false, customGrey);
         StateOfSliders(rightSliderPanel, true);
 
-        rightExportButton.interactable = true;
-        rightExportButton.GetComponentInChildren<Text>().color = customOrange;
-        editNet.interactable = false;
-        editNet.GetComponentInChildren<Text>().color = customGrey;
-        editKnot.interactable = true;
-        editKnot.GetComponentInChildren<Text>().color = customOrange;
-
-        camKnotMov.enabled = false;
-        camNetMov.enabled = true;
-        isEditNet = true;
+        FromKnotToNetBase();
     }
 
     private void StateOfSliders(GameObject panel, bool enabled)
