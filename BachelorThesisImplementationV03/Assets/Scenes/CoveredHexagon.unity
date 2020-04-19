@@ -717,6 +717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generateMesh: {fileID: 1541885013}
+  rightSliderPanel: {fileID: 1499334800}
   editNet: {fileID: 1346685891}
   editKnot: {fileID: 1499334794}
   cameraKnot: {fileID: 591961734}
@@ -1436,6 +1437,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1499334800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8678113341335782393, guid: 44c6e451704f4de4cabbb2aef13132b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1499334791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1515397941
 GameObject:
   m_ObjectHideFlags: 0

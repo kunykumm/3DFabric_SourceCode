@@ -1101,7 +1101,7 @@ GameObject:
   - component: {fileID: 1444133888}
   - component: {fileID: 1444133887}
   m_Layer: 5
-  m_Name: EdgedKnot (1)
+  m_Name: Hexagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1206,7 +1206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coverImage: {fileID: 2135684835}
   title: {fileID: 1763747882}
-  nextScene: CoveredNets
+  nextScene: CoveredHexagon
 --- !u!114 &1444133889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1227,7 +1227,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6693dedd649371244b5b88cc313f67ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cab17b8c5de0c6b4bbfd1ed676b619be, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1614,7 +1614,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Soon
+  m_Text: Hexagon
 --- !u!222 &1763747883
 CanvasRenderer:
   m_ObjectHideFlags: 0

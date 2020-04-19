@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CoveredSquare.unity
     guid: e5654f849c432374c9cf5c56e7b8419b
+  - enabled: 1
+    path: Assets/Scenes/CoveredHexagon.unity
+    guid: a2052ede454b77140bd5de310a519d14
   m_configObjects: {}

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class CameraControlBase : MonoBehaviour
 {
     public GenerateMesh generateMesh;
+    public GameObject rightSliderPanel;
 
     public Button editNet;
     public Button editKnot;
@@ -44,6 +45,9 @@ public class CameraControlBase : MonoBehaviour
 
     protected void FromNetToKnotBase()
     {
+        StateOfButtons(leftAddMinusButtons, true, customSilver);
+        StateOfSliders(rightSliderPanel, false);
+
         rightExportButton.interactable = false;
         rightExportButton.GetComponentInChildren<Text>().color = customGrey;
         editNet.interactable = true;
@@ -58,6 +62,9 @@ public class CameraControlBase : MonoBehaviour
 
     protected void FromKnotToNetBase()
     {
+        StateOfButtons(leftAddMinusButtons, false, customGrey);
+        StateOfSliders(rightSliderPanel, true);
+
         rightExportButton.interactable = true;
         rightExportButton.GetComponentInChildren<Text>().color = customOrange;
         editNet.interactable = false;
@@ -68,6 +75,26 @@ public class CameraControlBase : MonoBehaviour
         camKnotMov.enabled = false;
         camNetMov.enabled = true;
         isEditNet = true;
+    }
+
+    protected void StateOfSliders(GameObject panel, bool enabled)
+    {
+        int childrenCount = panel.transform.childCount;
+        for (int i = 0; i < childrenCount; ++i)
+        {
+            if (i % 2 == 1) panel.transform.GetChild(i).gameObject.GetComponent<Slider>().enabled = enabled;
+        }
+    }
+
+    protected void StateOfButtons(GameObject panel, bool enabled, Color color)
+    {
+        int childrenCount = panel.transform.childCount;
+        for (int i = 0; i < childrenCount; ++i)
+        {
+            var button = panel.transform.GetChild(i).gameObject.GetComponent<Button>();
+            button.interactable = enabled;
+            button.GetComponentInChildren<Text>().color = color;
+        }
     }
 
     public virtual void ChangeCameras()
