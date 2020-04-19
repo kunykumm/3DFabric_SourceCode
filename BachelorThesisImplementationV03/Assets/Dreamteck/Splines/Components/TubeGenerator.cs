@@ -116,6 +116,14 @@ namespace Dreamteck.Splines
         private int capVertexCount = 0;
         private int capTrisCount = 0;
 
+        //MINE
+
+        public int GetTriangleCount()
+        {
+            BuildMesh();
+            return tsMesh.triangles.Length / 3;
+        }
+
         protected override void Reset()
         {
             base.Reset();

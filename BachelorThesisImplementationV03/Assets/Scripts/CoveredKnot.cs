@@ -5,6 +5,7 @@ using UnityEngine;
 public class CoveredKnot : MonoBehaviour
 {
     public SizeChanger sizeChanger;
+    public int triangleCount;
 
     private float rWidth = 1f;
     private float rHeight = 1f;
@@ -16,5 +17,7 @@ public class CoveredKnot : MonoBehaviour
         sizeChanger.SetLineWidth(0.14f);
         sizeChanger.SetOffsets(0.14f, 0.14f);
         sizeChanger.ChangeSizesNet();
+        sizeChanger.UpdateTriangleCount(triangleCount);
     }
+
 }

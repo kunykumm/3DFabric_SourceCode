@@ -41,6 +41,7 @@ namespace Dreamteck.Splines
             sizeChanger.SetWidth(rWidth);
             sizeChanger.SetLineWidth(prevWidth);
             sizeChanger.ChangeSizesNet();
+            sizeChanger.UpdateTriangleCount(tubeGenerator.GetTriangleCount());
         }
 
         public void OnEdit()
@@ -64,6 +65,7 @@ namespace Dreamteck.Splines
         {
             prevDetail = detail.value;
             tubeGenerator.sides = (int)prevDetail;
+            sizeChanger.UpdateTriangleCount(tubeGenerator.GetTriangleCount());
         }
     }
 }

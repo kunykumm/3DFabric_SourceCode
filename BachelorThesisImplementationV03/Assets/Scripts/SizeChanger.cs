@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dreamteck.Splines;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,14 +10,17 @@ public class SizeChanger : MonoBehaviour
     public Text heightText;
     public Text widthText;
     public Text lineWidthText;
+    public Text triangleCountText;
     public Button addButton;
     public Button subButton;
     public Slider lineWidthSlider;
+    public TubeGenerator tubeGeneratorNet;
     public bool isCovered;
 
     //RigthSide (Knot)
     public Text netHeight;
     public Text netWidth;
+    public Text netTrianglesCount;
     public Slider columnsSlider;
     public Slider rowsSlider;
     public int halfKnotAtEnd = 0; // pripad basic knot
@@ -32,6 +36,7 @@ public class SizeChanger : MonoBehaviour
     private float previousHeight;
     private float previousWidth;
     private float previousLineWidth;
+    private float triangleCount;
 
     private float changer = 0.0f;
     private float currentScale = 1.0f;
@@ -186,6 +191,8 @@ public class SizeChanger : MonoBehaviour
         netWidth.text = "Editor: " + newWidth.ToString("0.00") + " cm | Real: " + realWidth.ToString("0.00") + " cm";
 
         previousLineWidth = savedLineWidth;
+
+        CalculateTrianglesCount();
     }
 
     private void CalculateDimensions(ref float dimension, float sliderValue, int alter, float prevDimension, bool isWidth)
@@ -209,6 +216,17 @@ public class SizeChanger : MonoBehaviour
         if (sliderValue > 2) dimension += (alter * (sliderValue - 2) * (newPrevDim - 3 * lineWidth) +
                 2 * (newPrevDim - lineWidth));
         if (isCovered) dimension += ((sliderValue - 1) * widthOffset);
+    }
+
+    private void CalculateTrianglesCount()
+    {
+        if (isCovered)
+        {
+            netTrianglesCount.text = (rowsSlider.value * columnsSlider.value * triangleCount).ToString();
+            return;
+        }
+        if (continuousLine == 1) netTrianglesCount.text = (rowsSlider.value * tubeGeneratorNet.GetTriangleCount()).ToString();
+        else netTrianglesCount.text = (rowsSlider.value * columnsSlider.value * triangleCount).ToString();
     }
 
     private void ChangeNetCameraFocus(float newHeight, float newWidth)
@@ -240,5 +258,11 @@ public class SizeChanger : MonoBehaviour
 
         editorNetHeight = newHeight;
         editorNetWidth = newWidth;
+    }
+
+    public void UpdateTriangleCount(int triangleCount)
+    {
+        this.triangleCount = triangleCount;
+        triangleCountText.text = triangleCount.ToString();
     }
 }
