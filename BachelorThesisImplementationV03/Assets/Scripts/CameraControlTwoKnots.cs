@@ -14,7 +14,7 @@ public class CameraControlTwoKnots : CameraControlBase
 
     public void ChangeCameras()
     {
-        if (editNet)
+        if (isEditNet)
         {
             FromNetToKnot();
         }

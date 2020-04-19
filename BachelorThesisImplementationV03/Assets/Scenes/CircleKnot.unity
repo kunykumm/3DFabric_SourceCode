@@ -918,6 +918,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -61.899994
       objectReference: {fileID: 0}
+    - target: {fileID: 4007053513765158195, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 56.199997
+      objectReference: {fileID: 0}
     - target: {fileID: 4007053514641746901, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
       propertyPath: m_Text
@@ -947,6 +952,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563797172467300304, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 35.794098
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669622915066866380, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 729162721}
+    - target: {fileID: 5669622915066866380, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeCameras
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 495329860a1fed449bf3564f74f218df, type: 3}
@@ -1032,6 +1052,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &419330964 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5669622915066866380, guid: 495329860a1fed449bf3564f74f218df,
+    type: 3}
+  m_PrefabInstance: {fileID: 419330955}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &422083763
@@ -1588,7 +1620,7 @@ PrefabInstance:
     - target: {fileID: 8678113340963614882, guid: 44c6e451704f4de4cabbb2aef13132b3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -52.80002
+      value: -401.2059
       objectReference: {fileID: 0}
     - target: {fileID: 8678113340963614883, guid: 44c6e451704f4de4cabbb2aef13132b3,
         type: 3}
@@ -1643,14 +1675,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &454490528 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8678113340163013711, guid: 44c6e451704f4de4cabbb2aef13132b3,
+  m_CorrespondingSourceObject: {fileID: 8678113340963614883, guid: 44c6e451704f4de4cabbb2aef13132b3,
     type: 3}
   m_PrefabInstance: {fileID: 454490525}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &454490529 stripped
@@ -1839,13 +1871,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e4fa6f8a21b29c439dfd94cc49c67ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  editNet: {fileID: 419330964}
+  editKnot: {fileID: 454490528}
   cameraKnot: {fileID: 450596289}
   cameraNet: {fileID: 61000762}
   leftSliderPanel: {fileID: 419330957}
   rightSliderPanel: {fileID: 454490529}
   leftAddMinusButtons: {fileID: 419330960}
   rightExportButton: {fileID: 454490533}
-  buttonText: {fileID: 454490528}
   generateSimplyMesh: {fileID: 305573953}
 --- !u!4 &729162722
 Transform:

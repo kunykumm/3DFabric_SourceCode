@@ -14,7 +14,7 @@ public class CameraControlCovered : CameraControlBase
 
     public void ChangeCameras()
     {
-        if (editNet)
+        if (isEditNet)
         {
             FromNetToKnot();
         }

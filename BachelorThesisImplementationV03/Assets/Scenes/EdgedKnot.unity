@@ -120,18 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &29215621 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8678113340163013711, guid: 44c6e451704f4de4cabbb2aef13132b3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1549527119}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &112840522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1017,13 +1005,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9c004aa9f74a40aeff4b213fa33f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  editNet: {fileID: 4007053513840493801}
+  editKnot: {fileID: 1549527126}
   cameraKnot: {fileID: 714351081}
   cameraNet: {fileID: 1424661170}
   leftSliderPanel: {fileID: 1265888277}
   rightSliderPanel: {fileID: 637104816}
   leftAddMinusButtons: {fileID: 4007053513840493800}
   rightExportButton: {fileID: 1549527124}
-  buttonText: {fileID: 29215621}
   generateMeshTwoKnots: {fileID: 2141472904}
 --- !u!4 &912084577
 Transform:
@@ -2157,7 +2146,7 @@ PrefabInstance:
     - target: {fileID: 8678113340963614882, guid: 44c6e451704f4de4cabbb2aef13132b3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -52.80002
+      value: -401.2059
       objectReference: {fileID: 0}
     - target: {fileID: 8678113340963614883, guid: 44c6e451704f4de4cabbb2aef13132b3,
         type: 3}
@@ -2256,6 +2245,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1549527126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8678113340963614883, guid: 44c6e451704f4de4cabbb2aef13132b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1549527119}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1613151563
@@ -3199,6 +3200,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -61.899994
       objectReference: {fileID: 0}
+    - target: {fileID: 4007053513765158195, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 56.199997
+      objectReference: {fileID: 0}
     - target: {fileID: 4007053512825582097, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
       propertyPath: m_Text
@@ -3209,6 +3215,21 @@ PrefabInstance:
       propertyPath: m_Text
       value: 1316
       objectReference: {fileID: 0}
+    - target: {fileID: 4563797172467300304, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 35.794098
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669622915066866380, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 912084576}
+    - target: {fileID: 5669622915066866380, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeCameras
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 495329860a1fed449bf3564f74f218df, type: 3}
 --- !u!1 &4007053513840493800 stripped
@@ -3217,3 +3238,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4007053513840493799}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4007053513840493801 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5669622915066866380, guid: 495329860a1fed449bf3564f74f218df,
+    type: 3}
+  m_PrefabInstance: {fileID: 4007053513840493799}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
