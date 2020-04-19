@@ -2382,6 +2382,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7914266150652775592, guid: 0e159c03b955d7349a8c17c3d132175f,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Diameter:'
+      objectReference: {fileID: 0}
     - target: {fileID: 7914266150914860796, guid: 0e159c03b955d7349a8c17c3d132175f,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
