@@ -38,7 +38,6 @@ public class ExportMesh : MonoBehaviour
         string check = filePath.Substring(filePath.Length - 3, 3);
         if (check.Equals("stl")) SaveAsStl(filePath);
         if (check.Equals("obj")) SaveAsObj(filePath);
-        if (check.Equals("fbx")) SaveAsFbx(filePath);
         savedInfo.text = "Your net was saved successfully.";
     }
 
@@ -57,10 +56,6 @@ public class ExportMesh : MonoBehaviour
         savedInfo.text = "Your net was saved successfully.";
     }
 
-    private void SaveAsFbx(string filePath)
-    {
-    }
-
     private void PrepareMeshesForStl()
     {
         int length = theWholeMesh.Length;
@@ -71,7 +66,7 @@ public class ExportMesh : MonoBehaviour
         for (int i = 0; i < length; ++i)
         {
             meshes[i] = theWholeMesh[i].GetComponent<MeshFilter>().mesh;
-            matrices[i] = Matrix4x4.TRS(theWholeMesh[i].transform.position, theWholeMesh[i].transform.rotation, scaleV);
+            matrices[i] = Matrix4x4.TRS(theWholeMesh[i].transform.position * scale, theWholeMesh[i].transform.rotation, scaleV);
 
         }
     }

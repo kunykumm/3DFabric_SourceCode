@@ -187,8 +187,8 @@ public class SizeChanger : MonoBehaviour
 
         if (newHeight != editorNetHeight || newWidth != editorNetWidth) ChangeNetCameraFocus(newHeight, newWidth);
 
-        netHeight.text = "Editor: " + newHeight.ToString("0.00") + " cm | Real: " + realHeight.ToString("0.00") + " cm";
-        netWidth.text = "Editor: " + newWidth.ToString("0.00") + " cm | Real: " + realWidth.ToString("0.00") + " cm";
+        netHeight.text = "Editor: " + (newHeight * currentScale).ToString("0.00") + " cm | Real: " + (realHeight * currentScale).ToString("0.00") + " cm";
+        netWidth.text = "Editor: " + (newWidth * currentScale).ToString("0.00") + " cm | Real: " + (realWidth * currentScale).ToString("0.00") + " cm";
 
         previousLineWidth = savedLineWidth;
 

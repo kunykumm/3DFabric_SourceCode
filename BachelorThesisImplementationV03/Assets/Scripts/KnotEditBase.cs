@@ -40,8 +40,8 @@ namespace Dreamteck.Splines
             sizeChanger.SetHeight(rHeight);
             sizeChanger.SetWidth(rWidth);
             sizeChanger.SetLineWidth(prevWidth);
-            sizeChanger.ChangeSizesNet();
             sizeChanger.UpdateTriangleCount(tubeGenerator.GetTriangleCount());
+            sizeChanger.ChangeSizesNet();
         }
 
         public void OnEdit()
