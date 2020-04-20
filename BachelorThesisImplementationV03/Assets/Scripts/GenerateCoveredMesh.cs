@@ -5,6 +5,7 @@ using UnityEngine;
 public class GenerateCoveredMesh : GenerateSimplyMesh
 {
     public bool hexagonal;
+    public bool triangle;
 
     void Start()
     {
@@ -54,6 +55,8 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
     private void AddColumnsCovered(int diff, int beginning = 0)
     {
         int childCount = runtimeRows.transform.childCount;
+        Quaternion quat = Quaternion.identity;
+        Vector3 rotation = new Vector3(0, 0, 60);
 
         for (int i = beginning; i < childCount; ++i)
         {
@@ -61,15 +64,26 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
 
             for (int j = 0; j < diff; ++j)
             {
+                quat = Quaternion.identity;
                 var newPosition = new Vector3(0, 0, 0);
                 newPosition -= transform.up * i * (height - heightOffset);
                 newPosition += transform.right * (prevColumns + j) * (width - verticalOffset);
                 if (hexagonal)
                 {
                     newPosition -= transform.right * (prevColumns + j) * (-verticalOffset);
-                    if ((prevColumns + j) % 2 == 1) newPosition += transform.up * (- height / 2 + heightOffset / 2);
+                    if ((prevColumns + j) % 2 == 1) newPosition += transform.up * (-height / 2 + heightOffset / 2);
                 }
-                GameObject newKnot = Instantiate(knotClone, newPosition, Quaternion.identity);
+                if (triangle)
+                {
+                    newPosition -= transform.up * i * (-heightOffset) * 4 / 3.1f;
+                    newPosition -= transform.right * (prevColumns + j) * (-verticalOffset) * 2;
+                    if (((prevColumns + j) % 2 == 1 && (prevRows + i) % 2 == 0) || ((prevColumns + j) % 2 == 0 && (prevRows + i) % 2 == 1))
+                    {
+                        newPosition -= transform.up * ((height - heightOffset) / 3);
+                        quat = Quaternion.Euler(rotation);
+                    }
+                }
+                GameObject newKnot = Instantiate(knotClone, newPosition, quat);
                 newKnot.name = "KnotForNet";
                 newKnot.tag = "knotrow";
                 newKnot.layer = 9;

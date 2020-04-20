@@ -1571,6 +1571,7 @@ MonoBehaviour:
   heightOffset: -0.14
   verticalOffset: -0.14
   hexagonal: 1
+  triangle: 0
 --- !u!4 &1541885014
 Transform:
   m_ObjectHideFlags: 0
@@ -1607,6 +1608,8 @@ MonoBehaviour:
   triangleCount: 782
   rWidth: 1.16
   rHeight: 1.00475
+  lineWidth: 1.0695
+  offset: 1.4
 --- !u!43 &1903522065
 Mesh:
   m_ObjectHideFlags: 0

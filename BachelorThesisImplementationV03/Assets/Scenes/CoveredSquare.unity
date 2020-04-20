@@ -576,6 +576,7 @@ MonoBehaviour:
   heightOffset: -0.14
   verticalOffset: -0.14
   hexagonal: 0
+  triangle: 0
 --- !u!4 &555341976
 Transform:
   m_ObjectHideFlags: 0
@@ -777,6 +778,8 @@ MonoBehaviour:
   triangleCount: 682
   rWidth: 1
   rHeight: 1
+  lineWidth: 1.4
+  offset: 1.4
 --- !u!1 &1047914176
 GameObject:
   m_ObjectHideFlags: 0
