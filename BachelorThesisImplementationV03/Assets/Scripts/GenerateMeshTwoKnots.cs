@@ -6,9 +6,7 @@ using UnityEngine;
 public class GenerateMeshTwoKnots : GenerateMesh
 {
     public GameObject knotPrefabRotated;
-
     private GameObject knotCloneRotated;
-
     private SplineComputer splineComputerRotated;
 
 

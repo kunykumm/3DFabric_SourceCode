@@ -38,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CoveredHexagon.unity
     guid: a2052ede454b77140bd5de310a519d14
+  - enabled: 1
+    path: Assets/Scenes/CoveredTriangle.unity
+    guid: 2709871b83ce8c14aa7fd3f2ffd96203
   m_configObjects: {}

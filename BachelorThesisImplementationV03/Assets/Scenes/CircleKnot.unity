@@ -760,31 +760,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 56.199997
       objectReference: {fileID: 0}
-    - target: {fileID: 4007053514641746901, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: m_Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4007053512856718031, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: change
-      value: -0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4007053512856718031, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: otherButton
-      value: 
-      objectReference: {fileID: 419330962}
-    - target: {fileID: 4007053514435894710, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: change
-      value: 0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4007053514435894710, guid: 495329860a1fed449bf3564f74f218df,
-        type: 3}
-      propertyPath: otherButton
-      value: 
-      objectReference: {fileID: 419330961}
     - target: {fileID: 163364540952790258, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
       propertyPath: m_Text
@@ -805,6 +780,31 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeCameras
       objectReference: {fileID: 0}
+    - target: {fileID: 4007053512856718031, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: change
+      value: -0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4007053512856718031, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: otherButton
+      value: 
+      objectReference: {fileID: 419330962}
+    - target: {fileID: 4007053514641746901, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4007053514435894710, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: change
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4007053514435894710, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: otherButton
+      value: 
+      objectReference: {fileID: 419330961}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 495329860a1fed449bf3564f74f218df, type: 3}
 --- !u!114 &419330956 stripped
@@ -1454,11 +1454,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8678113340963614882, guid: 44c6e451704f4de4cabbb2aef13132b3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -401.2059
-      objectReference: {fileID: 0}
     - target: {fileID: 8678113340963614883, guid: 44c6e451704f4de4cabbb2aef13132b3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1478,6 +1473,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExportNet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678113340335977726, guid: 44c6e451704f4de4cabbb2aef13132b3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -107.29999
       objectReference: {fileID: 0}
     - target: {fileID: 8678113341340594900, guid: 44c6e451704f4de4cabbb2aef13132b3,
         type: 3}
@@ -1709,6 +1709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generateMesh: {fileID: 305573953}
+  rightSliderPanel: {fileID: 454490529}
   editNet: {fileID: 419330964}
   editKnot: {fileID: 454490528}
   cameraKnot: {fileID: 450596289}
@@ -1716,7 +1717,6 @@ MonoBehaviour:
   leftAddMinusButtons: {fileID: 419330960}
   rightExportButton: {fileID: 454490533}
   leftSliderPanel: {fileID: 419330957}
-  rightSliderPanel: {fileID: 454490529}
 --- !u!4 &729162722
 Transform:
   m_ObjectHideFlags: 0

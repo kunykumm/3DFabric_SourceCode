@@ -190,7 +190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Soon
+  m_Text: Triangle
 --- !u!222 &85898715
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1334,7 +1334,7 @@ GameObject:
   - component: {fileID: 1702994704}
   - component: {fileID: 1702994703}
   m_Layer: 5
-  m_Name: BasicKnot
+  m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1439,7 +1439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coverImage: {fileID: 499136312}
   title: {fileID: 85898714}
-  nextScene: CoveredNets
+  nextScene: CoveredTriangle
 --- !u!114 &1702994705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1460,7 +1460,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6693dedd649371244b5b88cc313f67ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 12a53245935e6c34998e8f51edcca7eb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

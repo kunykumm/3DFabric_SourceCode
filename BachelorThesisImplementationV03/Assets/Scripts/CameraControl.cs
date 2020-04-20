@@ -14,7 +14,7 @@ public class CameraControl : CameraControlBase
 
     protected void FromKnotToNet()
     {
-        StateOfSliders(rightSliderPanel, true);
+        StateOfSliders(leftSliderPanel, false);
         FromKnotToNetBase();
     }
 
