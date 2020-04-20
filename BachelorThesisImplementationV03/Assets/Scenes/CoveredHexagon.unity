@@ -1603,7 +1603,7 @@ MonoBehaviour:
   triangleCount: 782
   rWidth: 1.16
   rHeight: 1.00475
-  lineWidth: 1.0695
+  lineWidth: 0.10695
   offset: 1.4
 --- !u!43 &1903522065
 Mesh:

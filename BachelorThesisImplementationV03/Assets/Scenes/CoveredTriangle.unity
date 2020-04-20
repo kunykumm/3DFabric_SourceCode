@@ -1811,7 +1811,7 @@ MonoBehaviour:
   triangleCount: 478
   rWidth: 1.385641
   rHeight: 1.2
-  lineWidth: 1.08908
+  lineWidth: 0.108908
   offset: 1.4
 --- !u!1 &2005030246
 GameObject:
