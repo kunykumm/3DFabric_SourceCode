@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class SizeChanger : MonoBehaviour
 {
+    public GameObject theMesh;
+
     //LeftSide (Knot)
     public Text heightText;
     public Text widthText;
@@ -176,19 +178,23 @@ public class SizeChanger : MonoBehaviour
         CalculateDimensions(ref realHeight, rowsSlider.value, 1, previousHeight, false);
         CalculateDimensions(ref realWidth, columnsSlider.value, alternation, previousWidth, true);
 
-        float newHeight = realHeight;
-        float newWidth = realWidth;
-
-        if (!isCovered)
+        Bounds bounds = theMesh.GetComponent<Renderer>().bounds;
+        foreach (Transform child in theMesh.transform)
         {
-            newHeight = rowsSlider.value * (previousHeight + previousLineWidth) - (rowsSlider.value - 1) * (heightOffset + previousLineWidth);
-            newWidth = columnsSlider.value * alternation * (previousWidth + previousLineWidth - widthOffset);
+            if(child.childCount > 0)
+            {
+                foreach(Transform grandChild in child.transform)
+                {
+                    bounds.Encapsulate(grandChild.GetComponent<Renderer>().bounds);
+                }
+            }
+            bounds.Encapsulate(child.GetComponent<Renderer>().bounds);
         }
 
-        if (newHeight != editorNetHeight || newWidth != editorNetWidth) ChangeNetCameraFocus(newHeight, newWidth);
+        if (bounds.size.y != editorNetHeight || bounds.size.x != editorNetWidth) ChangeNetCameraFocus(bounds.size.y, bounds.size.x);
 
-        netHeight.text = "Editor: " + (newHeight * currentScale).ToString("0.00") + " cm | Real: " + (realHeight * currentScale).ToString("0.00") + " cm";
-        netWidth.text = "Editor: " + (newWidth * currentScale).ToString("0.00") + " cm | Real: " + (realWidth * currentScale).ToString("0.00") + " cm";
+        netHeight.text = "Editor: " + (bounds.size.y * currentScale).ToString("0.00") + " cm | Real: " + (realHeight * currentScale).ToString("0.00") + " cm";
+        netWidth.text = "Editor: " + (bounds.size.x * currentScale).ToString("0.00") + " cm | Real: " + (realWidth * currentScale).ToString("0.00") + " cm";
 
         previousLineWidth = savedLineWidth;
 

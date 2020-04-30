@@ -23,6 +23,11 @@ public class GenerateChainMesh : GenerateSimplyMesh
 
     void Update()
     {
+        if (updateValues)
+        {
+            sizeChanger.ChangeSizesNet();
+            updateValues = false;
+        }
         if (Input.GetMouseButtonUp(0))
         {
             if (prevColumns != (int)columns.value)
@@ -35,7 +40,7 @@ public class GenerateChainMesh : GenerateSimplyMesh
                 ChangeRowsSimply();
                 ChangeInterRows();
             }
-            sizeChanger.ChangeSizesNet();
+            updateValues = true;
         }
     }
 

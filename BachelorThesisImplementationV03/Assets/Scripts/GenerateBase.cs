@@ -25,6 +25,7 @@ public class GenerateBase : MonoBehaviour
     protected int basePointCount;
     protected int prevColumns = 1;
     protected int prevRows = 1;
+    protected bool updateValues;
 
     protected void SetupNet(Transform parent)
     {
@@ -40,6 +41,7 @@ public class GenerateBase : MonoBehaviour
         basePointCount = basePoints.Length;
         currentPointCount = basePointCount;
         point_size = splineComputer.GetPointSize(0);
+        updateValues = false;
     }
 
     protected void UpdateKnot()

@@ -29,11 +29,16 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
 
     void Update()
     {
+        if (updateValues)
+        {
+            sizeChanger.ChangeSizesNet();
+            updateValues = false;
+        }
         if (Input.GetMouseButtonUp(0))
         {
             if (prevColumns != (int)columns.value) ChangeColumnsCovered();
             if (prevRows != (int)rows.value) ChangeRowsCovered();
-            sizeChanger.ChangeSizesNet();
+            updateValues = true;
         }
     }
 

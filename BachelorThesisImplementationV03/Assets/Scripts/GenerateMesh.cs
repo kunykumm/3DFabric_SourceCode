@@ -39,11 +39,16 @@ namespace Dreamteck.Splines
 
         void Update()
         {
+            if(updateValues)
+            {
+                sizeChanger.ChangeSizesNet();
+                updateValues = false;
+            }
             if (Input.GetMouseButtonUp(0))
             {
                 if (prevColumns != (int)columns.value) ChangeColumns();
                 if (prevRows != (int)rows.value) ChangeRows();
-                sizeChanger.ChangeSizesNet();
+                updateValues = true;
             }
         }
 

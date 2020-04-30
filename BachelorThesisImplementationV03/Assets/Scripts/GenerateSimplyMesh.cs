@@ -33,11 +33,16 @@ public class GenerateSimplyMesh : GenerateMesh
 
     void Update()
     {
+        if (updateValues)
+        {
+            sizeChanger.ChangeSizesNet();
+            updateValues = false;
+        }
         if (Input.GetMouseButtonUp(0))
         {
             if (prevColumns != (int)columns.value) ChangeColumnsSimply();
             if (prevRows != (int)rows.value) ChangeRowsSimply();
-            sizeChanger.ChangeSizesNet();
+            updateValues = true;
         }
     }
 

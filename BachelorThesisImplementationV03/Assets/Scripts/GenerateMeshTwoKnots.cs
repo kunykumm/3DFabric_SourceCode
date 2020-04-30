@@ -25,11 +25,16 @@ public class GenerateMeshTwoKnots : GenerateMesh
 
     void Update()
     {
+        if (updateValues)
+        {
+            sizeChanger.ChangeSizesNet();
+            updateValues = false;
+        }
         if (Input.GetMouseButtonUp(0))
         {
             if (prevColumns != (int)columns.value) ChangeColumnsComplicated();
             if (prevRows != (int)rows.value) ChangeRowsComplicated();
-            sizeChanger.ChangeSizesNet();
+            updateValues = true;
         }
     }
 
