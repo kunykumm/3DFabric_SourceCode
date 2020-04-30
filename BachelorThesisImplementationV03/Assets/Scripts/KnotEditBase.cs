@@ -21,7 +21,6 @@ namespace Dreamteck.Splines
 
         private float rWidth;
         private float rHeight;
-        private KnotUtility knotUti;
 
         private void Start()
         {
@@ -34,8 +33,9 @@ namespace Dreamteck.Splines
             prevWidth = width.value;
             prevDetail = detail.value;
 
-            knotUti = new KnotUtility();
-            knotUti.FindMaxsMins(ref rHeight, ref rWidth, splineComputer.GetPoints());
+            Bounds bounds = GetComponent<MeshRenderer>().bounds;
+            rHeight = bounds.size.y;
+            rWidth = bounds.size.x;
 
             sizeChanger.SetHeight(rHeight);
             sizeChanger.SetWidth(rWidth);
