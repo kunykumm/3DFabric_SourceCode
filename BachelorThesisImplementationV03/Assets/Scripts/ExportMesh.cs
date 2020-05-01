@@ -43,7 +43,7 @@ public class ExportMesh : MonoBehaviour
 
     private void SaveAsStl(string filePath)
     {
-        float scale = sizeChanger.GetScale();
+        float scale = sizeChanger.GetCurrentScale();
         PrepareMeshesForStl();
         STL.Export(meshes, matrices, filePath);
         savedInfo.text = "Your net was saved successfully.";
@@ -61,7 +61,7 @@ public class ExportMesh : MonoBehaviour
         int length = theWholeMesh.Length;
         meshes = new Mesh[length];
         matrices = new Matrix4x4[length];
-        float scale = sizeChanger.GetScale();
+        float scale = sizeChanger.GetCurrentScale();
         Vector3 scaleV = new Vector3(scale, scale, scale);
         for (int i = 0; i < length; ++i)
         {
@@ -94,6 +94,6 @@ public class ExportMesh : MonoBehaviour
         CombineMeshes();
         objectForExport.transform.GetComponent<MeshFilter>().mesh = new Mesh();
         objectForExport.transform.GetComponent<MeshFilter>().mesh.CombineMeshes(combineInstances);
-        objectForExport.transform.localScale *= sizeChanger.GetScale();
+        objectForExport.transform.localScale *= sizeChanger.GetCurrentScale();
     }
 }

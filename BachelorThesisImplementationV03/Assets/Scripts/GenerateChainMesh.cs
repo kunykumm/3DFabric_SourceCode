@@ -5,7 +5,6 @@ public class GenerateChainMesh : GenerateSimplyMesh
 {
     public GameObject runtimeInterRows;
     public GameObject starter;
-    public float lineWidthDiff;
 
     private int prevInterColumns;
     private int prevInterRows;
@@ -102,8 +101,8 @@ public class GenerateChainMesh : GenerateSimplyMesh
 
         }
 
-        position += transform.right * (prevInterColumns + diffIndex) * (width - lineWidthDiff);
-        position -= transform.up * childIndex * (height - lineWidthDiff);
+        position += transform.right * (prevInterColumns + diffIndex) * width;
+        position -= transform.up * childIndex * height;
     }
 
     private void DeleteInterColumns(int diff)

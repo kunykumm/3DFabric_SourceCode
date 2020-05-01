@@ -16,6 +16,7 @@ public class GenerateBase : MonoBehaviour
     protected float point_size;
 
     protected SplinePoint[] basePoints;
+    protected KnotUtility knotUti;
     protected GameObject knotClone;
     protected SplineComputer splineComputer;
     protected float width;
@@ -52,9 +53,8 @@ public class GenerateBase : MonoBehaviour
     }
 
     protected void SetupKnotUtility()
-    { 
-        Bounds bounds = knotClone.GetComponent<MeshRenderer>().bounds;
-        height = bounds.size.y;
-        width = bounds.size.x;
+    {
+        knotUti = new KnotUtility();
+        knotUti.FindMaxsMins(ref height, ref width, basePoints);
     }
 }

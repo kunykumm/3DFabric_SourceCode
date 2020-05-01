@@ -19,9 +19,6 @@ namespace Dreamteck.Splines
         protected float prevWidth;
         protected float prevDetail;
 
-        private float rWidth;
-        private float rHeight;
-
         private void Start()
         {
             PrepareValues();
@@ -34,11 +31,9 @@ namespace Dreamteck.Splines
             prevDetail = detail.value;
 
             Bounds bounds = GetComponent<MeshRenderer>().bounds;
-            rHeight = bounds.size.y;
-            rWidth = bounds.size.x;
+            sizeChanger.SetHeight(bounds.size.y);
+            sizeChanger.SetWidth(bounds.size.x);
 
-            sizeChanger.SetHeight(rHeight);
-            sizeChanger.SetWidth(rWidth);
             sizeChanger.SetLineWidth(prevWidth);
             sizeChanger.UpdateTriangleCount(tubeGenerator.GetTriangleCount());
             sizeChanger.ChangeSizesNet();
@@ -53,7 +48,7 @@ namespace Dreamteck.Splines
         protected void ChangeWidth()
         {
             prevWidth = width.value;
-            float realValue = prevWidth / sizeChanger.GetCurrentScale();
+            float realValue = prevWidth / sizeChanger.GetCurrentScale() * (5f / 4.523f);
             for (int i = 0; i < splineComputer.pointCount; ++i)
             {
                 splineComputer.SetPointSize(i, realValue);

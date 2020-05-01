@@ -1905,7 +1905,7 @@ MonoBehaviour:
   sizeChanger: {fileID: 512611907}
   runtimeRows: {fileID: 2111823997}
   knotPrefab: {fileID: 1738878228}
-  heightOffset: 1.5
+  heightOffset: 1
   verticalOffset: 3
 --- !u!4 &1371797217
 Transform:

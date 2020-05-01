@@ -1,6 +1,5 @@
 ﻿using Dreamteck.Splines;
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -62,16 +61,16 @@ public class SizeChanger : MonoBehaviour
         cameraMovement = cameraNet.GetComponent<CameraMovement>();
     }
 
-    public void SetHeight(float height, float lineWidth = 0.5f)
+    public void SetHeight(float height)
     {
         previousHeight = height;
-        heightText.text = (previousHeight + lineWidth).ToString("0.00") + " cm";
+        heightText.text = previousHeight.ToString("0.00") + " cm";
     }
 
-    public void SetWidth(float width, float lineWidth = 0.5f)
+    public void SetWidth(float width)
     {
         previousWidth = width;
-        widthText.text = (previousWidth + lineWidth).ToString("0.00") + " cm";
+        widthText.text = previousWidth.ToString("0.00") + " cm";
     }
 
     public void SetLineWidth(float lineWidth)
@@ -86,10 +85,10 @@ public class SizeChanger : MonoBehaviour
         widthOffset = widthOff;
     }
 
-    public float GetScale()
-    {
-        return previousScale;
-    }
+    //public float GetScale()
+    //{
+    //    return previousScale;
+    //}
 
     public void ChangeValues(float newChange)
     {
@@ -115,13 +114,13 @@ public class SizeChanger : MonoBehaviour
     private void ChangeHeight()
     {
         float newHeight = previousHeight * currentScale;
-        heightText.text = (newHeight + (isCovered ? 0 : newLineWidth)).ToString("0.00") + " cm";
+        heightText.text = newHeight.ToString("0.00") + " cm";
     }
 
     private void ChangeWidth()
     {
         float newWidth = previousWidth * currentScale;
-        widthText.text = (newWidth + (isCovered ? 0 : newLineWidth)).ToString("0.00") + " cm";
+        widthText.text = newWidth.ToString("0.00") + " cm";
     }
 
     private void ChangeLineWidth()
@@ -159,8 +158,8 @@ public class SizeChanger : MonoBehaviour
         previousScale *= currentScale;
         currentScale = 1.0f;
         changer = 0.0f;
-        SetWidth(previousWidth, previousLineWidth);
-        SetHeight(previousHeight, previousLineWidth);
+        SetWidth(previousWidth);
+        SetHeight(previousHeight);
     }
 
     public float GetCurrentScale()
@@ -170,14 +169,6 @@ public class SizeChanger : MonoBehaviour
 
     public void ChangeSizesNet()
     {
-        float realHeight = previousHeight;
-        float realWidth = previousWidth;
-        float savedLineWidth = previousLineWidth;
-        if (isCovered) previousLineWidth = 0;
-
-        CalculateDimensions(ref realHeight, rowsSlider.value, 1, previousHeight, false);
-        CalculateDimensions(ref realWidth, columnsSlider.value, alternation, previousWidth, true);
-
         Bounds bounds = theMesh.GetComponent<Renderer>().bounds;
         foreach (Transform child in theMesh.transform)
         {
@@ -193,35 +184,10 @@ public class SizeChanger : MonoBehaviour
 
         if (bounds.size.y != editorNetHeight || bounds.size.x != editorNetWidth) ChangeNetCameraFocus(bounds.size.y, bounds.size.x);
 
-        netHeight.text = "Editor: " + (bounds.size.y * currentScale).ToString("0.00") + " cm | Real: " + (realHeight * currentScale).ToString("0.00") + " cm";
-        netWidth.text = "Editor: " + (bounds.size.x * currentScale).ToString("0.00") + " cm | Real: " + (realWidth * currentScale).ToString("0.00") + " cm";
-
-        previousLineWidth = savedLineWidth;
+        netHeight.text = "Editor: " + (bounds.size.y * GetCurrentScale()).ToString("0.00") + " cm";
+        netWidth.text = "Editor: " + (bounds.size.x * GetCurrentScale()).ToString("0.00") + " cm";
 
         CalculateTrianglesCount();
-    }
-
-    private void CalculateDimensions(ref float dimension, float sliderValue, int alter, float prevDimension, bool isWidth)
-    {
-        dimension = 0;
-        float lineWidth = previousLineWidth;
-        float newPrevDim = prevDimension;
-
-        if (isWidth)
-        {
-            if (halfKnotAtEnd == 1) dimension += ((prevDimension + lineWidth) / 2);
-            if (continuousLine == 1)
-            {
-                newPrevDim = prevDimension + lineWidth;
-                lineWidth = 0;
-            }
-            if (alternation > 1) dimension += (2 * (prevDimension - 3 * lineWidth));
-        }
-
-        if (sliderValue == 2) dimension += (alter * sliderValue * (newPrevDim - lineWidth));
-        if (sliderValue > 2) dimension += (alter * (sliderValue - 2) * (newPrevDim - 3 * lineWidth) +
-                2 * (newPrevDim - lineWidth));
-        if (isCovered) dimension += ((sliderValue - 1) * widthOffset);
     }
 
     private void CalculateTrianglesCount()
@@ -237,8 +203,6 @@ public class SizeChanger : MonoBehaviour
 
     private void ChangeNetCameraFocus(float newHeight, float newWidth)
     {
-        float customWidth = newWidth / 2;
-        if (horizontalOffset == 1) customWidth += ((previousWidth - widthOffset) / 4);
         if (newHeight > newWidth)
         {
             zChange = - newHeight * 1.7f;
@@ -252,7 +216,7 @@ public class SizeChanger : MonoBehaviour
             if (editorNetHeight > newWidth) zChange *= 0;
         }
 
-        cameraNetFocus.transform.position = new Vector3(customWidth, -newHeight / 2 + previousHeight, cameraNetFocus.transform.position.z);
+        cameraNetFocus.transform.position = new Vector3(newWidth / 2, -newHeight / 2, cameraNetFocus.transform.position.z);
 
         if (zChange != 0)
         {
