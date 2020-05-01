@@ -24,9 +24,7 @@ public class SizeChanger : MonoBehaviour
     public Text netTrianglesCount;
     public Slider columnsSlider;
     public Slider rowsSlider;
-    public int halfKnotAtEnd = 0; // pripad basic knot
-    public int continuousLine = 0; // pripad vsetkych, ktore su napojene v jednej linii
-    public int alternation = 1; // clover knot, vynechavanie uzlov, napr. kazdy druhy v riadku
+    public bool continuousLine;
 
     //CameraChange
     public GameObject cameraNetFocus;
@@ -48,8 +46,6 @@ public class SizeChanger : MonoBehaviour
     //Right Side Info
     private float editorNetHeight = 0;
     private float editorNetWidth = 0;
-    private float heightOffset = 0; //posunutie vo vertikalnej osi
-    public float widthOffset = 0; // posunutie v horizontálnej osi
     private float zChange;
 
     private CameraMovement cameraMovement;
@@ -77,12 +73,6 @@ public class SizeChanger : MonoBehaviour
     {
         previousLineWidth = lineWidth;
         lineWidthText.text = previousLineWidth.ToString("0.00") + " cm";
-    }
-
-    public void SetOffsets(float heightOff, float widthOff = 0)
-    {
-        heightOffset = heightOff;
-        widthOffset = widthOff;
     }
 
     public void ChangeValues(float newChange)
@@ -198,7 +188,7 @@ public class SizeChanger : MonoBehaviour
             netTrianglesCount.text = (rowsSlider.value * columnsSlider.value * triangleCount).ToString();
             return;
         }
-        if (continuousLine == 1) netTrianglesCount.text = (rowsSlider.value * tubeGeneratorNet.GetTriangleCount()).ToString();
+        if (continuousLine) netTrianglesCount.text = (rowsSlider.value * tubeGeneratorNet.GetTriangleCount()).ToString();
         else netTrianglesCount.text = (rowsSlider.value * columnsSlider.value * triangleCount).ToString();
     }
 

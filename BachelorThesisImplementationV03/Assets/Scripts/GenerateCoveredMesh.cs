@@ -23,7 +23,6 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
         ChangeRowsCovered();
         ChangeColumnsCovered();
 
-        sizeChanger.SetOffsets(0.14f, 0.14f);
         sizeChanger.ChangeSizesNet();
     }
 

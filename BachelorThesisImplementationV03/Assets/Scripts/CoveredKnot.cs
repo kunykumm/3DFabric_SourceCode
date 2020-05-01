@@ -17,7 +17,6 @@ public class CoveredKnot : MonoBehaviour
         sizeChanger.SetHeight(rHeight);
         sizeChanger.SetWidth(rWidth);
         sizeChanger.SetLineWidth(lineWidth);
-        sizeChanger.SetOffsets(offset, offset);
         sizeChanger.ChangeSizesNet();
         sizeChanger.UpdateTriangleCount(triangleCount);
     }

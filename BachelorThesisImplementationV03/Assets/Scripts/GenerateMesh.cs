@@ -16,7 +16,6 @@ namespace Dreamteck.Splines
             ChangeColumns();
             ChangeRows();
 
-            sizeChanger.SetOffsets(heightOffset);
             sizeChanger.ChangeSizesNet();
         }
 
