@@ -85,11 +85,6 @@ public class SizeChanger : MonoBehaviour
         widthOffset = widthOff;
     }
 
-    //public float GetScale()
-    //{
-    //    return previousScale;
-    //}
-
     public void ChangeValues(float newChange)
     {
         changer += newChange;

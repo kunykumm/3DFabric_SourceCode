@@ -27,18 +27,23 @@ public class ExportMesh : MonoBehaviour
 
     public void ExportNet()
     {
+        savedInfo.text = "";
+        savedInfo.CrossFadeAlpha(1.0f, 0.0f, false);
+
         theWholeMesh = GameObject.FindGameObjectsWithTag("knotrow");
         string fileName = "";
         string filePath = StandaloneFileBrowser.SaveFilePanel("Save File", "", fileName, extensionList);
         if (filePath.Equals(""))
         {
             savedInfo.text = "Incorrect file name. Net was not saved.";
+            savedInfo.CrossFadeAlpha(0.0f, 5.0f, false);
             return;
         }
         string check = filePath.Substring(filePath.Length - 3, 3);
         if (check.Equals("stl")) SaveAsStl(filePath);
         if (check.Equals("obj")) SaveAsObj(filePath);
         savedInfo.text = "Your net was saved successfully.";
+        savedInfo.CrossFadeAlpha(0.0f, 5.0f, false);
     }
 
     private void SaveAsStl(string filePath)
