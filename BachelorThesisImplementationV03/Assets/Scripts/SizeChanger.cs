@@ -169,18 +169,7 @@ public class SizeChanger : MonoBehaviour
 
     public void ChangeSizesNet()
     {
-        Bounds bounds = theMesh.GetComponent<Renderer>().bounds;
-        foreach (Transform child in theMesh.transform)
-        {
-            if(child.childCount > 0)
-            {
-                foreach(Transform grandChild in child.transform)
-                {
-                    bounds.Encapsulate(grandChild.GetComponent<Renderer>().bounds);
-                }
-            }
-            bounds.Encapsulate(child.GetComponent<Renderer>().bounds);
-        }
+        Bounds bounds = GetBoundsSize();
 
         if (bounds.size.y != editorNetHeight || bounds.size.x != editorNetWidth) ChangeNetCameraFocus(bounds.size.y, bounds.size.x);
 
@@ -188,6 +177,23 @@ public class SizeChanger : MonoBehaviour
         netWidth.text = (bounds.size.x * GetCurrentScale()).ToString("0.00") + " cm";
 
         CalculateTrianglesCount();
+    }
+
+    private Bounds GetBoundsSize()
+    {
+        Bounds bounds = theMesh.GetComponent<Renderer>().bounds;
+        foreach (Transform child in theMesh.transform)
+        {
+            if (child.childCount > 0)
+            {
+                foreach (Transform grandChild in child.transform)
+                {
+                    bounds.Encapsulate(grandChild.GetComponent<Renderer>().bounds);
+                }
+            }
+            bounds.Encapsulate(child.GetComponent<Renderer>().bounds);
+        }
+        return bounds;
     }
 
     private void CalculateTrianglesCount()
@@ -203,20 +209,10 @@ public class SizeChanger : MonoBehaviour
 
     private void ChangeNetCameraFocus(float newHeight, float newWidth)
     {
-        if (newHeight > newWidth)
-        {
-            zChange = - newHeight * 1.7f;
-            if (editorNetHeight > newHeight) zChange *= (-1);
-            if (editorNetWidth > newHeight) zChange *= 0;
+        CalculateZChange(newHeight, newWidth);
+        Vector3 centre = GetBoundsCenter();
 
-        } else
-        {
-            zChange = - newWidth * 1.7f;
-            if (editorNetWidth > newWidth) zChange *= (-1);
-            if (editorNetHeight > newWidth) zChange *= 0;
-        }
-
-        cameraNetFocus.transform.position = new Vector3(newWidth / 2, -newHeight / 2, cameraNetFocus.transform.position.z);
+        cameraNetFocus.transform.position = new Vector3(centre.x, centre.y, cameraNetFocus.transform.position.z);
 
         if (zChange != 0)
         {
@@ -228,6 +224,46 @@ public class SizeChanger : MonoBehaviour
 
         editorNetHeight = newHeight;
         editorNetWidth = newWidth;
+    }
+
+    private void CalculateZChange(float newHeight, float newWidth)
+    {
+        if (newHeight > newWidth)
+        {
+            zChange = -newHeight * 1.7f;
+            if (editorNetHeight > newHeight) zChange *= (-1);
+            if (newWidth > newHeight) zChange *= 0;
+
+        }
+        else
+        {
+            zChange = -newWidth * 1.7f;
+            if (editorNetWidth > newWidth) zChange *= (-1);
+            if (newHeight > newWidth) zChange *= 0;
+        }
+    }
+
+    private Vector3 GetBoundsCenter()
+    {
+        Vector3 centre = new Vector3();
+        int counter = 0;
+
+        foreach (Transform child in theMesh.transform)
+        {
+            if (child.childCount > 0)
+            {
+                foreach (Transform grandChild in child.transform)
+                {
+                    centre += grandChild.GetComponent<Renderer>().bounds.center;
+                    counter++;
+                }
+            } else
+            {
+                centre += child.GetComponent<Renderer>().bounds.center;
+                counter++;
+            }
+        }
+        return (centre / counter);
     }
 
     public void UpdateTriangleCount(int triangleCount)
