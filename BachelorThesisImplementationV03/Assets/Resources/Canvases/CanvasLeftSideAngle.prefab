@@ -1,5 +1,85 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &884545659615187929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5795848558279429388}
+  - component: {fileID: 6919426428043136686}
+  - component: {fileID: 6004177032923296952}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5795848558279429388
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884545659615187929}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7914266149180367899}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 79.599976, y: -177.6}
+  m_SizeDelta: {x: 137, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6919426428043136686
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884545659615187929}
+  m_CullTransparentMesh: 0
+--- !u!114 &6004177032923296952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884545659615187929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 9
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: In order to achieve a successful print, set fibre diameter to at least 0.23
+    cm.
 --- !u!1 &2119374611500668288
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +634,7 @@ RectTransform:
   - {fileID: 7914266150584632707}
   - {fileID: 7914266150406677513}
   - {fileID: 296028256306812123}
+  - {fileID: 5795848558279429388}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1685,6 +1766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cb1077e1eaef047bfb489676b1c7c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theMesh: {fileID: 0}
   heightText: {fileID: 7914266149783999889}
   widthText: {fileID: 7914266150551836974}
   lineWidthText: {fileID: 7914266149329771686}
@@ -1699,13 +1781,10 @@ MonoBehaviour:
   netTrianglesCount: {fileID: 0}
   columnsSlider: {fileID: 0}
   rowsSlider: {fileID: 0}
-  halfKnotAtEnd: 0
   continuousLine: 0
-  alternation: 1
   cameraNetFocus: {fileID: 0}
   cameraNet: {fileID: 0}
   horizontalOffset: 0
-  widthOffset: 0
 --- !u!1 &7914266150085638188
 GameObject:
   m_ObjectHideFlags: 0

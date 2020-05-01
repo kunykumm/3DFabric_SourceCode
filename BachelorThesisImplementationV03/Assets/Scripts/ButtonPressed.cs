@@ -43,7 +43,6 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         float result = sizeChanger.AllowChangeValues();
         if (result != 0)
         {
-            float back = sizeChanger.GetCoveredDefaultLineWidth();
             if (change > 0 && result == sizeChanger.GetCoveredDefaultLineWidth())
             {
                 otherButton.GetComponent<Button>().interactable = true;
