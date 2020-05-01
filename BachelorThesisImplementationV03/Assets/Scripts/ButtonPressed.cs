@@ -32,7 +32,7 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         if (result == 0) sizeChanger.ChangeValues(change);
         else
         {
-            if (change < 0 && result == 0.12f) GetComponent<Button>().interactable = false;
+            if (change < 0 && result == sizeChanger.GetCoveredDefaultLineWidth()) GetComponent<Button>().interactable = false;
             if (change < 0 && result == 0.2f) GetComponent<Button>().interactable = false;
             if (change > 0 && result == 1f) GetComponent<Button>().interactable = false;
         }
@@ -43,7 +43,8 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         float result = sizeChanger.AllowChangeValues();
         if (result != 0)
         {
-            if (change > 0 && result == 0.12f)
+            float back = sizeChanger.GetCoveredDefaultLineWidth();
+            if (change > 0 && result == sizeChanger.GetCoveredDefaultLineWidth())
             {
                 otherButton.GetComponent<Button>().interactable = true;
                 result = 0;

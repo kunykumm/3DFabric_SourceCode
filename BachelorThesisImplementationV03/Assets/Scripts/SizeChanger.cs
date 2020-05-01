@@ -36,6 +36,7 @@ public class SizeChanger : MonoBehaviour
     private float previousWidth;
     private float previousLineWidth;
     private float triangleCount;
+    private float coveredeDefaultLineWidth;
 
     private float changer = 0.0f;
     private float currentScale = 1.0f;
@@ -75,6 +76,16 @@ public class SizeChanger : MonoBehaviour
         lineWidthText.text = previousLineWidth.ToString("0.00") + " cm";
     }
 
+    public void SetCoveredDefaultLineWidth(float coveredeLineWidth)
+    {
+        coveredeDefaultLineWidth = coveredeLineWidth;
+    }
+
+    public float GetCoveredDefaultLineWidth()
+    {
+        return coveredeDefaultLineWidth;
+    }
+
     public void ChangeValues(float newChange)
     {
         changer += newChange;
@@ -89,10 +100,14 @@ public class SizeChanger : MonoBehaviour
     public float AllowChangeValues()
     {
         bool result;
-        if (isCovered) result = newLineWidth >= 0.12;
+        if (isCovered) result = newLineWidth >= coveredeDefaultLineWidth;
         else result = newLineWidth >= 0.2 && newLineWidth <= 1;
 
-        if (!result) return (float)Math.Round(newLineWidth, 2);
+        if (!result)
+        {
+            if (isCovered) return coveredeDefaultLineWidth;
+            return (float)Math.Round(newLineWidth, 2);
+        }
         return 0;
     }
 
