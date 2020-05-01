@@ -849,6 +849,11 @@ PrefabInstance:
       propertyPath: otherButton
       value: 
       objectReference: {fileID: 419330961}
+    - target: {fileID: 4007053512825582097, guid: 495329860a1fed449bf3564f74f218df,
+        type: 3}
+      propertyPath: m_Text
+      value: Circle Knot
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 495329860a1fed449bf3564f74f218df, type: 3}
 --- !u!114 &419330956 stripped
@@ -1525,8 +1530,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8678113341340594900, guid: 44c6e451704f4de4cabbb2aef13132b3,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -50.100006
+      propertyPath: m_AnchoredPosition.x
+      value: -99.20001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44c6e451704f4de4cabbb2aef13132b3, type: 3}

@@ -184,8 +184,8 @@ public class SizeChanger : MonoBehaviour
 
         if (bounds.size.y != editorNetHeight || bounds.size.x != editorNetWidth) ChangeNetCameraFocus(bounds.size.y, bounds.size.x);
 
-        netHeight.text = "Editor: " + (bounds.size.y * GetCurrentScale()).ToString("0.00") + " cm";
-        netWidth.text = "Editor: " + (bounds.size.x * GetCurrentScale()).ToString("0.00") + " cm";
+        netHeight.text = (bounds.size.y * GetCurrentScale()).ToString("0.00") + " cm";
+        netWidth.text = (bounds.size.x * GetCurrentScale()).ToString("0.00") + " cm";
 
         CalculateTrianglesCount();
     }
