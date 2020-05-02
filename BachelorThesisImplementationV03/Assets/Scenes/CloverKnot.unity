@@ -1742,7 +1742,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152194302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.29442, y: -1.5, z: -47}
+  m_LocalPosition: {x: 15.86109, y: -1.6, z: -47.00211}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2007,7 +2007,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476336113}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.29442, y: -1.5, z: 0}
+  m_LocalPosition: {x: 15.86109, y: -1.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2696,8 +2696,8 @@ MonoBehaviour:
   sizeChanger: {fileID: 973456695}
   runtimeRows: {fileID: 370277773}
   knotPrefab: {fileID: 1027237594}
-  heightOffset: 0.5
-  verticalOffset: 3.3
+  heightOffset: 0.4
+  verticalOffset: 3.2
 --- !u!4 &2128038249
 Transform:
   m_ObjectHideFlags: 0
