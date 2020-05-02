@@ -967,6 +967,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 97.899994
       objectReference: {fileID: 0}
+    - target: {fileID: 467525890387203716, guid: 631b4d93fcfa40746b7f3e17c0ee75ea,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -83.600006
+      objectReference: {fileID: 0}
+    - target: {fileID: 9172031035679233502, guid: 631b4d93fcfa40746b7f3e17c0ee75ea,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2005030247}
+    - target: {fileID: 467525889308904707, guid: 631b4d93fcfa40746b7f3e17c0ee75ea,
+        type: 3}
+      propertyPath: m_Text
+      value: Covered Triangle
+      objectReference: {fileID: 0}
     - target: {fileID: 467525890306808198, guid: 631b4d93fcfa40746b7f3e17c0ee75ea,
         type: 3}
       propertyPath: netHeight
@@ -1056,16 +1071,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9172031035679233502, guid: 631b4d93fcfa40746b7f3e17c0ee75ea,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2005030247}
-    - target: {fileID: 467525889308904707, guid: 631b4d93fcfa40746b7f3e17c0ee75ea,
-        type: 3}
-      propertyPath: m_Text
-      value: Covered Triangle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 631b4d93fcfa40746b7f3e17c0ee75ea, type: 3}

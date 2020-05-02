@@ -58,12 +58,16 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
 
     private void AddColumnsCovered(int diff, int beginning = 0)
     {
+        bool rotateElement = false;
         int childCount = runtimeRows.transform.childCount;
         Quaternion quat = Quaternion.identity;
         Vector3 rotation = new Vector3(0, 0, 60);
 
         for (int i = beginning; i < childCount; ++i)
         {
+            if ((i % 2) == (prevColumns % 2)) rotateElement = true;
+            else rotateElement = false;
+
             var currentChild = runtimeRows.transform.GetChild(i);
 
             for (int j = 0; j < diff; ++j)
@@ -81,11 +85,12 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
                 {
                     newPosition -= transform.up * i * (-heightOffset) * 4 / 3.1f;
                     newPosition -= transform.right * (prevColumns + j) * (-verticalOffset) * 2;
-                    if (((prevColumns + j) % 2 == 1 && (prevRows + i) % 2 == 0) || ((prevColumns + j) % 2 == 0 && (prevRows + i) % 2 == 1))
+                    if (rotateElement)
                     {
-                        newPosition -= transform.up * ((height - heightOffset) / 3);
+                        newPosition -= transform.up * ((height - heightOffset) / 3 + 0.0215f);
                         quat = Quaternion.Euler(rotation);
                     }
+                    rotateElement = !rotateElement;
                 }
                 GameObject newKnot = Instantiate(knotClone, newPosition, quat);
                 newKnot.name = "KnotForNet";
