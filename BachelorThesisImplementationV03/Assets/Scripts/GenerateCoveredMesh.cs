@@ -87,7 +87,7 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
                     newPosition -= transform.right * (prevColumns + j) * (-verticalOffset) * 2;
                     if (rotateElement)
                     {
-                        newPosition -= transform.up * ((height - heightOffset) / 3 + 0.0215f);
+                        newPosition -= transform.up * ((height - heightOffset) / 3 + 0.065f);
                         quat = Quaternion.Euler(rotation);
                     }
                     rotateElement = !rotateElement;

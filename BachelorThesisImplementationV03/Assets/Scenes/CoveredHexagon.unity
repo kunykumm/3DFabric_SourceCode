@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 413285529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7, y: -0.6, z: -12.34086}
+  m_LocalPosition: {x: 2, y: -1.368, z: -12.38453}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -801,7 +801,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1166797517}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.5, y: -1.5, z: 0}
+  m_LocalPosition: {x: 2, y: -1.368, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1044,6 +1044,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 97.899994
       objectReference: {fileID: 0}
+    - target: {fileID: 467525890387203716, guid: 631b4d93fcfa40746b7f3e17c0ee75ea,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -83.59999
+      objectReference: {fileID: 0}
+    - target: {fileID: 9172031035679233502, guid: 631b4d93fcfa40746b7f3e17c0ee75ea,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1015476323}
+    - target: {fileID: 467525889308904707, guid: 631b4d93fcfa40746b7f3e17c0ee75ea,
+        type: 3}
+      propertyPath: m_Text
+      value: Covered Hexagon
+      objectReference: {fileID: 0}
     - target: {fileID: 467525890306808198, guid: 631b4d93fcfa40746b7f3e17c0ee75ea,
         type: 3}
       propertyPath: netHeight
@@ -1133,16 +1148,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9172031035679233502, guid: 631b4d93fcfa40746b7f3e17c0ee75ea,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1015476323}
-    - target: {fileID: 467525889308904707, guid: 631b4d93fcfa40746b7f3e17c0ee75ea,
-        type: 3}
-      propertyPath: m_Text
-      value: Covered Hexagon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 631b4d93fcfa40746b7f3e17c0ee75ea, type: 3}
