@@ -40,6 +40,15 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        bool result = MakeButtonInteractable();
+        if (GetComponent<Button>().interactable == false) return;
+        ispressed = true;
+        if (result) sizeChanger.ChangeValues(change);
+        buttonPressedTime = Time.timeSinceLevelLoad;
+    }
+
+    public bool MakeButtonInteractable()
+    {
         float result = sizeChanger.AllowChangeValues();
         if (result != 0)
         {
@@ -59,10 +68,7 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                 result = 0;
             }
         }
-        if (GetComponent<Button>().interactable == false) return;
-        ispressed = true;
-        if (result == 0) sizeChanger.ChangeValues(change);
-        buttonPressedTime = Time.timeSinceLevelLoad;
+        return (result == 0);
     }
 
     public void OnPointerUp(PointerEventData eventData)
