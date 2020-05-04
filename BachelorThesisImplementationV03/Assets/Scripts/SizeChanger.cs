@@ -105,7 +105,11 @@ public class SizeChanger : MonoBehaviour
 
         if (!result)
         {
-            if (isCovered) return coveredDefaultLineWidth;
+            if (isCovered)
+            {
+                if (newLineWidth >= 1) return 1f;
+                return coveredDefaultLineWidth;
+            }
             return (float)Math.Round(newLineWidth, 2);
         }
         return 0;
