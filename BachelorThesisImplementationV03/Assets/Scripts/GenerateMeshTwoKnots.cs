@@ -123,8 +123,6 @@ public class GenerateMeshTwoKnots : GenerateMesh
             newKnot.transform.parent = runtimeRows.transform;
             newKnot.transform.position += transform.up * (i + prevRows) * curHeight;
 
-            //if ((i + prevRows) % 2 == 1) newKnot.transform.position += transform.right * (width / 2);
-
             newKnot.GetComponent<SplineComputer>().RebuildImmediate();
         }
         knotClone.GetComponent<SplineComputer>().space = SplineComputer.Space.World;

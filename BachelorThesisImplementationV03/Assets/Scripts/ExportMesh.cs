@@ -31,6 +31,7 @@ public class ExportMesh : MonoBehaviour
         savedInfo.CrossFadeAlpha(1.0f, 0.0f, false);
 
         theWholeMesh = GameObject.FindGameObjectsWithTag("knotrow");
+
         string fileName = "";
         string filePath = StandaloneFileBrowser.SaveFilePanel("Save File", "", fileName, extensionList);
         if (filePath.Equals(""))
@@ -48,9 +49,8 @@ public class ExportMesh : MonoBehaviour
 
     private void SaveAsStl(string filePath)
     {
-        float scale = sizeChanger.GetCurrentScale();
-        PrepareMeshesForStl();
-        STL.Export(meshes, matrices, filePath);
+        PrepareObjectForExport();
+        STL.Export(objectForExport, filePath);
         savedInfo.text = "Your net was saved successfully.";
     }
 
@@ -61,20 +61,6 @@ public class ExportMesh : MonoBehaviour
         savedInfo.text = "Your net was saved successfully.";
     }
 
-    private void PrepareMeshesForStl()
-    {
-        int length = theWholeMesh.Length;
-        meshes = new Mesh[length];
-        matrices = new Matrix4x4[length];
-        float scale = sizeChanger.GetCurrentScale();
-        Vector3 scaleV = new Vector3(scale, scale, scale);
-        for (int i = 0; i < length; ++i)
-        {
-            meshes[i] = theWholeMesh[i].GetComponent<MeshFilter>().mesh;
-            matrices[i] = Matrix4x4.TRS(theWholeMesh[i].transform.position * scale, theWholeMesh[i].transform.rotation, scaleV);
-
-        }
-    }
 
     private void CombineMeshes()
     {
@@ -99,6 +85,12 @@ public class ExportMesh : MonoBehaviour
         CombineMeshes();
         objectForExport.transform.GetComponent<MeshFilter>().mesh = new Mesh();
         objectForExport.transform.GetComponent<MeshFilter>().mesh.CombineMeshes(combineInstances);
-        objectForExport.transform.localScale *= sizeChanger.GetCurrentScale();
+        float currentScale = sizeChanger.GetCurrentScale();
+        Vector3[] meshVertices = objectForExport.transform.GetComponent<MeshFilter>().mesh.vertices;
+        for (int i = 0; i < meshVertices.Length; i++)
+        {
+            meshVertices[i] *= currentScale;
+        }
+        objectForExport.transform.GetComponent<MeshFilter>().mesh.vertices = meshVertices;
     }
 }

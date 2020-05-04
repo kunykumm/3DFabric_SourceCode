@@ -6,7 +6,5 @@ public class AppStartInitialiseValues : MonoBehaviour
     {
         Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
         PlayerPrefs.SetString("scene", "");
-        //PlayerPrefs.SetInt("binary", 1);
-        //PlayerPrefs.SetInt("text", 1);
     }
 }
