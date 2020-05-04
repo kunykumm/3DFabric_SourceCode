@@ -57,12 +57,12 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                 otherButton.GetComponent<Button>().interactable = true;
                 result = 0;
             }
-            if (change > 0 && result == 0.2f)
+            else if (change > 0 && result == 0.2f)
             {
                 otherButton.GetComponent<Button>().interactable = true;
                 result = 0;
             }
-            if (change < 0 && result == 1f)
+            else if (change < 0 && result == 1f)
             {
                 otherButton.GetComponent<Button>().interactable = true;
                 result = 0;
