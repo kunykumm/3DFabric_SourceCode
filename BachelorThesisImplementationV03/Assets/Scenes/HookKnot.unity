@@ -1113,6 +1113,8 @@ MonoBehaviour:
   knotPrefab: {fileID: 355470075}
   heightOffset: 3.5
   knotPrefabRotated: {fileID: 572802693}
+  allowForwardOffset: 1
+  forwardOffset: -0.5
 --- !u!4 &352164150
 Transform:
   m_ObjectHideFlags: 0

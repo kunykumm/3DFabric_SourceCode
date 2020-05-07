@@ -6,6 +6,9 @@ using UnityEngine;
 public class GenerateMeshTwoKnots : GenerateMesh
 {
     public GameObject knotPrefabRotated;
+    public bool allowForwardOffset;
+    public float forwardOffset;
+
     private GameObject knotCloneRotated;
     private SplineComputer splineComputerRotated;
 
@@ -112,6 +115,7 @@ public class GenerateMeshTwoKnots : GenerateMesh
             if ((i + prevRows) % 2 == 1)
             {
                 newKnot = Instantiate(knotCloneRotated, knotCloneRotated.transform.position, Quaternion.identity);
+                if (allowForwardOffset) newKnot.transform.position += transform.forward * forwardOffset;
                 newKnot.layer = 9;
             } 
             else
