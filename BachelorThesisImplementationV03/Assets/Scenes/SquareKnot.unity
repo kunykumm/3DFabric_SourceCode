@@ -1147,7 +1147,7 @@ PrefabInstance:
     - target: {fileID: 4007053512825582097, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}
       propertyPath: m_Text
-      value: Square Knot
+      value: Square Stitch
       objectReference: {fileID: 0}
     - target: {fileID: 4007053512854771825, guid: 495329860a1fed449bf3564f74f218df,
         type: 3}

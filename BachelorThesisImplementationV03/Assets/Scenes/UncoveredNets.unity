@@ -948,7 +948,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Square Knot
+  m_Text: Square Stitch
 --- !u!222 &784447457
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1414,7 +1414,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Circle Knot
+  m_Text: Circle Stitch
 --- !u!222 &990759868
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1493,7 +1493,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hook Knot
+  m_Text: Hook Stitch
 --- !u!222 &1016220588
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1837,7 +1837,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Clover Knot
+  m_Text: Clover Stitch
 --- !u!222 &1242896763
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2090,7 +2090,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Edged Knot
+  m_Text: Edged Stitch
 --- !u!222 &1437481054
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2244,7 +2244,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Basic Knot
+  m_Text: Basic Stitch
 --- !u!222 &1595004467
 CanvasRenderer:
   m_ObjectHideFlags: 0

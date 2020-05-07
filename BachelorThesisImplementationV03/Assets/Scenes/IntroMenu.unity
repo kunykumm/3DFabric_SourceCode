@@ -1656,7 +1656,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: software for generating fabric for 3D printers.
+  m_Text: application for generating fabric for 3D printers.
 --- !u!222 &1991558445
 CanvasRenderer:
   m_ObjectHideFlags: 0
