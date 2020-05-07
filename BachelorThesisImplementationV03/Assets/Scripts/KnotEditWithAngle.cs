@@ -5,23 +5,16 @@ using UnityEngine.UI;
 public class KnotEditWithAngle : KnotEditBase
 {
     public Slider angle;
+    public int indexOne;
+    public int indexTwo;
+    public float xOffset;
+    public float zOffset;
 
     protected float prevAngle;
-
     protected float xDiff;
     protected float zDiff;
     protected Vector3 firstPointStart;
     protected Vector3 secondPointStart;
-
-    /**
-    * ANGLES (BasicKnot)
-    * Start position:   3.0  3.0  0.8
-    *                   0.0  3.0 -0.8
-    * End position:     1.5  3.0  1.6
-    *                   1.5  3.0 -1.6
-    *                   
-    * ALL NORMALS: At average center - best result when angle changes
-    */
 
     private void Start()
     {
@@ -34,10 +27,10 @@ public class KnotEditWithAngle : KnotEditBase
 
     protected void CalculateBaseValues()
     {
-        firstPointStart = new Vector3(2.6f, 3.0f, 0.8f);
-        secondPointStart = new Vector3(0.4f, 3.0f, -0.8f);
-        xDiff = (firstPointStart.x - 1.5f) / angle.maxValue;
-        zDiff = (firstPointStart.z - 1.6f) / angle.maxValue;
+        firstPointStart = splineComputer.GetPointPosition(indexOne);
+        secondPointStart = splineComputer.GetPointPosition(indexTwo);
+        xDiff = (firstPointStart.x - xOffset) / angle.maxValue;
+        zDiff = (firstPointStart.z - zOffset) / angle.maxValue;
     }
 
     public void OnEditWithAngle()
@@ -49,8 +42,8 @@ public class KnotEditWithAngle : KnotEditBase
     protected void ChangeAngle()
     {
         prevAngle = angle.value;
-        splineComputer.SetPointPosition(2, new Vector3(firstPointStart.x - prevAngle * xDiff, firstPointStart.y, firstPointStart.z - prevAngle * zDiff));
-        splineComputer.SetPointPosition(4, new Vector3(secondPointStart.x + prevAngle * xDiff, secondPointStart.y, secondPointStart.z + prevAngle * zDiff));
+        splineComputer.SetPointPosition(indexOne, new Vector3(firstPointStart.x - prevAngle * xDiff, firstPointStart.y, firstPointStart.z - prevAngle * zDiff));
+        splineComputer.SetPointPosition(indexTwo, new Vector3(secondPointStart.x + prevAngle * xDiff, secondPointStart.y, secondPointStart.z + prevAngle * zDiff));
     }
 
 }
