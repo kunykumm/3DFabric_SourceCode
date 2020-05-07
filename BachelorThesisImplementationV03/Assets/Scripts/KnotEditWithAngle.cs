@@ -49,8 +49,8 @@ public class KnotEditWithAngle : KnotEditBase
     protected void ChangeAngle()
     {
         prevAngle = angle.value;
-        splineComputer.SetPointPosition(1, new Vector3(firstPointStart.x - prevAngle * xDiff, firstPointStart.y, firstPointStart.z - prevAngle * zDiff));
-        splineComputer.SetPointPosition(3, new Vector3(secondPointStart.x + prevAngle * xDiff, secondPointStart.y, secondPointStart.z + prevAngle * zDiff));
+        splineComputer.SetPointPosition(2, new Vector3(firstPointStart.x - prevAngle * xDiff, firstPointStart.y, firstPointStart.z - prevAngle * zDiff));
+        splineComputer.SetPointPosition(4, new Vector3(secondPointStart.x + prevAngle * xDiff, secondPointStart.y, secondPointStart.z + prevAngle * zDiff));
     }
 
 }
