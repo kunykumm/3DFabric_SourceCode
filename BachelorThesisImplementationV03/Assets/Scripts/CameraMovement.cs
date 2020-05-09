@@ -116,6 +116,10 @@ public class CameraMovement : MonoBehaviour
         return Mathf.Clamp(angle, min, max);
     }
 
+    /// <summary>
+    /// Changes the desired distance when the size of the net changes.
+    /// </summary>
+    /// <param name="newDistance"> New distance based on the new size of the net. </param>
     public void SetNewDistance(float newDistance)
     {
         desiredDistance = newDistance;

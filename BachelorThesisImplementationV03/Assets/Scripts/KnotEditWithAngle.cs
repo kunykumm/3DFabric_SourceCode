@@ -18,7 +18,6 @@ public class KnotEditWithAngle : KnotEditBase
 
     private void Start()
     {
-        PlayerPrefs.SetString("scene", sceneName);
         PrepareValues();
         prevAngle = angle.value;
         CalculateBaseValues();

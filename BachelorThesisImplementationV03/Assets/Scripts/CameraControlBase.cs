@@ -1,9 +1,11 @@
 ﻿using Dreamteck.Splines;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Contains functions that change active viewports in the scene.
+/// Moreover, it enables/disables GUI elements according to the active viewport.
+/// </summary>
 public class CameraControlBase : MonoBehaviour
 {
     public GenerateMesh generateMesh;
@@ -19,18 +21,27 @@ public class CameraControlBase : MonoBehaviour
 
     protected CameraMovement camKnotMov;
     protected CameraMovement camNetMov;
+
+    /// <value> Custom colours for buttons. </value>
     protected Color customGrey;
     protected Color customSilver;
     protected Color customOrange;
 
+    /// <value> 'true' when the viewport of net editing is active, 'false' otherwise. </value>
     protected bool isEditNet;
 
+    /// <summary>
+    /// Calls functions to set the default viewport workspace at the start of the scene.
+    /// </summary>
     void Start()
     {
         PrepareScene();
         ChangeCameras();
     }
 
+    /// <summary>
+    /// Sets up all uninitialised (protected) attributes.
+    /// </summary>
     protected void PrepareScene()
     {
         camKnotMov = cameraKnot.GetComponent<CameraMovement>();
@@ -43,6 +54,9 @@ public class CameraControlBase : MonoBehaviour
         customSilver = new Color(195, 195, 195, 1);
     }
 
+    /// <summary>
+    /// Makes net editing viewport inactive and knot editing viewport active. The GUI changes accordingly.
+    /// </summary>
     protected void FromNetToKnotBase()
     {
         StateOfButtons(leftAddMinusButtons, true, customSilver);
@@ -60,6 +74,9 @@ public class CameraControlBase : MonoBehaviour
         isEditNet = false;
     }
 
+    /// <summary>
+    /// Makes knot editing viewport inactive and net editing viewport active. The GUI changes accordingly.
+    /// </summary>
     protected void FromKnotToNetBase()
     {
         StateOfButtons(leftAddMinusButtons, false, customGrey);
@@ -77,6 +94,11 @@ public class CameraControlBase : MonoBehaviour
         isEditNet = true;
     }
 
+    /// <summary>
+    /// Helper function to make sliders enabled/disabled.
+    /// </summary>
+    /// <param name="panel"> UnityEngine.UI panel that has sliders as its children. </param>
+    /// <param name="enabled"> 'true' when sliders should become enabled, 'false' otherwise. </param>
     protected void StateOfSliders(GameObject panel, bool enabled)
     {
         int childrenCount = panel.transform.childCount;
@@ -86,6 +108,12 @@ public class CameraControlBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Helper function to make buttons enabled/disabled.
+    /// </summary>
+    /// <param name="panel"> UnityEngine.UI panel that has buttons as its children. </param>
+    /// <param name="enabled"> 'true' when buttons should become enabled, 'false' otherwise. </param>
+    /// <param name="color"> Colour that button should be changed to. </param>
     protected void StateOfButtons(GameObject panel, bool enabled, Color color)
     {
         int childrenCount = panel.transform.childCount;
@@ -97,6 +125,9 @@ public class CameraControlBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Switches the active viewport of the scene.
+    /// </summary>
     public virtual void ChangeCameras()
     {
         if (isEditNet)
