@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Holds information about covered element.
+/// </summary>
 public class CoveredKnot : MonoBehaviour
 {
     public SizeChanger sizeChanger;
@@ -10,8 +11,10 @@ public class CoveredKnot : MonoBehaviour
     public float rWidth;
     public float rHeight;
     public float lineWidth;
-    public float offset;
 
+    /// <summary>
+    /// Sets up the sizeChanger attributes for this element.
+    /// </summary>
     void Start()
     {
         sizeChanger.SetHeight(rHeight);

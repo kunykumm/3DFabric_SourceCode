@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-//Source> http://wiki.unity3d.com/index.php?title=MouseOrbitZoom&_ga=2.118063561.1581168210.1569654933-1993925785.1565433809
+//<Source> http://wiki.unity3d.com/index.php?title=MouseOrbitZoom&oldid=13023
 
 public class CameraMovement : MonoBehaviour
 {

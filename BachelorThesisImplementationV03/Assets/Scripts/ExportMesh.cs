@@ -1,20 +1,29 @@
 ﻿using SFB;
-using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
+//<Source> Save Dialog: https://github.com/gkngkc/UnityStandaloneFileBrowser
+//<Source> STL Exporter: https://assetstore.unity.com/packages/tools/input-management/stl-3397
+//<Source> OBJ Exporter: https://wiki.unity3d.com/index.php/ObjExporter
+
+/// <summary>
+/// Contains functions for exporting the mesh from the scene.
+/// </summary>
 public class ExportMesh : MonoBehaviour
 {
     private GameObject[] theWholeMesh;
     private ExtensionFilter[] extensionList;
     private CombineInstance[] combineInstances = { };
-    private Mesh[] meshes = { };
-    private Matrix4x4[] matrices = { };
 
     public Text savedInfo;
     public GameObject objectForExport;
     private SizeChanger sizeChanger;
 
+    /// <summary>
+    /// Sets up the ExtensionFilter array.
+    /// Puts new mesh into MeshFilter component of the objectForExport.
+    /// Finds the sizeChanger in the scene.
+    /// </summary>
     private void Start()
     {
         extensionList = new ExtensionFilter[] {
@@ -25,6 +34,12 @@ public class ExportMesh : MonoBehaviour
         sizeChanger = GameObject.Find("SizeChanger").GetComponent<SizeChanger>();
     }
 
+    /// <summary>
+    /// It is called when 'Export' button is pressed.
+    /// Finds all GameObjects with a tag 'knotrow' and saves them into an array.
+    /// Opens the save dialog using StandaloneFileBrowser wrapper, calling function SaveFilePanel().
+    /// Exports the mesh in the chosen format.
+    /// </summary>
     public void ExportNet()
     {
         savedInfo.text = "";
@@ -47,6 +62,10 @@ public class ExportMesh : MonoBehaviour
         savedInfo.CrossFadeAlpha(0.0f, 5.0f, false);
     }
 
+    /// <summary>
+    /// Saves the mesh in STL format using STL exporter function Export().
+    /// </summary>
+    /// <param name="filePath"> File path given by the user. </param>
     private void SaveAsStl(string filePath)
     {
         PrepareObjectForExport();
@@ -54,6 +73,10 @@ public class ExportMesh : MonoBehaviour
         savedInfo.text = "Your net was saved successfully.";
     }
 
+    /// <summary>
+    /// Saves the mesh in OBJ format using OBJ exporter function MeshToFile().
+    /// </summary>
+    /// <param name="filePath"> File path given by the user. </param>
     private void SaveAsObj(string filePath)
     {
         PrepareObjectForExport();
@@ -61,7 +84,10 @@ public class ExportMesh : MonoBehaviour
         savedInfo.text = "Your net was saved successfully.";
     }
 
-
+    /// <summary>
+    /// Finds MeshFilters of all GameObjects in theWholeMesh array.
+    /// Creates combineInstances for all found MeshFilters.
+    /// </summary>
     private void CombineMeshes()
     {
         int count = theWholeMesh.Length;
@@ -80,6 +106,11 @@ public class ExportMesh : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Combines meshes from combineInstances array to one mesh.
+    /// Gets all vertices of this mesh and scales using current scale from sizeChanger.
+    /// Replaces vertices of the mesh with scaled vertices.
+    /// </summary>
     private void PrepareObjectForExport()
     {
         CombineMeshes();

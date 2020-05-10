@@ -2,6 +2,11 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Contains functions for changing the transparency of images and texts.
+/// Also contains functionality for loading next scene when image is clicked.
+/// This script is used by images present in menu scenes.
+/// </summary>
 public class MenuCoverImage : MonoBehaviour
 {
     public Image coverImage;
@@ -11,7 +16,9 @@ public class MenuCoverImage : MonoBehaviour
     private Color cover;
     private Color text;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// 
+    /// </summary>
     void Start()
     {
         cover = coverImage.color;
