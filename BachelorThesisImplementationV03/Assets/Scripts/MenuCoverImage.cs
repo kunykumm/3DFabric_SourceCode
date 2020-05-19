@@ -17,7 +17,7 @@ public class MenuCoverImage : MonoBehaviour
     private Color text;
 
     /// <summary>
-    /// 
+    /// Sets up the default look of each image in the scene
     /// </summary>
     void Start()
     {
@@ -31,6 +31,11 @@ public class MenuCoverImage : MonoBehaviour
         title.color = text;
     }
 
+    /// <summary>
+    /// Image fades.
+    /// Text appears.
+    /// This happens when mouse is over a particular image.
+    /// </summary>
     public void MouseHoversOver()
     {
         cover.a = 0.8f;
@@ -40,6 +45,11 @@ public class MenuCoverImage : MonoBehaviour
         title.color = text;
     }
 
+    /// <summary>
+    /// Image appears in full colours.
+    /// Text dissapears.
+    /// This happens when mouse leaves the space of a particular image.
+    /// </summary>
     public void MouseIsOutside()
     {
         cover.a = 0;
@@ -49,6 +59,9 @@ public class MenuCoverImage : MonoBehaviour
         title.color = text;
     }
 
+    /// <summary>
+    /// When the image is clicked, this function is called and a corresponding scene is loaded.
+    /// </summary>
     public void LoadNewScene()
     {
         SceneManager.LoadScene(nextScene);
