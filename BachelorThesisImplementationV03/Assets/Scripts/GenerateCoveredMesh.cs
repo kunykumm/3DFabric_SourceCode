@@ -1,12 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Extends functionality of GenerateSimplyMesh class.
+/// Customised for type: Covered textiles.
+/// Further comments:.
+/// Scenes: Covered Triangle, Covered Square, Covered Hexagon.
+/// </summary>
 public class GenerateCoveredMesh : GenerateSimplyMesh
 {
     public bool hexagonal;
     public bool triangle;
 
+    /// <summary>
+    /// Sets up the default net at the start of the scene.
+    /// </summary>
     void Start()
     {
         knotClone = GameObject.Find("KnotForNet");
@@ -26,6 +33,9 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
         sizeChanger.ChangeSizesNet();
     }
 
+    /// <summary>
+    /// In case the value of column and row sliders change, the functions to change the net are called. 
+    /// </summary>
     void Update()
     {
         if (updateValues)
@@ -41,11 +51,18 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
         }
     }
 
+    /// <summary>
+    /// When EditNet button is clicked, this function is called the information about size of the net.
+    /// In this case, there is no Dreamteck Splines knotPrefab, so no knotClone needs to be updated.
+    /// </summary>
     public override void UpdateNet()
     { 
         sizeChanger.ChangeSizesNet();
     }
 
+    /// <summary>
+    /// Decides how to change columns of the net (increase or decrease the count).
+    /// </summary>
     protected void ChangeColumnsCovered()
     {
         int diff = (int)columns.value - prevColumns;
@@ -56,6 +73,15 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
         prevColumns = (int)columns.value;
     }
 
+    /// <summary>
+    /// Adds new columns to the net.
+    /// Contains different options for triangle and hexagon cases (square is default).
+    /// </summary>
+    /// <param name="diff"> Number of columns that will be added to the net. </param>
+    /// <param name="beginning"> 
+    /// 0 = in case only columns are changed. 
+    /// n = index of a row, where generation of all columns starts (in case new rows were added). 
+    /// </param>
     private void AddColumnsCovered(int diff, int beginning = 0)
     {
         bool rotateElement = false;
@@ -101,6 +127,9 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
         }
     }
 
+    /// <summary>
+    /// Decides how to change rows of the net (increase or decrease the count).
+    /// </summary>
     protected void ChangeRowsCovered()
     {
         int diff = (int)rows.value - prevRows;
@@ -111,6 +140,10 @@ public class GenerateCoveredMesh : GenerateSimplyMesh
         prevRows = (int)rows.value;
     }
 
+    /// <summary>
+    /// Adds new rows to the net.
+    /// </summary>
+    /// <param name="diff"> Number of rows to be added. </param>
     private void AddRowsCovered(int diff)
     {
         HelperAddRows(runtimeRows, diff);

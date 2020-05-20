@@ -1,8 +1,12 @@
 ﻿using Dreamteck.Splines;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Extends functionality of GenerateBase class.
+/// Customised for type: Weft-knitting imitations.
+/// Further comments: Suitable for complex continuous lines, where rotation or position change is needed.
+/// Scenes: Hook Knot, Edged Knot.
+/// </summary>
 public class GenerateMeshTwoKnots : GenerateMesh
 {
     public GameObject knotPrefabRotated;
@@ -12,7 +16,9 @@ public class GenerateMeshTwoKnots : GenerateMesh
     private GameObject knotCloneRotated;
     private SplineComputer splineComputerRotated;
 
-
+    /// <summary>
+    /// Sets up the default net at the start of the scene.
+    /// </summary>
     void Start()
     {
         SetupNet(runtimeRows.transform);
@@ -25,6 +31,9 @@ public class GenerateMeshTwoKnots : GenerateMesh
         sizeChanger.ChangeSizesNet();
     }
 
+    /// <summary>
+    /// In case the value of column and row sliders change, the functions to change the net are called.
+    /// </summary>
     void Update()
     {
         if (updateValues)
@@ -40,6 +49,9 @@ public class GenerateMeshTwoKnots : GenerateMesh
         }
     }
 
+    /// <summary>
+    /// Updates the knotCloneRotated according to the changes in knotPrefab.
+    /// </summary>
     protected void SetupComplicatedNet()
     {
         knotCloneRotated = GameObject.Find("KnotForNetRotated");
@@ -50,6 +62,10 @@ public class GenerateMeshTwoKnots : GenerateMesh
         splineComputerRotated = knotCloneRotated.GetComponent<SplineComputer>();
     }
 
+    /// <summary>
+    /// When EditNet button is clicked, this function is called to update all attributes according to knotPrefab.
+    /// In this case, knotClone and knotCloneRotated are both updated. 
+    /// </summary>
     public override void UpdateNet()
     {
         DeleteRows(prevRows - 1);
@@ -68,6 +84,9 @@ public class GenerateMeshTwoKnots : GenerateMesh
         sizeChanger.ChangeSizesNet();
     }
 
+    /// <summary>
+    /// Decides how to change columns of the net (increase or decrease the count).
+    /// </summary>
     private void ChangeColumnsComplicated()
     {
         int diff = (int)columns.value - prevColumns;
@@ -87,6 +106,9 @@ public class GenerateMeshTwoKnots : GenerateMesh
         prevColumns = (int)columns.value;
     }
 
+    /// <summary>
+    /// Decides how to change rows of the net (increase or decrease the count).
+    /// </summary>
     private void ChangeRowsComplicated()
     {
         int diff = (int)rows.value - prevRows;
@@ -101,6 +123,12 @@ public class GenerateMeshTwoKnots : GenerateMesh
         prevRows = (int)rows.value;
     }
 
+    /// <summary>
+    /// Adds new rows.
+    /// The selection of knotClone / knotCloneRotated depends on the index of the row.
+    /// If the index is even, the knotClone is chosen. Otherwise, the knotCloneRotated is chosen.
+    /// </summary>
+    /// <param name="diff"> Number of new rows to add. </param>
     private void AddRowsComplicated(int diff)
     {
         float curHeight = -(height - heightOffset);

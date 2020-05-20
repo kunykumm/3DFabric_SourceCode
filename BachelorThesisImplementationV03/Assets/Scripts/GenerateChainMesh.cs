@@ -1,6 +1,12 @@
 ﻿using Dreamteck.Splines;
 using UnityEngine;
 
+/// <summary>
+/// Extends functionality of GenerateSimplyMesh class.
+/// Customised for type: Chain mail imitations.
+/// Further comments: Suitable for complicated chain mail structures..
+/// Scenes: Circle Knot.
+/// </summary>
 public class GenerateChainMesh : GenerateSimplyMesh
 {
     public GameObject runtimeInterRows;
@@ -10,6 +16,9 @@ public class GenerateChainMesh : GenerateSimplyMesh
     private int prevInterRows;
 
 
+    /// <summary>
+    /// Sets up the default net at the start of the scene.
+    /// </summary>
     void Start()
     {
         BaseStart();
@@ -20,7 +29,18 @@ public class GenerateChainMesh : GenerateSimplyMesh
         ChangeInterRows();
         ChangeInterColumns();
     }
-
+    /// <summary>
+    /// In case the value of column and row sliders change, the functions to change the net are called. 
+    /// There are two other functions to generate an additional grid of elements needed to connect the elements in the main grid.
+    /// 
+    /// o o o o o o
+    ///  o o o o o
+    /// o o o o o o     -> This is the main grid.
+    /// 
+    /// \/\/\/\/\/
+    /// /\/\/\/\/\      -> This is the additional grid connecting the elements of the main grid together.
+    /// 
+    /// </summary>
     void Update()
     {
         if (updateValues)
@@ -43,7 +63,9 @@ public class GenerateChainMesh : GenerateSimplyMesh
             updateValues = true;
         }
     }
-
+    /// <summary>
+    /// Decides how to change columns of the additional net (increase or decrease the count).
+    /// </summary>
     private void ChangeInterColumns()
     {
         int diff = 2 * (int)columns.value - 1 - prevInterColumns;
@@ -54,6 +76,14 @@ public class GenerateChainMesh : GenerateSimplyMesh
         prevInterColumns = 2 * (int)columns.value - 1;
     }
 
+    /// <summary>
+    /// Adds new columns.
+    /// </summary>
+    /// <param name="diff"> Number of columns that will be added to the net. </param>
+    /// <param name="beginning">
+    /// 0 = in case only columns are changed. 
+    /// n = index of a row, where generation of all columns starts (in case new rows were added).
+    /// </param>
     private void AddInterColumns(int diff, int beginning = 0)
     {
         int childCount = runtimeInterRows.transform.childCount;
@@ -85,6 +115,13 @@ public class GenerateChainMesh : GenerateSimplyMesh
         knotClone.GetComponent<SplineComputer>().space = SplineComputer.Space.World;
     }
 
+    /// <summary>
+    /// Special function to change the rotation and position of elements in the additional grid. 
+    /// </summary>
+    /// <param name="childIndex"> Index of a row. </param>
+    /// <param name="diffIndex"> Index of a new column. </param>
+    /// <param name="position"> Default position of the element. </param>
+    /// <param name="rotation"> Rotation in the direction of x axis. </param>
     private void InterColumnsPosAngleChanger(int childIndex, int diffIndex, ref Vector3 position, ref int rotation)
     {
         if ((diffIndex + prevInterColumns) % 2 == 0)
@@ -105,12 +142,19 @@ public class GenerateChainMesh : GenerateSimplyMesh
         position -= transform.up * childIndex * height;
     }
 
+    /// <summary>
+    /// Deletes columns from the additional net.
+    /// </summary>
+    /// <param name="diff"></param>
     private void DeleteInterColumns(int diff)
     {
         int childCount = runtimeInterRows.transform.childCount;
         HelperDeleteColumns(runtimeInterRows, diff, childCount, prevInterColumns);
     }
 
+    /// <summary>
+    /// Decides how to change rows of the additional net (increase or decrease the count).
+    /// </summary>
     private void ChangeInterRows()
     {
         int diff = (int)rows.value - 1 - prevInterRows;
@@ -121,6 +165,10 @@ public class GenerateChainMesh : GenerateSimplyMesh
         prevInterRows = (int)rows.value - 1;
     }
 
+    /// <summary>
+    /// Adds new rows to the additional net.
+    /// </summary>
+    /// <param name="diff"> Number of new rows to add. </param>
     private void AddInterRows(int diff)
     {
         HelperAddRows(runtimeInterRows, diff);
@@ -130,6 +178,10 @@ public class GenerateChainMesh : GenerateSimplyMesh
         prevInterColumns = tmp;
     }
 
+    /// <summary>
+    /// Deletes rows from the additional net.
+    /// </summary>
+    /// <param name="diff"></param>
     private void DeleteInterRows(int diff)
     {
         int firstChildDying = prevInterRows - diff + 1;
