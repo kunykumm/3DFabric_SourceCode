@@ -91,18 +91,13 @@ public class ExportMesh : MonoBehaviour
     private void CombineMeshes()
     {
         int count = theWholeMesh.Length;
-        MeshFilter[] meshFilters = new MeshFilter[count];
         combineInstances = new CombineInstance[count];
 
         for (int i = 0; i < count; ++i)
         {
-            meshFilters[i] = theWholeMesh[i].GetComponent<MeshFilter>();
-        }
-
-        for (int j = 0; j < count; ++j)
-        {
-            combineInstances[j].mesh = meshFilters[j].sharedMesh;
-            combineInstances[j].transform = meshFilters[j].transform.localToWorldMatrix;
+            MeshFilter current = theWholeMesh[i].GetComponent<MeshFilter>();
+            combineInstances[i].mesh = current.sharedMesh;
+            combineInstances[i].transform = current.transform.localToWorldMatrix;
         }
     }
 
@@ -110,11 +105,18 @@ public class ExportMesh : MonoBehaviour
     /// Combines meshes from combineInstances array to one mesh.
     /// Gets all vertices of this mesh and scales using current scale from sizeChanger.
     /// Replaces vertices of the mesh with scaled vertices.
+    /// <code>
+    ///    indexFormat = UnityEngine.Rendering.IndexFormat.UInt32   
+    /// </code>
+    /// Increases the number of vertices in a new mesh (Default is 65k vertices, which is too low).
     /// </summary>
     private void PrepareObjectForExport()
     {
         CombineMeshes();
-        objectForExport.transform.GetComponent<MeshFilter>().mesh = new Mesh();
+        objectForExport.transform.GetComponent<MeshFilter>().mesh = new Mesh
+        {
+            indexFormat = UnityEngine.Rendering.IndexFormat.UInt32
+        };
         objectForExport.transform.GetComponent<MeshFilter>().mesh.CombineMeshes(combineInstances);
         float currentScale = sizeChanger.GetCurrentScale();
         Vector3[] meshVertices = objectForExport.transform.GetComponent<MeshFilter>().mesh.vertices;
